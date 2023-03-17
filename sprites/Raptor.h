@@ -1,6 +1,6 @@
 /*
 
- SMILEY.H
+ RAPTOR.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 3
+  Tiles                : 0 to 11
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -22,14 +22,14 @@
 
 */
 
-#ifndef __Smiley_h_INCLUDE
-#define __Smiley_h_INCLUDE
+#ifndef __Raptor_h_INCLUDE
+#define __Raptor_h_INCLUDE
 
 /* Bank of tiles. */
-#define SmileyBank 0
+#define RaptorBank 0
 /* Start of tile array. */
-extern const unsigned char Smiley[];
+extern const unsigned char Raptor[];
 
 #endif
 
-/* End of SMILEY.H */
+/* End of RAPTOR.H */
