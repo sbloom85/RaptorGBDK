@@ -1,0 +1,16 @@
+1.  Make Sprites
+    a.  Enemy Sprites
+    b.  Weapon Sprites
+
+2.  Create Collisions
+    a.  Enemy and Player
+    b.  Player Weapon and Enemy
+    c.  Enemy Weapon and Player
+
+3.  Create Background Maps
+    a.  Intro Backgrounds
+    b.  Title Background
+    c.  Pre-Game Backgrounds
+    d.  Level Backgrounds
+
+4.  Create Music
