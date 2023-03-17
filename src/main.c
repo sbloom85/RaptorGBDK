@@ -90,6 +90,26 @@ void main(void)
                 newXPos += moveSpeed;
                 MoveGameCharacter(&ship, newXPos, newYPos);
                 break;
+            case J_UP + J_LEFT:
+                newXPos -= moveSpeed;
+                newYPos -= moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_UP + J_RIGHT:
+                newXPos += moveSpeed;
+                newYPos -= moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_DOWN + J_LEFT:
+                newXPos -= moveSpeed;
+                newYPos += moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_DOWN + J_RIGHT:
+                newXPos += moveSpeed;
+                newYPos += moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
         }
         delay(25);
     }
