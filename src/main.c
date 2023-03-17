@@ -7,6 +7,8 @@
 struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
+const uint8_t moveSpeed = 1;
+uint8_t newXPos = 0, newYPos = 0;
 
 // Move the character
 void MoveGameCharacter(struct Player* character, uint8_t x, uint8_t y)
@@ -58,6 +60,8 @@ void setupShip()
     ship.spriteids[7] = 7;
 
     MoveGameCharacter(&ship, ship.x, ship.y);
+    newXPos = ship.x;
+    newYPos = ship.y;
 }
 
 void main(void)
@@ -65,11 +69,28 @@ void main(void)
     setupShip();
     SHOW_SPRITES;
 
-    /*
     while (1)
     {
-        scroll_bkg(1, 0);
-        delay(100);
+        // Ship Movement
+        switch(joypad())
+        {
+            case  J_UP:
+                newYPos -= moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_DOWN:
+                newYPos += moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_LEFT:
+                newXPos -= moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+            case J_RIGHT:
+                newXPos += moveSpeed;
+                MoveGameCharacter(&ship, newXPos, newYPos);
+                break;
+        }
+        delay(25);
     }
-    */
 }
