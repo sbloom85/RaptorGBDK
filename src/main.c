@@ -1,7 +1,7 @@
 #include "gb.h"
 #include <stdio.h>
-#include "sprites/Raptor.h"
-#include "gamecharacter.c"
+#include "../sprites/Raptor.h"
+#include "gamecharacter.h"
 
 // Game Character Struct
 struct Player ship;
