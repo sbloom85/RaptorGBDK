@@ -4,11 +4,12 @@
 #include "gamecharacter.c"
 
 // Game Character Struct
-struct GameCharacter ship;
-UBYTE spriteSize = 8;
+struct Player ship;
+struct Enemy eShip1;
+const uint8_t spriteSize = 8;
 
 // Move the character
-void MoveGameCharacter(struct GameCharacter* character, uint8_t x, uint8_t y)
+void MoveGameCharacter(struct Player* character, uint8_t x, uint8_t y)
 {
     move_sprite(character->spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
     move_sprite(character->spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
@@ -27,6 +28,8 @@ void setupShip()
     ship.y = 120;
     ship.width = 32;
     ship.height = 24;
+    ship.enabled = 1;
+    ship.visible = 1;
 
     // Load sprites for ship
     set_sprite_data(0, 1, RaptorTLE0);
