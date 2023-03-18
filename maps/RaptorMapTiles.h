@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 0
+  Tiles                : 0 to 50
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -26,9 +26,9 @@
 #define __RaptorMapTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorMapTilesBank 0
+#define TileLabelBank 0
 /* Start of tile array. */
-extern const unsigned char RaptorMapTiles[];
+extern const unsigned char TileLabel[];
 
 #endif
 
