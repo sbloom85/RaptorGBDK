@@ -7,15 +7,10 @@
 struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
-const uint8_t moveSpeed = 1;
-
-#define J_UP_LEFT (J_UP + J_LEFT)
-#define J_DOWN_LEFT (J_DOWN + J_LEFT)
-#define J_UP_RIGHT (J_UP + J_RIGHT)
-#define J_DOWN_RIGHT (J_DOWN + J_RIGHT)
+const uint8_t moveSpeed = 2;
 
 // Move the character
-void MoveGameCharacter(struct Player* character, uint8_t x, uint8_t y)
+void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
 {
     move_sprite(character->spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
     move_sprite(character->spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
@@ -63,7 +58,7 @@ void setupShip()
     set_sprite_tile(7, 7);
     ship.spriteids[7] = 7;
 
-    MoveGameCharacter(&ship, ship.x, ship.y);
+    MovePlayer(&ship, ship.x, ship.y);
 }
 
 void main(void)
@@ -77,42 +72,21 @@ void main(void)
         if  ((joypad() & J_UP) && ship.y > 8)
         {
             ship.y -= moveSpeed;
-            MoveGameCharacter(&ship, ship.x, ship.y);
-        }
-        if ((joypad() & J_DOWN) && ship.y < 126)
+            MovePlayer(&ship, ship.x, ship.y);
+        } else if ((joypad() & J_DOWN) && ship.y < 126)
         {
             ship.y += moveSpeed;
-            MoveGameCharacter(&ship, ship.x, ship.y);
+            MovePlayer(&ship, ship.x, ship.y);
         }
+
         if ((joypad() & J_LEFT) && ship.x > 16)
         {
             ship.x -= moveSpeed;
-            MoveGameCharacter(&ship, ship.x, ship.y);
-        }
-        if ((joypad() & J_RIGHT) && ship.x < 128)
+            MovePlayer(&ship, ship.x, ship.y);
+        } else if ((joypad() & J_RIGHT) && ship.x < 128)
         {
             ship.x += moveSpeed;
-            MoveGameCharacter(&ship, ship.x, ship.y);
-        }
-        if ((joypad() & J_UP_LEFT) && ship.y > 8 && ship.x > 16)
-        {
-            ship.x -= moveSpeed;
-            ship.y -= moveSpeed;
-        }
-        if ((joypad() & J_UP_RIGHT)  && ship.y > 8  && ship.x < 128)
-        {
-            ship.x += moveSpeed;
-            ship.y -= moveSpeed;
-        }
-        if ((joypad() & J_DOWN_LEFT) && ship.y < 126 && ship.x > 16)
-        {
-            ship.x -= moveSpeed;
-            ship.y += moveSpeed;
-        }
-        if ((joypad() & J_DOWN_RIGHT) && ship.y < 126 && ship.x < 128)
-        {
-            ship.x += moveSpeed;
-            ship.y += moveSpeed;
+            MovePlayer(&ship, ship.x, ship.y);
         }
         delay(25);
     }
