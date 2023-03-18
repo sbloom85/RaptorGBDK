@@ -94,7 +94,7 @@ void main(void)
     setupShip();
     SetColliders();
     
-    scroll_bkg(0, 100);
+    move_bkg(0, 100);
 
     SHOW_BKG;
     SHOW_SPRITES;
