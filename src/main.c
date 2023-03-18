@@ -3,6 +3,7 @@
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
 #include "sound.h"
+#include "maps.h"
 
 // Game Character Struct
 struct Player ship;
@@ -83,10 +84,13 @@ void PerformantDelay(uint8_t numLoops)
 void main(void)
 {
     InitializeSound();
+    BravoOne();
     setupShip();
     SetColliders();
     
+    SHOW_BKG;
     SHOW_SPRITES;
+    DISPLAY_ON;
 
     while (1)
     {
