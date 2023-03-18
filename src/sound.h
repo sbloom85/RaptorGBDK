@@ -90,13 +90,21 @@ void MoneyPickupSound()
 // Plays when player or enemy is hit with projectile
 void HitSound()
 {
-
+    NR10_REG = 0x44;
+    NR11_REG = 0x00;
+    NR12_REG = 0x57;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
 }
 
 // Plays when player or enemy is destroyed
 void DeadSound()
 {
-
+    NR10_REG = 0x4B;
+    NR11_REG = 0x00;
+    NR12_REG = 0x57;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
 }
 
 void TutorialMusic()
