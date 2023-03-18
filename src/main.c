@@ -3,7 +3,7 @@
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
 #include "sound.h"
-#include "map.h"
+#include "maps.h"
 
 // Game Character Struct
 struct Player ship;
@@ -13,7 +13,7 @@ const uint8_t moveSpeed = 2;
 
 void BravoOne()
 {
-    set_bkg_data(0, 50, RaptorTilesBravo);
+    set_bkg_data(0, 51, RaptorMapTiles);
     set_bkg_tiles(0, 0, 20, 255, BravoWave1);
 }
 

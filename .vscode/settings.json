@@ -3,6 +3,7 @@
         "gb.h": "c",
         "raptor.h": "c",
         "gamecharacter.h": "c",
-        "raptormaptiles.h": "c"
+        "raptormaptiles.h": "c",
+        "maps.h": "c"
     }
 }
