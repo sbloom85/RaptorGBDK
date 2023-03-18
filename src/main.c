@@ -81,14 +81,16 @@ void main(void)
 
     while (1)
     {
+        uint8_t joyInput = joypad();
+
         // Ship Movement
-        if  ((joypad() & J_UP) && ship.y > 8)
+        if  ((joyInput & J_UP) && ship.y > 8)
         {
             ship.y -= moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
             
             SetColliders();
-        } else if ((joypad() & J_DOWN) && ship.y < 126)
+        } else if ((joyInput & J_DOWN) && ship.y < 126)
         {
             ship.y += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
@@ -96,13 +98,13 @@ void main(void)
             SetColliders();
         }
 
-        if ((joypad() & J_LEFT) && ship.x > 16)
+        if ((joyInput & J_LEFT) && ship.x > 16)
         {
             ship.x -= moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
 
             SetColliders();
-        } else if ((joypad() & J_RIGHT) && ship.x < 128)
+        } else if ((joyInput & J_RIGHT) && ship.x < 128)
         {
             ship.x += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
@@ -110,7 +112,7 @@ void main(void)
             SetColliders();
         }
 
-        if (joypad() & J_A)
+        if (joyInput & J_A)
         {
             TutorialSound();    // Plays sound effect from sound.h
         }
