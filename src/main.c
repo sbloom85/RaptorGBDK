@@ -110,6 +110,11 @@ void main(void)
             SetColliders();
         }
 
+        if (joypad() & J_A)
+        {
+            TutorialSound();    // Plays sound effect from sound.h
+        }
+
         // Test if colliders work
         if (ship.colliderTop < 32)
         {
