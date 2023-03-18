@@ -3,13 +3,19 @@
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
 #include "sound.h"
-#include "maps.h"
+#include "map.h"
 
 // Game Character Struct
 struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
 const uint8_t moveSpeed = 2;
+
+void BravoOne()
+{
+    set_bkg_data(0, 50, RaptorTilesBravo);
+    set_bkg_tiles(0, 0, 20, 255, BravoWave1);
+}
 
 // Move the character
 void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
