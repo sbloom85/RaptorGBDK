@@ -53,12 +53,38 @@ void TutorialSound()
 // Plays when machine gun is fired
 void MachineGunSound()
 {
-    // 0011 0110
     NR10_REG = 0x1D;
     NR11_REG = 0x40;
     NR12_REG = 0x73;
     NR13_REG = 0x9C;
     NR14_REG = 0x84;
+}
+
+void MissileSound()
+{
+    NR10_REG = 0x5E;
+    NR11_REG = 0x00;
+    NR12_REG = 0x57;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
+}
+
+void WeaponPickupSound()
+{
+    NR10_REG = 0x75;
+    NR11_REG = 0x00;
+    NR12_REG = 0x40;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
+}
+
+void MoneyPickupSound()
+{
+    NR10_REG = 0x44;
+    NR11_REG = 0x00;
+    NR12_REG = 0x57;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
 }
 
 // Plays when player or enemy is hit with projectile
