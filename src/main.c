@@ -74,7 +74,7 @@ void SetColliders()
 // More CPU efficient delay
 void PerformantDelay(uint8_t numLoops)
 {
-    for (uint8_t i = numLoops; i++)
+    for (uint8_t i = numLoops; i--;)
     {
         wait_vbl_done();
     }
