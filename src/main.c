@@ -74,7 +74,7 @@ void SetColliders()
 // More CPU efficient delay
 void PerformantDelay(uint8_t numLoops)
 {
-    for (uint8_t i = 0; i < numLoops; i++)
+    for (uint8_t i = numLoops; i++)
     {
         wait_vbl_done();
     }
@@ -124,6 +124,10 @@ void main(void)
         if (joyInput & J_A)
         {
             MachineGunSound();    // Plays sound effect from sound.h
+        }
+        else if (joyInput & J_B)
+        {
+            MissileSound();       // Plays missile launch sound effect
         }
 
         // Test if colliders work
