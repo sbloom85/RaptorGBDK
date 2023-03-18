@@ -8,7 +8,11 @@ struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
 const uint8_t moveSpeed = 1;
-uint8_t newXPos = 0, newYPos = 0;
+
+#define J_UP_LEFT (J_UP + J_LEFT)
+#define J_DOWN_LEFT (J_DOWN + J_LEFT)
+#define J_UP_RIGHT (J_UP + J_RIGHT)
+#define J_DOWN_RIGHT (J_DOWN + J_RIGHT)
 
 // Move the character
 void MoveGameCharacter(struct Player* character, uint8_t x, uint8_t y)
@@ -60,8 +64,6 @@ void setupShip()
     ship.spriteids[7] = 7;
 
     MoveGameCharacter(&ship, ship.x, ship.y);
-    newXPos = ship.x;
-    newYPos = ship.y;
 }
 
 void main(void)
@@ -72,44 +74,45 @@ void main(void)
     while (1)
     {
         // Ship Movement
-        switch(joypad())
+        if  ((joypad() & J_UP) && ship.y > 8)
         {
-            case  J_UP:
-                newYPos -= moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_DOWN:
-                newYPos += moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_LEFT:
-                newXPos -= moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_RIGHT:
-                newXPos += moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_UP + J_LEFT:
-                newXPos -= moveSpeed;
-                newYPos -= moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_UP + J_RIGHT:
-                newXPos += moveSpeed;
-                newYPos -= moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_DOWN + J_LEFT:
-                newXPos -= moveSpeed;
-                newYPos += moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
-            case J_DOWN + J_RIGHT:
-                newXPos += moveSpeed;
-                newYPos += moveSpeed;
-                MoveGameCharacter(&ship, newXPos, newYPos);
-                break;
+            ship.y -= moveSpeed;
+            MoveGameCharacter(&ship, ship.x, ship.y);
+        }
+        if ((joypad() & J_DOWN) && ship.y < 126)
+        {
+            ship.y += moveSpeed;
+            MoveGameCharacter(&ship, ship.x, ship.y);
+        }
+        if ((joypad() & J_LEFT) && ship.x > 16)
+        {
+            ship.x -= moveSpeed;
+            MoveGameCharacter(&ship, ship.x, ship.y);
+        }
+        if ((joypad() & J_RIGHT) && ship.x < 128)
+        {
+            ship.x += moveSpeed;
+            MoveGameCharacter(&ship, ship.x, ship.y);
+        }
+        if ((joypad() & J_UP_LEFT) && ship.y > 8 && ship.x > 16)
+        {
+            ship.x -= moveSpeed;
+            ship.y -= moveSpeed;
+        }
+        if ((joypad() & J_UP_RIGHT)  && ship.y > 8  && ship.x < 128)
+        {
+            ship.x += moveSpeed;
+            ship.y -= moveSpeed;
+        }
+        if ((joypad() & J_DOWN_LEFT) && ship.y < 126 && ship.x > 16)
+        {
+            ship.x -= moveSpeed;
+            ship.y += moveSpeed;
+        }
+        if ((joypad() & J_DOWN_RIGHT) && ship.y < 126 && ship.x < 128)
+        {
+            ship.x += moveSpeed;
+            ship.y += moveSpeed;
         }
         delay(25);
     }
