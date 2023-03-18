@@ -53,7 +53,12 @@ void TutorialSound()
 // Plays when machine gun is fired
 void MachineGunSound()
 {
-
+    // 0011 0110
+    NR10_REG = 0x1D;
+    NR11_REG = 0x40;
+    NR12_REG = 0x73;
+    NR13_REG = 0x9C;
+    NR14_REG = 0x84;
 }
 
 // Plays when player or enemy is hit with projectile

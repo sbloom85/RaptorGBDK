@@ -71,6 +71,15 @@ void SetColliders()
     ship.colliderBottom = ship.y + ship.height;
 }
 
+// More CPU efficient delay
+void PerformantDelay(uint8_t numLoops)
+{
+    for (uint8_t i = 0; i < numLoops; i++)
+    {
+        wait_vbl_done();
+    }
+}
+
 void main(void)
 {
     InitializeSound();
@@ -114,7 +123,7 @@ void main(void)
 
         if (joyInput & J_A)
         {
-            TutorialSound();    // Plays sound effect from sound.h
+            MachineGunSound();    // Plays sound effect from sound.h
         }
 
         // Test if colliders work
@@ -122,6 +131,8 @@ void main(void)
         {
             ship.visible = 0;
         }
-        delay(25);
+
+        PerformantDelay(2);
+        // delay(25);
     }
 }
