@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
+#include "sound.h"
 
 // Game Character Struct
 struct Player ship;
@@ -61,9 +62,21 @@ void setupShip()
     MovePlayer(&ship, ship.x, ship.y);
 }
 
+void SetColliders()
+{
+    // Reset colliders
+    ship.colliderTop = ship.y;
+    ship.colliderLeft = ship.x;
+    ship.colliderRight = ship.x + ship.width;
+    ship.colliderBottom = ship.y + ship.height;
+}
+
 void main(void)
 {
+    InitializeSound();
     setupShip();
+    SetColliders();
+    
     SHOW_SPRITES;
 
     while (1)
@@ -73,20 +86,34 @@ void main(void)
         {
             ship.y -= moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
+            
+            SetColliders();
         } else if ((joypad() & J_DOWN) && ship.y < 126)
         {
             ship.y += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
+
+            SetColliders();
         }
 
         if ((joypad() & J_LEFT) && ship.x > 16)
         {
             ship.x -= moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
+
+            SetColliders();
         } else if ((joypad() & J_RIGHT) && ship.x < 128)
         {
             ship.x += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
+
+            SetColliders();
+        }
+
+        // Test if colliders work
+        if (ship.colliderTop < 32)
+        {
+            ship.visible = 0;
         }
         delay(25);
     }

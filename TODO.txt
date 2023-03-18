@@ -3,7 +3,7 @@
     b.  Weapon Sprites
 
 2.  Create Collisions
-    a.  Enemy and Player
+    a.  Enemy and Player - IN PROGRESS (Scott)
     b.  Player Weapon and Enemy
     c.  Enemy Weapon and Player
 
@@ -13,6 +13,8 @@
     c.  Pre-Game Backgrounds
     d.  Level Backgrounds
 
-4.  Create Music
+4.  Create Music and Sound Effects
+    a.  Create Sound Effects - IN PROGRESS (Scott)
+    b.  Create Music
 
 5.  Code basic movement - DONE
