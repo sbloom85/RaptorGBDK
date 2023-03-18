@@ -4,5 +4,6 @@
 
 void BravoOne()
 {
-    set_bkg_data(0, 51)
+    set_bkg_data(0, 51, RaptorTilesBravo);
+    set_bkg_tiles(0, 0, )
 }

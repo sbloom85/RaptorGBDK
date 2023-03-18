@@ -28,7 +28,7 @@
 /* Bank of tiles. */
 #define TileLabelBank 0
 /* Start of tile array. */
-extern const unsigned char TileLabel[];
+extern const unsigned char RaptorTilesBravo[];
 
 #endif
 
