@@ -11,7 +11,7 @@
     a.  Intro Backgrounds
     b.  Title Background
     c.  Pre-Game Backgrounds
-    d.  Level Backgrounds
+    d.  Level Backgrounds - IN PROGRESS (RetroGamer02)
 
 4.  Create Music and Sound Effects
     a.  Create Sound Effects - IN PROGRESS (Scott)
