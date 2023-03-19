@@ -5,16 +5,52 @@
 #include "sound.h"
 #include "maps.h"
 
+#define camera_max_y ((BravoWave1Height - 18) * 8) 
+#define camera_max_x ((BravoWave1Width - 20) * 8) 
+
+#define MIN(A,B) ((A)<(B)?(A):(B))
+
+// current and old positions of the camera in pixels
+uint16_t camera_x, camera_y, old_camera_x, old_camera_y;
+// current and old position of the map in tiles
+uint8_t map_pos_x, map_pos_y, old_map_pos_x, old_map_pos_y;
+// redraw flag, indicates that camera position was changed
+uint8_t redraw;
+
 // Game Character Struct
 struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
 const uint8_t moveSpeed = 2;
 
+void set_camera() {
+    // update hardware scroll position
+    SCY_REG = camera_y; SCX_REG = camera_x; 
+    // up or down
+    map_pos_y = (uint8_t)(camera_y >> 3u);
+    if (map_pos_y != old_map_pos_y) { 
+        if (camera_y < old_camera_y) {
+            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1, 20);
+        } else {
+            if ((BravoWave1Height - 18u) > map_pos_y) set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1, 20);     
+        }
+        old_map_pos_y = map_pos_y; 
+    }
+    
+    // set old camera position to current camera position
+    old_camera_x = camera_x, old_camera_y = camera_y;
+}
+
 void BravoOne()
 {
     set_bkg_data(0, 51, RaptorMapTiles);
-    set_bkg_tiles(0, 0, 20, 255, BravoWave1);
+
+    map_pos_x = 0;
+    //map_pos_y = 220;
+    map_pos_y = 0;
+    old_map_pos_x = 255;
+    old_map_pos_y = 255;
+    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1, 20);
 }
 
 // Move the character
@@ -112,9 +148,22 @@ void main(void)
     SHOW_SPRITES;
     DISPLAY_ON;
 
+    camera_x = 0;
+    //camera_y = 104;
+    camera_y = 0;
+    old_camera_x = camera_x; 
+    old_camera_y = camera_y;
+
+    redraw = TRUE;
+
+    SCX_REG = camera_x; SCY_REG = camera_y;
+
     while (1)
     {
-        scroll_bkg(0, -1);
+        set_camera();
+        //scroll_bkg(0, -1);
+
+        camera_y--;
 
         uint8_t joyInput = joypad();
 
