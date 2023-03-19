@@ -114,17 +114,6 @@ void initProjectiles()
     }
 }
 
-//void removeProjectiles(int8_t id)
-//{
-    //for (int8_t i = 0; i < MAX_PROJECTILES; i++)
-    //{
-        //if (newProjectile[i].finished)
-        //{
-            //memset(newProjectile[id], 0, sizeof(newProjectile[id]));
-        //}
-    //}
-//}
-
 void moveProjectiles()
 {
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
@@ -136,11 +125,7 @@ void moveProjectiles()
             {
                 move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
             } else {
-                newProjectile[i].enabled = 0;
-                //newProjectile[i].finished = 1;
-                //removeProjectiles(i);
-                //memcpy(newProjectile[i], 0, sizeof(newProjectile[i]));
-                
+                newProjectile[i].enabled = 0;                
             }
         }
     }
