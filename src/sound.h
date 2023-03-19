@@ -129,11 +129,6 @@ void EnemyShotSound()
     NR14_REG = 0x86;
 }
 
-void TutorialMusic()
-{
-    
-}
-
 // Plays when the title screen is displayed
 void TitleMusic()
 {
@@ -160,6 +155,30 @@ void TangoMusic()
 
 // Plays during Outer Regions
 void OuterMusic()
+{
+
+}
+
+// Plays during the final wave of Bravo Sector
+void BravoBossWaveMusic()
+{
+
+}
+
+// Plays during the final wave of Tango Sector
+void TangoBossWaveMusic()
+{
+
+}
+
+// Plays during the final wave of the Outer Regions
+void OuterBossWaveMusic()
+{
+
+}
+
+//Plays during Game Over
+void GameOverMusic()
 {
 
 }
