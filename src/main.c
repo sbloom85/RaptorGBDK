@@ -69,6 +69,18 @@ void setupShip()
     MovePlayer(&ship, ship.x, ship.y);
 }
 
+void SetupEnemyShip()
+{
+    eShip1.x = 80;
+    eShip1.y = 30;
+    eShip1.width = 32;
+    eShip1.height = 24;
+    eShip1.enabled = 1;
+    eShip1.visible = 1;
+
+    // Load sprites for ship
+}
+
 void SetColliders()
 {
     // Reset colliders
