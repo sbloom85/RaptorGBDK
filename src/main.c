@@ -1,6 +1,7 @@
 #include "gb.h"
 #include "cgb.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
 #include "projectile.h"
@@ -113,6 +114,17 @@ void initProjectiles()
     }
 }
 
+//void removeProjectiles(int8_t id)
+//{
+    //for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    //{
+        //if (newProjectile[i].finished)
+        //{
+            //memset(newProjectile[id], 0, sizeof(newProjectile[id]));
+        //}
+    //}
+//}
+
 void moveProjectiles()
 {
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
@@ -120,7 +132,16 @@ void moveProjectiles()
         if (newProjectile[i].enabled)
         {
             newProjectile[i].y -= 4;
-            move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
+            if (newProjectile[i].y > 0)
+            {
+                move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
+            } else {
+                newProjectile[i].enabled = 0;
+                //newProjectile[i].finished = 1;
+                //removeProjectiles(i);
+                //memcpy(newProjectile[i], 0, sizeof(newProjectile[i]));
+                
+            }
         }
     }
 }
@@ -130,14 +151,14 @@ void fireMachineGun()
     MachineGunSound();    // Plays sound effect from sound.h
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
     {
-         if (!newProjectile[i].enabled)
+        if (!newProjectile[i].enabled)
         {
             newProjectile[i].x = ship.x + 12;
             newProjectile[i].y = ship.y + 4;
             newProjectile[i].enabled = 1;
             set_sprite_data(newProjectile[i].id, 1, MchBulletTLE0);
             set_sprite_tile(newProjectile[i].id, newProjectile[i].id);
-            break;
+            i = MAX_PROJECTILES; //Break out of loop.
         }
     }
 }
@@ -266,7 +287,8 @@ void main(void)
 
         if (joyInput & J_A)
         {
-            fireMachineGun();   
+            fireMachineGun();
+            //delay(100);
         }
         else if (joyInput & J_B)
         {
