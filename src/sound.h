@@ -106,7 +106,11 @@ void DeadSound()
 // Plays when a laser weapon is fired
 void LaserWeaponSound()
 {
-
+    NR10_REG = 0x34;
+    NR11_REG = 0x01;
+    NR12_REG = 0x73;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
 }
 
 // Plays when Twin Laser is fired
@@ -118,7 +122,11 @@ void TwinLaserSound()
 // Plays when an enemy fires
 void EnemyShotSound()
 {
-
+    NR10_REG = 0x1D;
+    NR11_REG = 0x40;
+    NR12_REG = 0x73;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
 }
 
 void TutorialMusic()
