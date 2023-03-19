@@ -1,6 +1,6 @@
 1.  Make Sprites
     a.  Enemy Sprites
-    b.  Weapon Sprites
+    b.  Weapon Sprites - IN PROGRESS
 
 2.  Create Collisions
     a.  Enemy and Player - IN PROGRESS (Scott)
