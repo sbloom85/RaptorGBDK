@@ -9,8 +9,8 @@
 
 3.  Create Background Maps
     a.  Intro Backgrounds
-    b.  Title Background
-    c.  Pre-Game Backgrounds
+    b.  Title Background - IN PROGRESS
+    c.  Pre-Game Backgrounds - IN PROGRESS
     d.  Level Backgrounds - IN PROGRESS (RetroGamer02)
 
 4.  Create Music and Sound Effects
