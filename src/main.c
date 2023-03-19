@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
+#include "projectile.h"
 #include "sound.h"
 #include "maps.h"
 
@@ -29,6 +30,19 @@ struct Player ship;
 struct Enemy eShip1;
 const uint8_t spriteSize = 8;
 const uint8_t moveSpeed = 2;
+
+#define MAX_PROJECTILES 20
+
+struct projectile newProjectile[MAX_PROJECTILES];
+
+// More CPU efficient delay
+void PerformantDelay(uint8_t numLoops)
+{
+    for (uint8_t i = numLoops; i--;)
+    {
+        wait_vbl_done();
+    }
+}
 
 void set_camera() {
     // update hardware scroll position
@@ -86,6 +100,46 @@ void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
     move_sprite(character->spriteids[5], x + (spriteSize + 0), y + (spriteSize + 16));
     move_sprite(character->spriteids[6], x + (spriteSize + 8), y + (spriteSize + 16));
     move_sprite(character->spriteids[7], x + (spriteSize + 16), y + (spriteSize + 16));
+}
+
+void initProjectiles()
+{
+    uint8_t startID = 8; //Everything below 8 is resurved for ship.
+    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    {
+        newProjectile[i].id = startID;
+        startID++;
+        newProjectile[i].enabled = 0;
+    }
+}
+
+void moveProjectiles()
+{
+    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    {
+        if (newProjectile[i].enabled)
+        {
+            newProjectile[i].y -= 4;
+            move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
+        }
+    }
+}
+
+void fireMachineGun()
+{
+    MachineGunSound();    // Plays sound effect from sound.h
+    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    {
+         if (!newProjectile[i].enabled)
+        {
+            newProjectile[i].x = ship.x + 12;
+            newProjectile[i].y = ship.y + 4;
+            newProjectile[i].enabled = 1;
+            set_sprite_data(newProjectile[i].id, 1, MchBulletTLE0);
+            set_sprite_tile(newProjectile[i].id, newProjectile[i].id);
+            break;
+        }
+    }
 }
 
 // Initialize ship struct
@@ -148,17 +202,9 @@ void SetColliders()
     ship.colliderBottom = ship.y + ship.height;
 }
 
-// More CPU efficient delay
-void PerformantDelay(uint8_t numLoops)
-{
-    for (uint8_t i = numLoops; i--;)
-    {
-        wait_vbl_done();
-    }
-}
-
 void main(void)
 {
+    initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
     BravoOne();
@@ -184,6 +230,8 @@ void main(void)
         set_camera();
 
         camera_y--;
+
+        moveProjectiles();
 
         uint8_t joyInput = joypad();
 
@@ -218,7 +266,7 @@ void main(void)
 
         if (joyInput & J_A)
         {
-            MachineGunSound();    // Plays sound effect from sound.h
+            fireMachineGun();   
         }
         else if (joyInput & J_B)
         {
