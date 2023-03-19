@@ -1,6 +1,6 @@
 /*
 
- BRAVOW1GBCV3.C
+ BRAVOW1GBC.C
 
  Map Source File.
 
@@ -8,7 +8,7 @@
    Section       : 
    Bank          : 0
    Map size      : 20 x 255
-   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\RaptorBGTilesGBCV2.gbr
+   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\RaptorBGTilesGBC.gbr
    Plane count   : 2 planes (16 bits)
    Plane order   : Planes are continues
    Tile offset   : 0
@@ -1051,4 +1051,4 @@ const unsigned char BravoWave1PLN1[] =
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01
 };
 
-/* End of BRAVOW1GBCV3.C */
+/* End of BRAVOW1GBC.C */

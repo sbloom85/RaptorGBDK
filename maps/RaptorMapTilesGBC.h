@@ -1,6 +1,6 @@
 /*
 
- RAPTORMAPTILESGBCV2.H
+ RAPTORMAPTILESGBC.H
 
  Include File.
 
@@ -22,8 +22,8 @@
 
 */
 
-#ifndef __RaptorMapTilesGBCV2_h_INCLUDE
-#define __RaptorMapTilesGBCV2_h_INCLUDE
+#ifndef __RaptorMapTilesGBC_h_INCLUDE
+#define __RaptorMapTilesGBC_h_INCLUDE
 
 /* Bank of tiles. */
 #define RaptorMapTilesBank 0
@@ -106,4 +106,4 @@ extern const unsigned char RaptorMapTiles[];
 
 #endif
 
-/* End of RAPTORMAPTILESGBCV2.H */
+/* End of RAPTORMAPTILESGBC.H */
