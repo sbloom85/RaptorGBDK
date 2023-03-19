@@ -14,7 +14,7 @@ const UWORD bkgPalette[] = {
 };
 
 const UWORD sprPalette[] = {
-	RGB_GREEN, RGB_RED, RGB_LIGHTGRAY, RGB_DARKGRAY
+	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5)
 };
 
 // current and old positions of the camera in pixels

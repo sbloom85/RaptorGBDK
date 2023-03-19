@@ -1,6 +1,6 @@
 /*
 
- RAPTORMAPTILESGBC.C
+ RAPTORMAPTILESGBCV2.C
 
  Tile Source File.
 
@@ -142,4 +142,4 @@ const unsigned char RaptorMapTiles[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 
-/* End of RAPTORMAPTILESGBC.C */
+/* End of RAPTORMAPTILESGBCV2.C */
