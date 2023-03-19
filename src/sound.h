@@ -103,6 +103,24 @@ void DeadSound()
     NR14_REG = 0x86;
 }
 
+// Plays when a laser weapon is fired
+void LaserWeaponSound()
+{
+
+}
+
+// Plays when Twin Laser is fired
+void TwinLaserSound()
+{
+    
+}
+
+// Plays when an enemy fires
+void EnemyShotSound()
+{
+
+}
+
 void TutorialMusic()
 {
     
