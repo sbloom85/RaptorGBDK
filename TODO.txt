@@ -18,3 +18,5 @@
     b.  Create Music
 
 5.  Code basic movement - DONE
+
+6.  Code camera movement - IN PROGRESS (RetroGamer02)
