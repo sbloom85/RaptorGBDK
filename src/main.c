@@ -1,14 +1,21 @@
 #include "gb.h"
+#include "cgb.h"
 #include <stdio.h>
 #include "../sprites/Raptor.h"
 #include "gamecharacter.h"
 #include "sound.h"
 #include "maps.h"
 
-#define camera_max_y ((BravoWave1Height - 18) * 8) 
-#define camera_max_x ((BravoWave1Width - 20) * 8) 
+const UWORD bkgPalette[] = {
+	RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
+    RaptorMapTilesCGBPal1c0, RaptorMapTilesCGBPal1c1, RaptorMapTilesCGBPal1c2, RaptorMapTilesCGBPal1c3,
+    RaptorMapTilesCGBPal2c0, RaptorMapTilesCGBPal2c1, RaptorMapTilesCGBPal2c2, RaptorMapTilesCGBPal2c3,
+    RaptorMapTilesCGBPal3c0, RaptorMapTilesCGBPal3c1, RaptorMapTilesCGBPal3c2, RaptorMapTilesCGBPal3c3,
+};
 
-#define MIN(A,B) ((A)<(B)?(A):(B))
+const UWORD sprPalette[] = {
+	RGB_GREEN, RGB_RED, RGB_LIGHTGRAY, RGB_DARKGRAY
+};
 
 // current and old positions of the camera in pixels
 uint16_t camera_x, camera_y, old_camera_x, old_camera_y;
@@ -30,9 +37,19 @@ void set_camera() {
     map_pos_y = (uint8_t)(camera_y >> 3u);
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1, 20);
+            VBK_REG = 1;
+            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1PLN1, 20);
+            VBK_REG = 0;
+            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1PLN0, 20);
         } else {
-            if ((BravoWave1Height - 18u) > map_pos_y) set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1, 20);     
+            if ((BravoWave1Height - 18u) > map_pos_y)
+            {
+                VBK_REG = 1;
+                set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN1, 20);
+                VBK_REG = 0;
+                set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN0, 20);
+            }
+                 
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -43,14 +60,19 @@ void set_camera() {
 
 void BravoOne()
 {
+    set_bkg_palette(0, 4, &bkgPalette[0]);
     set_bkg_data(0, 51, RaptorMapTiles);
+
+    VBK_REG = 1;
+    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1PLN1, 20);
+    VBK_REG = 0;
+    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1PLN0, 20);
 
     map_pos_x = 0;
     //map_pos_y = 220;
     map_pos_y = 0;
     old_map_pos_x = 255;
     old_map_pos_y = 255;
-    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1, 20);
 }
 
 // Move the character
@@ -137,12 +159,11 @@ void PerformantDelay(uint8_t numLoops)
 
 void main(void)
 {
+    set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
     BravoOne();
     setupShip();
     SetColliders();
-    
-    move_bkg(0, 100);
 
     SHOW_BKG;
     SHOW_SPRITES;
@@ -161,7 +182,6 @@ void main(void)
     while (1)
     {
         set_camera();
-        //scroll_bkg(0, -1);
 
         camera_y--;
 

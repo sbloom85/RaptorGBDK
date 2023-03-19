@@ -1,5 +1,7 @@
 mkdir -p build
-c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -c -o build\main.o src\main.c
-c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -c -o build\raptor.o sprites\raptor.c
-c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -o raptor.gbc build\main.o build\raptor.o
+c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\raptor.o sprites\raptor.c
+c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\BravoW1GBC.o maps\BravoW1GBC.c
+c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\RaptorMapTilesGBC.o maps\RaptorMapTilesGBC.c
+c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\main.o src\main.c
+c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -Wm-yn"Raptor" -Wm-yc -o main.gbc build\main.o build\raptor.o build\BravoW1GBC.o build\RaptorMapTilesGBC.o
 pause
