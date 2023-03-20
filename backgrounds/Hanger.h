@@ -11,16 +11,16 @@
 #define Hanger_TILE_H 8
 #define Hanger_WIDTH 160
 #define Hanger_HEIGHT 144
-#define Hanger_TILE_COUNT 197
-#define Hanger_PALETTE_COUNT 6
+#define Hanger_TILE_COUNT 159
+#define Hanger_PALETTE_COUNT 2
 #define Hanger_COLORS_PER_PALETTE 4
-#define Hanger_TOTAL_COLORS 24
+#define Hanger_TOTAL_COLORS 8
 #define Hanger_MAP_ATTRIBUTES 0
 
 BANKREF_EXTERN(Hanger)
 
-extern const palette_color_t Hanger_palettes[24];
-extern const uint8_t Hanger_tiles[3152];
+extern const palette_color_t Hanger_palettes[8];
+extern const uint8_t Hanger_tiles[2544];
 
 extern const unsigned char Hanger_map[360];
 

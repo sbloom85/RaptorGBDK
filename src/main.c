@@ -144,6 +144,51 @@ void Title()
     }
 }
 
+void Hanger()
+{
+    set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
+    set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
+
+    //VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Hanger_map);
+    //VBK_REG = 0;
+    //set_bkg_tiles(0, 0, 20, 18, Intro_map);
+
+    enum selected {Fly = 0, Shop = 1, Save = 2, Exit = 3};
+    enum selected selection;
+
+    selection = 0;
+
+    while (1)
+    {
+        uint8_t joyInput = joypad();
+
+        /*if (joyInput & J_LEFT)
+        {
+            if (selection > 0)
+            {
+                selection--;
+            }
+        } else if (joyInput & J_RIGHT) {
+            if (selection < 3)
+            {
+                selection++;
+            }
+        }*/
+
+        if (joyInput & J_A ) //&& selection == Fly
+        {
+            break;
+        } /*else if (joyInput & J_A && selection == Shop) {
+            //Todo
+        } else if (joyInput & J_A && selection == Save) {
+            //Todo
+        } else if (joyInput & J_A && selection == Exit) {
+            //Title(); //Glitches
+        }*/
+    }
+}
+
 void BravoOne()
 {
     set_bkg_palette(0, 4, &bkgPalette[0]);
@@ -283,6 +328,7 @@ void main(void)
 {
     Title();
     //delay(5000);
+    Hanger();
     initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();

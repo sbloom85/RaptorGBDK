@@ -1,2 +1,2 @@
-C:\gbdk\bin\png2asset.exe "Raptor_Full.png" -map -c "Intro.c"
+C:\gbdk\bin\png2asset.exe "HangerGBC3.png" -map -noflip -c "Hanger.c"
 pause
