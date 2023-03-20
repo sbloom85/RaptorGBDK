@@ -23,7 +23,7 @@ SPTDIR		= sprites
 MAPDIR		= maps
 SNDDIR		= Sounds
 #RESDIR      = res
-BINS	    = $(PROJECTNAME).gbc
+BINS	    = $(PROJECTNAME).sgb
 CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) 
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
 OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
