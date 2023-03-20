@@ -134,6 +134,14 @@ void Intro()
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
+
+    while (1)
+    {
+        if (joypad() & J_A)
+        {
+            break;
+        }
+    }
 }
 
 void BravoOne()
@@ -274,7 +282,7 @@ void SetColliders()
 void main(void)
 {
     Intro();
-    delay(5000);
+    //delay(5000);
     initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
@@ -285,8 +293,6 @@ void main(void)
     SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;
-
-    
 
     camera_x = 0;
     //camera_y = 104;
