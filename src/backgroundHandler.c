@@ -8,7 +8,7 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 
-enum selected {Fly = 0, Shop = 1, Save = 2, Exit = 3};
+enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 const UWORD bkgPalette[] = {
 	RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
@@ -152,7 +152,7 @@ void HangerSelection(enum selected selection)
     } else if (selection == Save)
     {
         MoveCursor(150, 50);
-    } else if (selection == Exit)
+    } else //Exit
     {
         MoveCursor(80, 140);
     }
@@ -172,7 +172,7 @@ void Hanger()
     selection = 0;
 
     InitCursor();
-    MoveCursor(30, 74);
+    MoveCursor(30, 74); //Default to Fly for now.
 
     while (1)
     {
@@ -185,6 +185,8 @@ void Hanger()
             if (selection > 0)
             {
                 selection--;
+            } else {
+                selection = 3;
             }
 
             HangerSelection(selection);
@@ -193,6 +195,30 @@ void Hanger()
             if (selection < 3)
             {
                 selection++;
+            } else {
+                selection = 0;
+            }
+
+            HangerSelection(selection);
+        }
+
+        if (joyInput & J_UP)
+        {
+            if (selection > 0)
+            {
+                selection--;
+            } else {
+                selection = 3;
+            }
+
+            HangerSelection(selection);
+
+        } else if (joyInput & J_DOWN) {
+            if (selection < 3)
+            {
+                selection++;
+            } else {
+                selection = 0;
             }
 
             HangerSelection(selection);
