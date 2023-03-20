@@ -125,6 +125,17 @@ void FadeOut()
     }
 }
 
+void Intro()
+{
+    set_bkg_palette(0, 4, &Intro_palettes[0]); //raptor_full_palettes
+    set_bkg_data(0, 252, Intro_tiles);
+
+    //VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Intro_map);
+    //VBK_REG = 0;
+    //set_bkg_tiles(0, 0, 20, 18, Intro_map);
+}
+
 void BravoOne()
 {
     set_bkg_palette(0, 4, &bkgPalette[0]);
@@ -262,6 +273,8 @@ void SetColliders()
 
 void main(void)
 {
+    Intro();
+    delay(5000);
     initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
