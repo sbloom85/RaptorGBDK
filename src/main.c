@@ -73,6 +73,58 @@ void set_camera() {
     old_camera_x = camera_x, old_camera_y = camera_y;
 }
 
+void FadeIn()
+{
+    for (uint8_t i = 4; i--)
+    {
+        switch(i)
+        {
+            case 4:
+                BGP_REG = 0xFF;
+            break;
+            
+            case 3:
+                BGP_REG = 0xFE;
+                break;
+            
+            case 2:
+                BGP_REG = 0xF9;
+                break;
+            
+            case 1:
+                BGP_REG = 0xE4;
+                break;
+        }
+        PerformantDelay(100);
+    }
+}
+
+void FadeOut()
+{
+    for (uint8_t i = 4; i--)
+    {
+        switch(i)
+        {
+            case 4:
+                BGP_REG = 0xE4;
+            break;
+            
+            case 3:
+                BGP_REG = 0xF9;
+                break;
+            
+            case 2:
+                BGP_REG = 0xFE;
+                break;
+            
+            case 1:
+                BGP_REG = 0xFF;
+                break;
+        }
+        PerformantDelay(100);
+    }
+}
+
 void BravoOne()
 {
     set_bkg_palette(0, 4, &bkgPalette[0]);
@@ -210,6 +262,7 @@ void SetColliders()
 
 void main(void)
 {
+    FadeOut();
     initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
@@ -220,6 +273,8 @@ void main(void)
     SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;
+
+    FadeIn();
 
     camera_x = 0;
     //camera_y = 104;
