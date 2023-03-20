@@ -27,11 +27,12 @@ void main(void)
     initProjectiles();
     
     InitializeSound();
+    init_camera();
     BravoOne();
     setupShip();
     SetColliders();
 
-    init_camera();
+    
 
     while (1)
     {

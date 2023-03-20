@@ -33,7 +33,7 @@ const UWORD bkgPalette[] = {
 };
 
 // current and old positions of the camera in pixels
-uint16_t camera_x, camera_y, old_camera_x, old_camera_y;
+int32_t camera_x, camera_y, old_camera_x, old_camera_y;
 // current and old position of the map in tiles
 uint8_t map_pos_x, map_pos_y, old_map_pos_x, old_map_pos_y;
 
@@ -52,12 +52,12 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
 void init_camera()
 {
     camera_x = 0;
-    //camera_y = 104;
-    camera_y = 0;
+    camera_y = -154;
     old_camera_x = camera_x; 
     old_camera_y = camera_y;
 
-    SCX_REG = camera_x; SCY_REG = camera_y;
+    // update hardware scroll position
+    SCY_REG = camera_y; SCX_REG = camera_x; 
 }
 
 void scroll_cam_up()
@@ -69,7 +69,7 @@ void set_camera() {
     // update hardware scroll position
     SCY_REG = camera_y; SCX_REG = camera_x; 
     // up or down
-    map_pos_y = (uint8_t)(camera_y >> 3u);
+    map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
             VBK_REG = 1;
@@ -83,8 +83,7 @@ void set_camera() {
                 set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN1, 20);
                 VBK_REG = 0;
                 set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN0, 20);
-            }
-                 
+            }  
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -273,14 +272,18 @@ void BravoOne()
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
 
-    VBK_REG = 1;
-    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1PLN1, 20);
-    VBK_REG = 0;
-    set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1PLN0, 20);
+    map_pos_y = (uint8_t)(camera_y >> 3u);
+
+    for (uint8_t i = 144; i--;)
+    {
+        VBK_REG = 1;
+        set_bkg_submap(map_pos_x, map_pos_y +i, 20, 1, BravoWave1PLN1, 20);
+        VBK_REG = 0;
+        set_bkg_submap(map_pos_x, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
+    }
 
     map_pos_x = 0;
-    //map_pos_y = 220;
-    map_pos_y = 0;
+    //map_pos_y = 0;
     old_map_pos_x = 255;
     old_map_pos_y = 255;
 }
