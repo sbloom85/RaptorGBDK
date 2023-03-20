@@ -6,6 +6,9 @@
 #include "maps.h"
 
 #include "commonFunc.h"
+#include "spriteHandler.h"
+
+enum selected {Fly = 0, Shop = 1, Save = 2, Exit = 3};
 
 const UWORD bkgPalette[] = {
 	RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
@@ -138,6 +141,23 @@ void Title()
     }
 }
 
+void HangerSelection(enum selected selection)
+{
+    if (selection == Fly)
+    {
+        MoveCursor(30, 74);
+    } else if (selection == Shop)
+    {
+        MoveCursor(135, 74);
+    } else if (selection == Save)
+    {
+        MoveCursor(150, 50);
+    } else if (selection == Exit)
+    {
+        MoveCursor(80, 140);
+    }
+}
+
 void Hanger()
 {
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
@@ -148,29 +168,37 @@ void Hanger()
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
-    enum selected {Fly = 0, Shop = 1, Save = 2, Exit = 3};
     enum selected selection;
-
     selection = 0;
+
+    InitCursor();
+    MoveCursor(30, 74);
 
     while (1)
     {
         uint8_t joyInput = joypad();
 
-        /*if (joyInput & J_LEFT)
+        delay(100);
+
+        if (joyInput & J_LEFT)
         {
             if (selection > 0)
             {
                 selection--;
             }
+
+            HangerSelection(selection);
+
         } else if (joyInput & J_RIGHT) {
             if (selection < 3)
             {
                 selection++;
             }
-        }*/
 
-        if (joyInput & J_A ) //&& selection == Fly
+            HangerSelection(selection);
+        }
+
+        if (joyInput & J_A && selection == Fly)
         {
             break;
         } /*else if (joyInput & J_A && selection == Shop) {

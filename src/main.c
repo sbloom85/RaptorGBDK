@@ -16,6 +16,10 @@ void InitializeSound()
 
 void main(void)
 {
+    SHOW_BKG;
+    SHOW_SPRITES;
+    DISPLAY_ON;
+
     Title();
     //delay(5000);
     Hanger();
@@ -25,10 +29,6 @@ void main(void)
     BravoOne();
     setupShip();
     SetColliders();
-
-    SHOW_BKG;
-    SHOW_SPRITES;
-    DISPLAY_ON;
 
     init_camera();
 

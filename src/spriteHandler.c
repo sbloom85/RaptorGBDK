@@ -2,8 +2,9 @@
 #include "cgb.h"
 #include <stdio.h>
 //#include <stdlib.h>
-#include "gamecharacter.h"
+#include "spriteStructs.h"
 #include "projectile.h"
+#include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
 
 #include "sound.h"
@@ -23,6 +24,18 @@ const uint8_t moveSpeed = 2;
 const UWORD sprPalette[] = {
 	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5)
 };
+
+void InitCursor()
+{
+    set_sprite_palette(0, 1, sprPalette);
+    set_sprite_data(0, 1, CursorTileTLE0);
+    set_sprite_tile(0, 0);
+}
+
+void MoveCursor(uint8_t x, uint8_t y)
+{
+    move_sprite(0, x, y);
+}
 
 // Move the character
 void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
