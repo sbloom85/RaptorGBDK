@@ -1,4 +1,5 @@
 #include "gb.h"
+#include "sgb.h"
 #include "cgb.h"
 #include <stdio.h>
 //#include <stdlib.h>

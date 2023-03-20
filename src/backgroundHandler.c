@@ -1,7 +1,10 @@
 #include "gb.h"
+#include "sgb.h"
 #include "cgb.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <string.h>
 
 #include "maps.h"
 
@@ -9,6 +12,18 @@
 #include "spriteHandler.h"
 
 enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
+
+const UWORD bkgSGBPaletteTitle[] = {
+	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)
+};
+
+const UWORD bkgSGBPaletteHanger[] = {
+    RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
+};
+
+const UWORD bkgSGBPaletteWater[] = {
+	RaptorMapTilesCGBPal1c0, RaptorMapTilesCGBPal1c1, RaptorMapTilesCGBPal2c2, RGB(5, 5, 5),
+};
 
 const UWORD bkgPalette[] = {
 	RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
@@ -21,6 +36,18 @@ const UWORD bkgPalette[] = {
 uint16_t camera_x, camera_y, old_camera_x, old_camera_y;
 // current and old position of the map in tiles
 uint8_t map_pos_x, map_pos_y, old_map_pos_x, old_map_pos_y;
+
+typedef struct sgb_pal_packet_t {
+    UBYTE cmd;
+    UWORD palettes[7];
+} sgb_pal_packet_t;
+
+void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
+    sgb_pal_packet_t data;
+    data.cmd = (SGB_PAL_01 << 3) | 1;
+    memcpy(data.palettes, &SGBPallete[0], sizeof(data.palettes));
+    sgb_transfer((void *)&data);
+}
 
 void init_camera()
 {
@@ -122,7 +149,9 @@ void Title()
 {
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
-
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBPaletteTitle);
+    }
     //VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
@@ -158,6 +187,9 @@ void Hanger()
 {
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBPaletteHanger);
+    }
 
     //VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map);
@@ -237,6 +269,9 @@ void BravoOne()
 {
     set_bkg_palette(0, 4, &bkgPalette[0]);
     set_bkg_data(0, 51, RaptorMapTiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBPaletteWater);
+    }
 
     VBK_REG = 1;
     set_bkg_submap(map_pos_x, map_pos_y, 20, 18, BravoWave1PLN1, 20);

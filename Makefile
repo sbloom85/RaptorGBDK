@@ -69,7 +69,7 @@ $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 
 # Link the compiled object files into a .gb ROM file
 $(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -Wm-yn"Raptor" -Wm-yc -o $(BINS) $(OBJS)
+	$(LCC) $(LCCFLAGS) -Wm-yn"Raptor" -Wm-ys -o $(BINS) $(OBJS)
 
 prepare:
 	mkdir -p $(OBJDIR)

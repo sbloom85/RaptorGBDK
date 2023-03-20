@@ -53,10 +53,10 @@
 #define RaptorMapTilesSGBPal3c3 5344
 
 /* Gameboy Color palette 0 */
-#define RaptorMapTilesCGBPal0c0 6076
-#define RaptorMapTilesCGBPal0c1 8935
-#define RaptorMapTilesCGBPal0c2 6596
-#define RaptorMapTilesCGBPal0c3 5344
+#define RaptorMapTilesCGBPal0c0 12953
+#define RaptorMapTilesCGBPal0c1 9716
+#define RaptorMapTilesCGBPal0c2 6479
+#define RaptorMapTilesCGBPal0c3 3242
 
 /* Gameboy Color palette 1 */
 #define RaptorMapTilesCGBPal1c0 32264
