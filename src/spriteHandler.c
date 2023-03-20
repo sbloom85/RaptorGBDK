@@ -180,11 +180,10 @@ void inputLoop()
         if (joyInput & J_A)
         {
             fireMachineGun();
-            //delay(100);
         }
         else if (joyInput & J_B)
         {
-            MissileSound();       // Plays missile launch sound effect
+            
         }
 
         if (joyInput & J_SELECT)
