@@ -75,7 +75,7 @@ void set_camera() {
 
 void FadeIn()
 {
-    for (uint8_t i = 4; i--)
+    for (uint8_t i = 4; i--;)
     {
         switch(i)
         {
@@ -101,7 +101,7 @@ void FadeIn()
 
 void FadeOut()
 {
-    for (uint8_t i = 4; i--)
+    for (uint8_t i = 4; i--;)
     {
         switch(i)
         {
@@ -262,7 +262,6 @@ void SetColliders()
 
 void main(void)
 {
-    FadeOut();
     initProjectiles();
     set_sprite_palette(0, 1, sprPalette);
     InitializeSound();
@@ -274,7 +273,7 @@ void main(void)
     SHOW_SPRITES;
     DISPLAY_ON;
 
-    FadeIn();
+    
 
     camera_x = 0;
     //camera_y = 104;
@@ -333,6 +332,16 @@ void main(void)
         else if (joyInput & J_B)
         {
             MissileSound();       // Plays missile launch sound effect
+        }
+
+        if (joyInput & J_SELECT)
+        {
+            FadeOut();
+        }
+
+        if (joyInput & J_START)
+        {
+            FadeIn();
         }
 
         // Test if colliders work
