@@ -20,3 +20,5 @@
 5.  Code basic movement - DONE
 
 6.  Code camera movement - IN PROGRESS (RetroGamer02)
+
+7.  Super Game Boy compatibility - IN PROGRESS (RetroGamer02)
