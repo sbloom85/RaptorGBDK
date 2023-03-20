@@ -1,2 +1,2 @@
-make -f Makefile
+make.exe -f Makefile
 pause

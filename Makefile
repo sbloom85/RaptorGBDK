@@ -23,8 +23,8 @@ SPTDIR		= sprites
 MAPDIR		= maps
 SNDDIR		= Sounds
 #RESDIR      = res
-BINS	    = $(OBJDIR)/$(PROJECTNAME).gb
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c)))
+BINS	    = $(PROJECTNAME).gbc
+CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) 
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
 OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
 
@@ -36,6 +36,22 @@ compile.bat: Makefile
 
 # Compile .c files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "backgrounds/" to .o object files
+$(OBJDIR)/%.o:	$(BGDIR)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "sprites/" to .o object files
+$(OBJDIR)/%.o:	$(SPTDIR)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "maps/" to .o object files
+$(OBJDIR)/%.o:	$(MAPDIR)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "Sounds/" to .o object files
+$(OBJDIR)/%.o:	$(SNDDIR)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files
@@ -53,7 +69,7 @@ $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 
 # Link the compiled object files into a .gb ROM file
 $(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -o $(BINS) $(OBJS)
+	$(LCC) $(LCCFLAGS) -Wm-yn"Raptor" -Wm-yc -o $(BINS) $(OBJS)
 
 prepare:
 	mkdir -p $(OBJDIR)

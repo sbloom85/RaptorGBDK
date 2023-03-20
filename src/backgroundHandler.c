@@ -21,8 +21,6 @@ const UWORD bkgPalette[] = {
 uint16_t camera_x, camera_y, old_camera_x, old_camera_y;
 // current and old position of the map in tiles
 uint8_t map_pos_x, map_pos_y, old_map_pos_x, old_map_pos_y;
-// redraw flag, indicates that camera position was changed
-uint8_t redraw;
 
 void init_camera()
 {
@@ -31,8 +29,6 @@ void init_camera()
     camera_y = 0;
     old_camera_x = camera_x; 
     old_camera_y = camera_y;
-
-    redraw = TRUE;
 
     SCX_REG = camera_x; SCY_REG = camera_y;
 }
@@ -232,7 +228,7 @@ void Hanger()
         } else if (joyInput & J_A && selection == Save) {
             //Todo
         } else if (joyInput & J_A && selection == Exit) {
-            //Title(); //Glitches
+            //Todo
         }*/
     }
 }
