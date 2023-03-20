@@ -1,3 +1,4 @@
+rmdir build
 mkdir -p build
 c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\title.o backgrounds\Title.c
 c:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o build\hanger.o backgrounds\Hanger.c
