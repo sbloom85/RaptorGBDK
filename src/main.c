@@ -355,12 +355,12 @@ void main(void)
 
         if (joyInput & J_SELECT)
         {
-            FadeOut();
+            
         }
 
         if (joyInput & J_START)
         {
-            FadeIn();
+            
         }
 
         // Test if colliders work
