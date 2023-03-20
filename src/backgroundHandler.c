@@ -169,7 +169,7 @@ void Hanger()
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
     enum selected selection;
-    selection = 0;
+    selection = 1;
 
     InitCursor();
     MoveCursor(30, 74); //Default to Fly for now.
