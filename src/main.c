@@ -22,7 +22,6 @@ void main(void)
     DISPLAY_ON;
 
     Title();
-    //delay(5000);
     Hanger();
     initProjectiles();
     
@@ -32,6 +31,7 @@ void main(void)
     setupShip();
     SetColliders();
 
+    //Main Game Loop
     while (1)
     {
         set_camera();

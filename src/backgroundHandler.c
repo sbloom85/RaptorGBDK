@@ -70,7 +70,7 @@ void scroll_cam_up()
 void set_camera() {
     // update hardware scroll position
     SCY_REG = camera_y;
-    // up or down
+    
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
@@ -78,14 +78,6 @@ void set_camera() {
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
-        } else {
-            if ((BravoWave1Height - 18u) > map_pos_y)
-            {
-                VBK_REG = 1;
-                set_bkg_submap(0, map_pos_y + 18u, 20, 1, BravoWave1PLN1, 20);
-                VBK_REG = 0;
-                set_bkg_submap(0, map_pos_y + 18u, 20, 1, BravoWave1PLN0, 20);
-            }  
         }
         old_map_pos_y = map_pos_y; 
     }
