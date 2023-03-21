@@ -13,6 +13,8 @@
 
 enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
+static const uint16_t fade_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
+
 const UWORD bkgSGBPaletteTitle[] = {
 	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)
 };
@@ -33,7 +35,7 @@ const UWORD bkgPalette[] = {
 };
 
 // current and old positions of the camera in pixels
-int32_t camera_y, old_camera_y;
+int16_t camera_y, old_camera_y;
 // current and old position of the map in tiles
 uint8_t map_pos_y, old_map_pos_y;
 
@@ -48,6 +50,20 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
     data.cmd = (SGB_PAL_01 << 3) | 1;
     memcpy(data.palettes, &SGBPallete[0], sizeof(data.palettes));
     sgb_transfer((void *)&data);
+}
+
+//Thanks to basxto for the fadeout code.
+void fadeout()
+{
+    if (getGBType() == 3)
+    {
+        for (int i = 1; i != 4; ++i) 
+        {
+            BGP_REG = (0xFFE4 >> (i << 1));
+            set_bkg_palette(0, 1, fade_palette + i);
+            PerformantDelay(20);
+        }
+    }
 }
 
 void init_camera()
@@ -70,7 +86,7 @@ void scroll_cam_up()
 void set_camera() {
     // update hardware scroll position
     SCY_REG = camera_y;
-    
+
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
@@ -84,58 +100,6 @@ void set_camera() {
     
     // set old camera position to current camera position
     old_camera_y = camera_y;
-}
-
-void FadeIn()
-{
-    for (uint8_t i = 4; i--;)
-    {
-        switch(i)
-        {
-            case 4:
-                BGP_REG = 0xFF;
-            break;
-            
-            case 3:
-                BGP_REG = 0xFE;
-                break;
-            
-            case 2:
-                BGP_REG = 0xF9;
-                break;
-            
-            case 1:
-                BGP_REG = 0xE4;
-                break;
-        }
-        PerformantDelay(100);
-    }
-}
-
-void FadeOut()
-{
-    for (uint8_t i = 4; i--;)
-    {
-        switch(i)
-        {
-            case 4:
-                BGP_REG = 0xE4;
-            break;
-            
-            case 3:
-                BGP_REG = 0xF9;
-                break;
-            
-            case 2:
-                BGP_REG = 0xFE;
-                break;
-            
-            case 1:
-                BGP_REG = 0xFF;
-                break;
-        }
-        PerformantDelay(100);
-    }
 }
 
 void Title()
@@ -154,6 +118,7 @@ void Title()
     {
         if (joypad() & J_A)
         {
+            fadeout();
             break;
         }
     }
@@ -247,6 +212,7 @@ void Hanger()
 
         if (joyInput & J_A && selection == Fly)
         {
+            fadeout();
             break;
         } /*else if (joyInput & J_A && selection == Shop) {
             //Todo

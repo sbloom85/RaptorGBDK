@@ -7,6 +7,7 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 #include "backgroundHandler.h"
+//#include "fade_manager.h"
 
 void InitializeSound()
 {
@@ -24,7 +25,6 @@ void main(void)
     Title();
     Hanger();
     initProjectiles();
-    
     InitializeSound();
     init_camera();
     BravoOne();

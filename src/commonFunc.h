@@ -4,6 +4,9 @@
 #include "gb.h"
 #include <stdio.h>
 
+extern UBYTE _cpu;
+
+uint8_t getGBType();
 void PerformantDelay(uint8_t numLoops);
 
 #endif
