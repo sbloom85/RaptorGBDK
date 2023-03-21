@@ -5,6 +5,7 @@
     d.  HUD
         i. Shields and Health
         ii. Selected weapon
+        iii. Money
 
 2.  Create Collisions
     a.  Enemy and Player - IN PROGRESS (Scott)
