@@ -17,8 +17,13 @@
     a.  Create Sound Effects - IN PROGRESS (Scott)
     b.  Create Music
 
-5.  Code basic movement - DONE
+5.  Code controls
+    a.  Basic Movement - DONE (RetroGamer02)
+    b.  Weapon Controls - IN PROGRESS (RetroGamer02)
+        i. Primary weapon - DONE (RetroGamer02)
+        ii. Secondary weapon
+        iii. Weapon cycle
 
-6.  Code camera movement - IN PROGRESS (RetroGamer02)
+6.  Code camera movement - DONE(?) (RetroGamer02)
 
 7.  Super Game Boy compatibility - IN PROGRESS (RetroGamer02)
