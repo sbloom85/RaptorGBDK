@@ -1,6 +1,10 @@
-1.  Make Sprites
+1.  Graphics
     a.  Enemy Sprites - IN PROGRESS
     b.  Weapon Sprites - IN PROGRESS
+    c.  Background Tiles - IN PROGRESS
+    d.  HUD
+        i. Shields and Health
+        ii. Selected weapon
 
 2.  Create Collisions
     a.  Enemy and Player - IN PROGRESS (Scott)
