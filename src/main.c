@@ -32,8 +32,6 @@ void main(void)
     setupShip();
     SetColliders();
 
-    
-
     while (1)
     {
         set_camera();
