@@ -55,7 +55,7 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
 }
 
 //Thanks to basxto for the fadeout code.
-//Slightly edited to work in SGB mode.
+//Slightly edited.
 void fadeout()
 {
     BGP_REG_OLD = BGP_REG;
@@ -63,6 +63,7 @@ void fadeout()
     {
         BGP_REG = (0xFFE4 >> (i << 1));
         set_bkg_palette(0, 1, fade_palette + i);
+        set_sprite_palette(0, 1, fade_palette + i);
         PerformantDelay(20);
     }
     BGP_REG = BGP_REG_OLD;
@@ -220,9 +221,9 @@ void Hanger()
             //Todo
         } else if (joyInput & J_A && selection == Save) {
             //Todo
-        } else if (joyInput & J_A && selection == Exit) {
-            //Todo
-        }*/
+        }*/ else if (joyInput & J_A && selection == Exit) {
+            reset();
+        }
     }
 }
 
@@ -243,6 +244,20 @@ void BravoOne()
         VBK_REG = 0;
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
+
+   /* 
+    //Make this Cash line
+    VBK_REG = 1;
+    set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
+    VBK_REG = 0;
+    set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
+
+    //Make this Health / Shield line
+    VBK_REG = 1;
+    set_bkg_submap(0, map_pos_y + 1, 20, 1, BravoWave1PLN1, 20);
+    VBK_REG = 0;
+    set_bkg_submap(0, map_pos_y + 1, 20, 1, BravoWave1PLN0, 20);
+    */
 
     //map_pos_y = 0;
     old_map_pos_y = 255;

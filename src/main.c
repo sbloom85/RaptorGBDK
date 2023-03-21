@@ -22,6 +22,9 @@ void main(void)
     SHOW_SPRITES;
     DISPLAY_ON;
 
+    //Same CPU Speed as DMG to assure game runs right on both.
+    cpu_slow();
+
     Title();
     Hanger();
     initProjectiles();
