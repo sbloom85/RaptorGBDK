@@ -11,6 +11,8 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 
+int8_t BGP_REG_OLD;
+
 enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 static const uint16_t fade_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
@@ -53,17 +55,17 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
 }
 
 //Thanks to basxto for the fadeout code.
+//Slightly edited to work in SGB mode.
 void fadeout()
 {
-    if (getGBType() == 3)
+    BGP_REG_OLD = BGP_REG;
+    for (int i = 1; i != 4; ++i) 
     {
-        for (int i = 1; i != 4; ++i) 
-        {
-            BGP_REG = (0xFFE4 >> (i << 1));
-            set_bkg_palette(0, 1, fade_palette + i);
-            PerformantDelay(20);
-        }
+        BGP_REG = (0xFFE4 >> (i << 1));
+        set_bkg_palette(0, 1, fade_palette + i);
+        PerformantDelay(20);
     }
+    BGP_REG = BGP_REG_OLD;
 }
 
 void init_camera()
