@@ -1,5 +1,5 @@
 1.  Make Sprites
-    a.  Enemy Sprites
+    a.  Enemy Sprites - IN PROGRESS
     b.  Weapon Sprites - IN PROGRESS
 
 2.  Create Collisions
