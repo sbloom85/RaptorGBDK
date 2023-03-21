@@ -62,7 +62,10 @@ void init_camera()
 
 void scroll_cam_up()
 {
-    camera_y--;
+    if (camera_y > -2040)
+    {
+        camera_y--;
+    }
 }
 
 void set_camera() {
