@@ -24,6 +24,6 @@
         ii. Secondary weapon
         iii. Weapon cycle
 
-6.  Code camera movement - DONE(?) (RetroGamer02)
+6.  Code camera movement - DONE (RetroGamer02)
 
 7.  Super Game Boy compatibility - IN PROGRESS (RetroGamer02)
