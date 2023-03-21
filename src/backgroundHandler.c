@@ -33,10 +33,11 @@ const UWORD bkgPalette[] = {
 };
 
 // current and old positions of the camera in pixels
-int32_t camera_x, camera_y, old_camera_x, old_camera_y;
+int32_t camera_y, old_camera_y;
 // current and old position of the map in tiles
-uint8_t map_pos_x, map_pos_y, old_map_pos_x, old_map_pos_y;
+uint8_t map_pos_y, old_map_pos_y;
 
+//Thanks to GB Studio which the SGB code is based off.
 typedef struct sgb_pal_packet_t {
     UBYTE cmd;
     UWORD palettes[7];
@@ -51,13 +52,11 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
 
 void init_camera()
 {
-    camera_x = 0;
     camera_y = -154;
-    old_camera_x = camera_x; 
     old_camera_y = camera_y;
 
     // update hardware scroll position
-    SCY_REG = camera_y; SCX_REG = camera_x; 
+    SCY_REG = camera_y;
 }
 
 void scroll_cam_up()
@@ -70,29 +69,21 @@ void scroll_cam_up()
 
 void set_camera() {
     // update hardware scroll position
-    SCY_REG = camera_y; SCX_REG = camera_x; 
-    // up or down
+    SCY_REG = camera_y;
+    
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
             VBK_REG = 1;
-            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1PLN1, 20);
+            set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
-            set_bkg_submap(map_pos_x, map_pos_y, 20, 1, BravoWave1PLN0, 20);
-        } else {
-            if ((BravoWave1Height - 18u) > map_pos_y)
-            {
-                VBK_REG = 1;
-                set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN1, 20);
-                VBK_REG = 0;
-                set_bkg_submap(map_pos_x, map_pos_y + 18u, 20, 1, BravoWave1PLN0, 20);
-            }  
+            set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
         }
         old_map_pos_y = map_pos_y; 
     }
     
     // set old camera position to current camera position
-    old_camera_x = camera_x, old_camera_y = camera_y;
+    old_camera_y = camera_y;
 }
 
 void FadeIn()
@@ -280,13 +271,11 @@ void BravoOne()
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = 1;
-        set_bkg_submap(map_pos_x, map_pos_y +i, 20, 1, BravoWave1PLN1, 20);
+        set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN1, 20);
         VBK_REG = 0;
-        set_bkg_submap(map_pos_x, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
+        set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
 
-    map_pos_x = 0;
     //map_pos_y = 0;
-    old_map_pos_x = 255;
     old_map_pos_y = 255;
 }
