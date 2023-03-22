@@ -22,6 +22,8 @@ struct Enemy eShip1;
 const uint8_t spriteSize = 8;
 const uint8_t moveSpeed = 2;
 
+int8_t shots = 0;
+
 const UWORD sprPalette[] = {
 	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5)
 };
@@ -81,19 +83,25 @@ void moveProjectiles()
 
 void fireMachineGun()
 {
-    MachineGunSound();    // Plays sound effect from sound.h
-    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    while (shots < MAX_PROJECTILES)
     {
-        if (!newProjectile[i].enabled)
+        if (!newProjectile[shots].enabled)
         {
-            newProjectile[i].x = ship.x + 12;
-            newProjectile[i].y = ship.y + 4;
-            newProjectile[i].enabled = 1;
-            set_sprite_data(newProjectile[i].id, 1, MchBulletTLE0);
-            set_sprite_tile(newProjectile[i].id, newProjectile[i].id);
-            i = MAX_PROJECTILES; //Break out of loop.
+            MachineGunSound();    // Plays sound effect from sound.h
+            newProjectile[shots].x = ship.x + 12;
+            newProjectile[shots].y = ship.y + 4;
+            newProjectile[shots].enabled = 1;
+            set_sprite_data(newProjectile[shots].id, 1, MchBulletTLE0);
+            set_sprite_tile(newProjectile[shots].id, newProjectile[shots].id);
+            shots = MAX_PROJECTILES; //Break out of loop.
         }
+        //if (newProjectile[0].enabled)
+        //{
+
+        //}
+        shots++;
     }
+    shots = 0;
 }
 
 // Initialize ship struct
@@ -102,7 +110,7 @@ void setupShip()
     set_sprite_palette(0, 1, sprPalette);
 
     ship.x = 80;
-    ship.y = 120;
+    ship.y = 110;
     ship.width = 32;
     ship.height = 24;
     ship.enabled = 1;
@@ -169,7 +177,7 @@ void inputLoop()
             MovePlayer(&ship, ship.x, ship.y);
             
             SetColliders();
-        } else if ((joyInput & J_DOWN) && ship.y < 126)
+        } else if ((joyInput & J_DOWN) && ship.y < 110)
         {
             ship.y += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
@@ -193,6 +201,8 @@ void inputLoop()
 
         if (joyInput & J_A)
         {
+            //if (shots > 1)
+                //delay(10);
             fireMachineGun();
         }
         else if (joyInput & J_B)
