@@ -44,6 +44,15 @@ const UWORD bkgPalette[] = {
     RaptorMapTilesCGBPal7c0, RaptorMapTilesCGBPal7c1, RaptorMapTilesCGBPal7c2, RaptorMapTilesCGBPal7c3,
 };
 
+//Add logic to update Hud here.
+unsigned char RaptorWindowUpdatePLN0[] =
+{
+  0x75,0x75,0x75,0x75,0x48,0x49,0x49,0x49,0x49,0x49,
+  0x49,0x49,0x49,0x49,0x49,0x75,0x75,0x75,0x75,0x75,
+  0x75,0x5A,0x49,0x49,0x49,0x75,0x65,0x49,0x49,0x49,
+  0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x69,0x76,0x75
+};
+
 // current and old positions of the camera in pixels
 int16_t camera_y, old_camera_y;
 // current and old position of the map in tiles
@@ -60,6 +69,124 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
     data.cmd = (SGB_PAL_01 << 3) | 1;
     memcpy(data.palettes, &SGBPallete[0], sizeof(data.palettes));
     sgb_transfer((void *)&data);
+}
+
+void updateHud()
+{
+    for (uint8_t i = 0; i < 40; i++)
+    {
+        //Line 1
+        if (i < 4 || i > 14 && i < 20) //Empty Space line 1
+        {
+            RaptorWindowUpdatePLN0[i] = 0x75;
+        }
+        if (i == 4) //Cash Sign
+        {
+            RaptorWindowUpdatePLN0[i] = 0x48;
+        }
+        if (i == 5) //Cash Pos 1
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49 + 1;
+        }
+        if (i == 6) //Cash Pos 2
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 7) //Cash Pos 3
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 8) //Cash Pos 4
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 9) //Cash Pos 5
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 10) //Cash Pos 6
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 11) //Cash Pos 7
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 12) //Cash Pos 8
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 13) //Cash Pos 9
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        
+        //Line 2
+        if (i == 20 || i == 25 || i == 30 || i == 36) //Empty space
+        {
+            RaptorWindowUpdatePLN0[i] = 0x75;
+        }
+        if (i == 21) //H Char
+        {
+            RaptorWindowUpdatePLN0[i] = 0x5A;
+        }
+        if (i == 22) //Health Pos 1
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49 + 1;
+        }
+        if (i == 23) //Health Pos 2
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 24) //Health Pos 3
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 26) //S Char
+        {
+            RaptorWindowUpdatePLN0[i] = 0x65;
+        }
+        if (i == 27) //Shield Pos 1
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 28) //Shield Pos 2
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 29) //Shield Pos 3
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49;
+        }
+        if (i == 31) //Shield Icon Pos 1
+        {
+            RaptorWindowUpdatePLN0[i] = 0x7D;
+        }
+        if (i == 32) //Shield Icon Pos 2
+        {
+            RaptorWindowUpdatePLN0[i] = 0x7D;
+        }
+        if (i == 33) //Shield Icon Pos 3
+        {
+            RaptorWindowUpdatePLN0[i] = 0x7D;
+        }
+        if (i == 34) //Shield Icon Pos 4
+        {
+            RaptorWindowUpdatePLN0[i] = 0x7D;
+        }
+        if (i == 35) //Shield Icon Pos 5
+        {
+            RaptorWindowUpdatePLN0[i] = 0x7D;
+        }
+        if (i == 37) //W Char
+        {
+            RaptorWindowUpdatePLN0[i] = 0x69;
+        }
+        if (i == 38) //Weapon
+        {
+            RaptorWindowUpdatePLN0[i] = 0x76;
+        }
+    }
 }
 
 void fadein()
@@ -119,10 +246,11 @@ void set_camera() {
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
 
-            //VBK_REG = 1;
-            //set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
-            //VBK_REG = 0;
-            //set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
+            updateHud();
+            VBK_REG = 1;
+            set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
+            VBK_REG = 0;
+            set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -282,7 +410,7 @@ void BravoOne()
     VBK_REG = 1;
     set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
     VBK_REG = 0;
-    set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
+    set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
     
     move_win(7, 128);
 
