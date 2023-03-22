@@ -65,28 +65,28 @@
 #define RaptorDialogCGBPal1c3 471
 
 /* Gameboy Color palette 2 */
-#define RaptorDialogCGBPal2c0 6076
-#define RaptorDialogCGBPal2c1 8935
-#define RaptorDialogCGBPal2c2 6596
-#define RaptorDialogCGBPal2c3 5344
+#define RaptorDialogCGBPal2c0 32767
+#define RaptorDialogCGBPal2c1 19352
+#define RaptorDialogCGBPal2c2 18067
+#define RaptorDialogCGBPal2c3 5611
 
 /* Gameboy Color palette 3 */
-#define RaptorDialogCGBPal3c0 6076
-#define RaptorDialogCGBPal3c1 8935
-#define RaptorDialogCGBPal3c2 6596
-#define RaptorDialogCGBPal3c3 5344
+#define RaptorDialogCGBPal3c0 32767
+#define RaptorDialogCGBPal3c1 21272
+#define RaptorDialogCGBPal3c2 14930
+#define RaptorDialogCGBPal3c3 125
 
 /* Gameboy Color palette 4 */
-#define RaptorDialogCGBPal4c0 6076
-#define RaptorDialogCGBPal4c1 8935
+#define RaptorDialogCGBPal4c0 32767
+#define RaptorDialogCGBPal4c1 21272
 #define RaptorDialogCGBPal4c2 6596
 #define RaptorDialogCGBPal4c3 5344
 
 /* Gameboy Color palette 5 */
-#define RaptorDialogCGBPal5c0 6076
-#define RaptorDialogCGBPal5c1 8935
-#define RaptorDialogCGBPal5c2 6596
-#define RaptorDialogCGBPal5c3 5344
+#define RaptorDialogCGBPal5c0 32767
+#define RaptorDialogCGBPal5c1 21272
+#define RaptorDialogCGBPal5c2 575
+#define RaptorDialogCGBPal5c3 4228
 
 /* Gameboy Color palette 6 */
 #define RaptorDialogCGBPal6c0 6076
