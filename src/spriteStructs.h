@@ -2,8 +2,7 @@
 
 enum dmgTypes {DmgNormal = 0, DmgMissile = 1, DmgBomb = 3};
 enum weapons {MachGun = 0, AirMiss = 1, GrnMiss = 2,
-              PlasCannon = 3, DumbFire = 4, MicroMiss = 5,
-              PulseCannon = 6, DeathRay = 7};
+              PlasCannon = 3, DumbFire = 4, DeathRay = 5};
 
 // Generic character structure: id, position, graphics
 struct Player

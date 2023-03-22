@@ -22,9 +22,10 @@ BGDIR		= backgrounds
 SPTDIR		= sprites
 MAPDIR		= maps
 SNDDIR		= Sounds
+WINDIR		= Window
 #RESDIR      = res
 BINS	    = $(PROJECTNAME).gbc
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) 
+CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(WINDIR),$(notdir $(wildcard $(dir)/*.c))) 
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
 OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
 
@@ -52,6 +53,10 @@ $(OBJDIR)/%.o:	$(MAPDIR)/%.c
 
 # Compile .c files in "Sounds/" to .o object files
 $(OBJDIR)/%.o:	$(SNDDIR)/%.c
+	$(LCC) $(LCCFLAGS) -c -o $@ $<
+
+# Compile .c files in "Window/" to .o object files
+$(OBJDIR)/%.o:	$(WINDIR)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files

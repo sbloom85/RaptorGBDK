@@ -25,10 +25,10 @@ void main(void)
     //Same CPU Speed as DMG to assure game runs right on both.
     cpu_slow();
 
+    InitializeSound();
     Title();
     Hanger();
     initProjectiles();
-    InitializeSound();
     init_camera();
     BravoOne();
     setupShip();

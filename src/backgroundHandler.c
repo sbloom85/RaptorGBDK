@@ -11,11 +11,14 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 
+#include "../Window/RaptorDialogTiles.h"
+
 int8_t BGP_REG_OLD;
 
 enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
-static const uint16_t fade_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
+static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
+static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 
 const UWORD bkgSGBPaletteTitle[] = {
 	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)
@@ -54,6 +57,19 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
     sgb_transfer((void *)&data);
 }
 
+void fadein()
+{
+    //BGP_REG_OLD = BGP_REG;
+    for (int i = 4; --i;)
+    {
+        BGP_REG = (0xFFE4 >> (i << 1));
+        set_bkg_palette(0, 1, fadeout_palette + i);
+        set_sprite_palette(0, 1, fadeout_palette + i);
+        PerformantDelay(20);
+    }
+    //BGP_REG = BGP_REG_OLD;
+}
+
 //Thanks to basxto for the fadeout code.
 //Slightly edited.
 void fadeout()
@@ -62,8 +78,8 @@ void fadeout()
     for (int i = 1; i != 4; ++i) 
     {
         BGP_REG = (0xFFE4 >> (i << 1));
-        set_bkg_palette(0, 1, fade_palette + i);
-        set_sprite_palette(0, 1, fade_palette + i);
+        set_bkg_palette(0, 1, fadeout_palette + i);
+        set_sprite_palette(0, 1, fadeout_palette + i);
         PerformantDelay(20);
     }
     BGP_REG = BGP_REG_OLD;
@@ -146,8 +162,10 @@ void HangerSelection(enum selected selection)
 
 void Hanger()
 {
-    set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
+    set_bkg_palette(0, 1, &black_palette[0]); //Helps hide some graphics corruption
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
+    set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
+    
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteHanger);
     }
@@ -244,6 +262,9 @@ void BravoOne()
         VBK_REG = 0;
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
+
+    //set_win_data(0, 25, RaptorDialog);
+    //set_win_tiles();
 
    /* 
     //Make this Cash line
