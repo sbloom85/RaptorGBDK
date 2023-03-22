@@ -95,10 +95,10 @@
 #define RaptorDialogCGBPal6c3 5344
 
 /* Gameboy Color palette 7 */
-#define RaptorDialogCGBPal7c0 6076
-#define RaptorDialogCGBPal7c1 8935
-#define RaptorDialogCGBPal7c2 6596
-#define RaptorDialogCGBPal7c3 5344
+#define RaptorDialogCGBPal7c0 32767
+#define RaptorDialogCGBPal7c1 799
+#define RaptorDialogCGBPal7c2 502
+#define RaptorDialogCGBPal7c3 4228
 /* CGBpalette entries. */
 extern const unsigned char RaptorDialogCGB[];
 /* Start of tile array. */

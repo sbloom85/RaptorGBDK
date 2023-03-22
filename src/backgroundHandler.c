@@ -38,6 +38,10 @@ const UWORD bkgPalette[] = {
     RaptorMapTilesCGBPal1c0, RaptorMapTilesCGBPal1c1, RaptorMapTilesCGBPal1c2, RaptorMapTilesCGBPal1c3,
     RaptorMapTilesCGBPal2c0, RaptorMapTilesCGBPal2c1, RaptorMapTilesCGBPal2c2, RaptorMapTilesCGBPal2c3,
     RaptorMapTilesCGBPal3c0, RaptorMapTilesCGBPal3c1, RaptorMapTilesCGBPal3c2, RaptorMapTilesCGBPal3c3,
+    RaptorMapTilesCGBPal4c0, RaptorMapTilesCGBPal4c1, RaptorMapTilesCGBPal4c2, RaptorMapTilesCGBPal4c3,
+    RaptorMapTilesCGBPal5c0, RaptorMapTilesCGBPal5c1, RaptorMapTilesCGBPal5c2, RaptorMapTilesCGBPal5c3,
+    RaptorMapTilesCGBPal6c0, RaptorMapTilesCGBPal6c1, RaptorMapTilesCGBPal6c2, RaptorMapTilesCGBPal6c3,
+    RaptorMapTilesCGBPal7c0, RaptorMapTilesCGBPal7c1, RaptorMapTilesCGBPal7c2, RaptorMapTilesCGBPal7c3,
 };
 
 // current and old positions of the camera in pixels
@@ -110,18 +114,15 @@ void set_camera() {
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            //HIDE_WIN;
-
             VBK_REG = 1;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
 
-            //SHOW_WIN;
-            VBK_REG = 1;
-            set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
-            VBK_REG = 0;
-            set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
+            //VBK_REG = 1;
+            //set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
+            //VBK_REG = 0;
+            //set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -256,7 +257,7 @@ void Hanger()
 
 void BravoOne()
 {
-    set_bkg_palette(0, 4, &bkgPalette[0]);
+    set_bkg_palette(0, 8, &bkgPalette[0]);
     set_bkg_data(0, 51, RaptorMapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
