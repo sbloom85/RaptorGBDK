@@ -122,7 +122,7 @@ void updateHud()
         }
         
         //Line 2
-        if (i == 20 || i == 25 || i == 30 || i == 36) //Empty space
+        if (i == 20 || i == 25 || i == 30 || i == 36 || i == 39) //Empty space
         {
             RaptorWindowUpdatePLN0[i] = 0x75;
         }
