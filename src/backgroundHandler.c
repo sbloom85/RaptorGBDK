@@ -12,6 +12,7 @@
 #include "spriteHandler.h"
 
 #include "../Window/RaptorDialogTiles.h"
+#include "../Window/RaptorWindow.h"
 
 int8_t BGP_REG_OLD;
 
@@ -109,10 +110,18 @@ void set_camera() {
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
+            //HIDE_WIN;
+
             VBK_REG = 1;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
+
+            //SHOW_WIN;
+            VBK_REG = 1;
+            set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
+            VBK_REG = 0;
+            set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -253,6 +262,8 @@ void BravoOne()
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
 
+    //HIDE_WIN;
+
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
     for (uint8_t i = 144; i--;)
@@ -263,8 +274,16 @@ void BravoOne()
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
 
-    //set_win_data(0, 25, RaptorDialog);
-    //set_win_tiles();
+    SHOW_WIN;
+
+    set_win_data(72, 55, RaptorDialog);
+
+    VBK_REG = 1;
+    set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
+    VBK_REG = 0;
+    set_win_tiles(0, 0, 20, 2, RaptorWindowPLN0);
+    
+    move_win(7, 128);
 
    /* 
     //Make this Cash line
