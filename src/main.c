@@ -23,7 +23,10 @@ void main(void)
     DISPLAY_ON;
 
     //Same CPU Speed as DMG to assure game runs right on both.
-    cpu_slow();
+    if (getGBType() == CGB_TYPE)
+    {
+        cpu_slow();
+    }
 
     InitializeSound();
     Title();
