@@ -23,29 +23,6 @@ const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 
-const UWORD bkgSGBPaletteTitle[] = {
-	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)
-};
-
-const UWORD bkgSGBPaletteHanger[] = {
-    RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
-};
-
-const UWORD bkgSGBPaletteWater[] = {
-	RaptorMapTilesCGBPal1c0, RaptorMapTilesCGBPal1c1, RaptorMapTilesCGBPal2c2, RGB(5, 5, 5),
-};
-
-const UWORD bkgPalette[] = {
-	RaptorMapTilesCGBPal0c0, RaptorMapTilesCGBPal0c1, RaptorMapTilesCGBPal0c2, RaptorMapTilesCGBPal0c3,
-    RaptorMapTilesCGBPal1c0, RaptorMapTilesCGBPal1c1, RaptorMapTilesCGBPal1c2, RaptorMapTilesCGBPal1c3,
-    RaptorMapTilesCGBPal2c0, RaptorMapTilesCGBPal2c1, RaptorMapTilesCGBPal2c2, RaptorMapTilesCGBPal2c3,
-    RaptorMapTilesCGBPal3c0, RaptorMapTilesCGBPal3c1, RaptorMapTilesCGBPal3c2, RaptorMapTilesCGBPal3c3,
-    RaptorMapTilesCGBPal4c0, RaptorMapTilesCGBPal4c1, RaptorMapTilesCGBPal4c2, RaptorMapTilesCGBPal4c3,
-    RaptorMapTilesCGBPal5c0, RaptorMapTilesCGBPal5c1, RaptorMapTilesCGBPal5c2, RaptorMapTilesCGBPal5c3,
-    RaptorMapTilesCGBPal6c0, RaptorMapTilesCGBPal6c1, RaptorMapTilesCGBPal6c2, RaptorMapTilesCGBPal6c3,
-    RaptorMapTilesCGBPal7c0, RaptorMapTilesCGBPal7c1, RaptorMapTilesCGBPal7c2, RaptorMapTilesCGBPal7c3,
-};
-
 unsigned char RaptorWindowUpdatePLN0[] =
 {
   0x75,0x75,0x75,0x75,0x48,0x49,0x49,0x49,0x49,0x49,
@@ -468,9 +445,9 @@ void Hanger() BANKED
 
 void BravoOne() NONBANKED
 {
-    set_bkg_palette(0, 8, &bkgPalette[0]);
+    set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     SWITCH_ROM_MBC5(2);
-    set_bkg_data(0, 52, RaptorMapTiles);
+    set_bkg_data(0, 52, Bravo1MapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
