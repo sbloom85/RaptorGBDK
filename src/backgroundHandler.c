@@ -475,8 +475,6 @@ void BravoOne() NONBANKED
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
 
-    //HIDE_WIN;
-
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
     
@@ -499,20 +497,6 @@ void BravoOne() NONBANKED
     set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
 
     move_win(7, 128);
-
-   /* 
-    //Make this Cash line
-    VBK_REG = 1;
-    set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
-    VBK_REG = 0;
-    set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
-
-    //Make this Health / Shield line
-    VBK_REG = 1;
-    set_bkg_submap(0, map_pos_y + 1, 20, 1, BravoWave1PLN1, 20);
-    VBK_REG = 0;
-    set_bkg_submap(0, map_pos_y + 1, 20, 1, BravoWave1PLN0, 20);
-    */
 
     //map_pos_y = 0;
     old_map_pos_y = 255;
