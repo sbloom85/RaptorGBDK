@@ -1,2 +1,9 @@
 
 build
+*.cdb
+*.gbc
+*.ihx
+*.map
+*.noi
+*.sgb
+*.sav

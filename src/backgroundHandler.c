@@ -18,7 +18,7 @@
 
 int8_t BGP_REG_OLD;
 
-enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
+const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
@@ -470,7 +470,7 @@ void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgPalette[0]);
     SWITCH_ROM_MBC5(2);
-    set_bkg_data(0, 51, RaptorMapTiles);
+    set_bkg_data(0, 52, RaptorMapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
     }

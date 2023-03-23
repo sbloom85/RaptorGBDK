@@ -9,7 +9,6 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 #include "backgroundHandler.h"
-//#include "fade_manager.h"
 
 void InitializeSound()
 {
@@ -20,7 +19,7 @@ void InitializeSound()
 
 void main(void)
 {
-    //ENABLE_RAM;
+    //ENABLE_RAM; //We don't need extra ram banks right now.
 
     SHOW_BKG;
     SHOW_SPRITES;
@@ -39,7 +38,6 @@ void main(void)
     initProjectiles();
     init_camera();
     BravoOne();
-    //SWITCH_ROM_MBC5(1);
     setupShip();
     SetColliders();
 
@@ -55,6 +53,5 @@ void main(void)
         inputLoop();
 
         PerformantDelay(2);
-        // delay(25);
     }
 }
