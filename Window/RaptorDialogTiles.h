@@ -26,7 +26,7 @@
 #define __RaptorDialogTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorDialogBank 2
+#define RaptorDialogBank 1
 
 /* Super Gameboy palette 0 */
 #define RaptorDialogSGBPal0c0 6076

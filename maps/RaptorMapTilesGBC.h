@@ -26,7 +26,7 @@
 #define __RaptorMapTilesGBC_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorMapTilesBank 2
+#define RaptorMapTilesBank 1
 
 /* Super Gameboy palette 0 */
 #define RaptorMapTilesSGBPal0c0 6076

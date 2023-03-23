@@ -33,12 +33,11 @@ void main(void)
     }
 
     InitializeSound();
-    SWITCH_ROM_MBC5(2);
+    SWITCH_ROM_MBC5(1);
     Title();
     Hanger();
     initProjectiles();
     init_camera();
-    //SWITCH_ROM_MBC5(2);
     BravoOne();
     //SWITCH_ROM_MBC5(1);
     setupShip();
