@@ -1,3 +1,5 @@
+#pragma bank 1
+
 /*
 
  MCHBULLET.C
@@ -12,9 +14,9 @@
   Tile size            : 8 x 8
   Tiles                : 0 to 1
 
-  Palette colors       : Included.
+  Palette colors       : None.
   SGB Palette          : None.
-  CGB Palette          : 1 Byte per entry.
+  CGB Palette          : None.
 
   Convert to metatiles : No.
 
@@ -22,16 +24,13 @@
 
 */
 
-/* CGBpalette entries. */
-const unsigned char MchBulletCGB[] =
-{
-  0x00,0x00
-};
+const void __at(1) __bank_MchBulletTLE0;
 const unsigned char MchBulletTLE0[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x41,
   0x82,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
+const void __at(1) __bank_MchBulletTLE1;
 const unsigned char MchBulletTLE1[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x82,0x00,

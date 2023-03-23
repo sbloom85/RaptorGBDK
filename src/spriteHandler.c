@@ -37,7 +37,7 @@ void InitCursor() BANKED
     set_sprite_tile(0, 0);
 }
 
-void MoveCursor(uint8_t x, uint8_t y) BANKED
+void MoveCursor(uint8_t x, uint8_t y) NONBANKED
 {
     move_sprite(0, x, y);
 }

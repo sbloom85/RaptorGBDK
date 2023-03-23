@@ -1,3 +1,5 @@
+#pragma bank 1
+
 /*
 
  CURSOR.C
@@ -12,9 +14,9 @@
   Tile size            : 8 x 8
   Tiles                : 0 to 0
 
-  Palette colors       : Included.
+  Palette colors       : None.
   SGB Palette          : None.
-  CGB Palette          : 1 Byte per entry.
+  CGB Palette          : None.
 
   Convert to metatiles : No.
 
@@ -22,11 +24,7 @@
 
 */
 
-/* CGBpalette entries. */
-const unsigned char CursorTileCGB[] =
-{
-  0x00
-};
+const void __at(1) __bank_CursorTileTLE0;
 const unsigned char CursorTileTLE0[] =
 {
   0x00,0x18,0x18,0x00,0x18,0x00,0x66,0x81,
