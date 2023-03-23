@@ -187,13 +187,13 @@ void inputLoop() BANKED
             SetColliders();
         }
 
-        if ((joyInput & J_LEFT) && ship.x > 16)
+        if ((joyInput & J_LEFT) && ship.x > 4)
         {
             ship.x -= moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
 
             SetColliders();
-        } else if ((joyInput & J_RIGHT) && ship.x < 128)
+        } else if ((joyInput & J_RIGHT) && ship.x < 140)
         {
             ship.x += moveSpeed;
             MovePlayer(&ship, ship.x, ship.y);
