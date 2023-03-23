@@ -1,3 +1,5 @@
+#pragma bank 1
+
 #include "gb.h"
 #include "sgb.h"
 #include "cgb.h"
@@ -63,35 +65,89 @@ typedef struct sgb_pal_packet_t {
     UWORD palettes[7];
 } sgb_pal_packet_t;
 
-void SGBTransferPalettes(const UWORD *SGBPallete) BANKED {
+void SGBTransferPalettes(const UWORD *SGBPallete) BANKED
+{
     sgb_pal_packet_t data;
     data.cmd = (SGB_PAL_01 << 3) | 1;
     memcpy(data.palettes, &SGBPallete[0], sizeof(data.palettes));
     sgb_transfer((void *)&data);
 }
 
-struct windowDataStruct {
-    uint8_t CashP1:4,
-            CashP2:4;
-    uint8_t CashP3:4,
-            CashP4:4;
-    uint8_t CashP5:4,
-            CashP6:4;
-    uint8_t CashP7:4,
-            CashP8:4;
-    uint8_t CashP9:4;
+struct windowCashStruct {
+    char Cash[10];
+} windowCash;
 
-    uint8_t HlthP1:4,
-            HlthP2:4;
-    uint8_t HlthP3:4;
+    uint8_t HlthP1,
+            HlthP2,
+            HlthP3;
 
-    uint8_t ShldP1:4,
-            ShldP2:4;
-    uint8_t ShldP3:4;
-} windowData;
+    uint8_t ShldP1,
+            ShldP2,
+            ShldP3;
 
-void updateHud()
+uint8_t * splitter(uint32_t number) NONBANKED
 {
+    static uint8_t values[8];
+
+    for (int i = 0; i < 8; i++)
+    {
+        values[i] = (uint8_t)(number & 0xF);
+        number = (number >> 4);
+    }
+
+    return values;
+}
+
+char* itoa2(int i, char b[]) NONBANKED
+{
+    char const digit[] = "0123456789";
+    char* p = b;
+    if(i<0){
+        *p++ = '-';
+        i *= -1;
+    }
+    int shifter = i;
+    do{ //Move to where representation ends
+        ++p;
+        shifter = shifter/10;
+    }while(shifter);
+    *p = '\0';
+    do{ //Move back, inserting digits as u go
+        *--p = digit[i%10];
+        i = i/10;
+    }while(i);
+    return b;
+}
+
+void updateHud() NONBANKED
+{
+    uint32_t testCashVar = 1234;
+    //sprintf(windowData.CashP0, "%u", 1);
+
+    for (int i = 0; i < 10; i++)
+    {
+        windowCash.Cash[i] = 0;
+    }
+
+    //itoa(testCashVar, windowCash.Cash, 10);
+    //itoa2(testCashVar, windowCash.Cash);
+
+    //sprintf(windowCash.Cash, "%d", testCashVar >> 10);
+
+    //memcpy(&windowCash.Cash, &testCashVar, sizeof(testCashVar));
+
+
+    //windowData.CashP0 = splitter(testCashVar)[0];
+    //windowData.CashP1 = (testCashVar >> 8) & 0xF;
+    //windowData.CashP2 = testCashVar & 0x00F000000;
+    //windowData.CashP3 = testCashVar & 0x000F00000;
+    //windowData.CashP4 = testCashVar & 0x0000F0000;
+    //windowData.CashP5 = (testCashVar * 68) & 0xF;
+    //windowCash.CashP6 = (testCashVar >> 10) & 0xF;
+    //windowCash.CashP7 = (testCashVar / 68) & 0xF;
+    //windowData.CashP8 = (testCashVar / 309) & 0xF;
+    //windowData.CashP9 = (testCashVar >> 8) & 0xFFFFFFFF;
+
     for (uint8_t i = 40; i--;)
     {
         //Line 1
@@ -103,41 +159,45 @@ void updateHud()
         {
             RaptorWindowUpdatePLN0[i] = 0x48;
         }
-        if (i == 5) //Cash Pos 1
+        if (i == 5) //Cash Pos 0
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP1;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[0];
         }
-        if (i == 6) //Cash Pos 2
+        if (i == 6) //Cash Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP2;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[1];
         }
-        if (i == 7) //Cash Pos 3
+        if (i == 7) //Cash Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP3;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[2];
         }
-        if (i == 8) //Cash Pos 4
+        if (i == 8) //Cash Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP4;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[3];
         }
-        if (i == 9) //Cash Pos 5
+        if (i == 9) //Cash Pos 4
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP5;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[4];
         }
-        if (i == 10) //Cash Pos 6
+        if (i == 10) //Cash Pos 5
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP6;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[5];
         }
-        if (i == 11) //Cash Pos 7
+        if (i == 11) //Cash Pos 6
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP7;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[6];
         }
-        if (i == 12) //Cash Pos 8
+        if (i == 12) //Cash Pos 7
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP8;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[7];
         }
-        if (i == 13) //Cash Pos 9
+        if (i == 13) //Cash Pos 8
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.CashP9;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[8];
+        }
+        if (i == 14) //Cash Pos 9
+        {
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[9];
         }
         
         //Line 2
@@ -151,15 +211,15 @@ void updateHud()
         }
         if (i == 22) //Health Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP1;
+            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP1;
         }
         if (i == 23) //Health Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP2;
+            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP2;
         }
         if (i == 24) //Health Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP3;
+            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP3;
         }
         if (i == 26) //S Char
         {
@@ -167,15 +227,15 @@ void updateHud()
         }
         if (i == 27) //Shield Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP1;
+            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP1;
         }
         if (i == 28) //Shield Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP2;
+            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP2;
         }
         if (i == 29) //Shield Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP3;
+            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP3;
         }
         if (i == 31) //Shield Icon Pos 1
         {
@@ -236,7 +296,7 @@ void fadeout()
     BGP_REG = BGP_REG_OLD;
 }
 
-void init_camera()
+void init_camera() BANKED
 {
     camera_y = -154;
     old_camera_y = camera_y;
@@ -245,7 +305,7 @@ void init_camera()
     SCY_REG = camera_y;
 }
 
-void scroll_cam_up()
+void scroll_cam_up() BANKED
 {
     if (camera_y > -2040)
     {
@@ -253,13 +313,15 @@ void scroll_cam_up()
     }
 }
 
-void set_camera() {
+void set_camera() NONBANKED
+{
     // update hardware scroll position
     SCY_REG = camera_y;
 
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
+            SWITCH_ROM_MBC5(2);
             VBK_REG = 1;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
@@ -270,6 +332,7 @@ void set_camera() {
             set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
             VBK_REG = 0;
             set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
+            SWITCH_ROM_MBC5(1);
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -278,7 +341,7 @@ void set_camera() {
     old_camera_y = camera_y;
 }
 
-void Title()
+void Title() BANKED
 {
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
@@ -300,7 +363,7 @@ void Title()
     }
 }
 
-void HangerSelection(enum selected selection)
+void HangerSelection(enum selected selection) BANKED
 {
     if (selection == Fly)
     {
@@ -317,7 +380,7 @@ void HangerSelection(enum selected selection)
     }
 }
 
-void Hanger()
+void Hanger() BANKED
 {
     set_bkg_palette(0, 1, &black_palette[0]); //Helps hide some graphics corruption
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
@@ -402,7 +465,7 @@ void Hanger()
     }
 }
 
-void BravoOne()
+void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgPalette[0]);
     set_bkg_data(0, 51, RaptorMapTiles);
@@ -414,6 +477,7 @@ void BravoOne()
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
+    SWITCH_ROM_MBC5(2);
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = 1;
@@ -421,16 +485,19 @@ void BravoOne()
         VBK_REG = 0;
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
+    SWITCH_ROM_MBC5(1);
 
     SHOW_WIN;
 
     set_win_data(72, 55, RaptorDialog);
 
+    SWITCH_ROM_MBC5(2);
     VBK_REG = 1;
     set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
     VBK_REG = 0;
     set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
-    
+    SWITCH_ROM_MBC5(1);
+
     move_win(7, 128);
 
    /* 

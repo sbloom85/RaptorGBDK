@@ -30,20 +30,20 @@ const UWORD sprPalette[] = {
 	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5)
 };
 
-void InitCursor()
+void InitCursor() BANKED
 {
     set_sprite_palette(0, 1, sprPalette);
     set_sprite_data(0, 1, CursorTileTLE0);
     set_sprite_tile(0, 0);
 }
 
-void MoveCursor(uint8_t x, uint8_t y)
+void MoveCursor(uint8_t x, uint8_t y) BANKED
 {
     move_sprite(0, x, y);
 }
 
 // Move the character
-void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
+void MovePlayer(struct Player* character, uint8_t x, uint8_t y) BANKED
 {
     move_sprite(character->spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
     move_sprite(character->spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
@@ -55,7 +55,7 @@ void MovePlayer(struct Player* character, uint8_t x, uint8_t y)
     move_sprite(character->spriteids[7], x + (spriteSize + 16), y + (spriteSize + 16));
 }
 
-void initProjectiles()
+void initProjectiles() BANKED
 {
     uint8_t startID = 8; //Everything below 8 is resurved for ship.
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
@@ -66,7 +66,7 @@ void initProjectiles()
     }
 }
 
-void moveProjectiles()
+void moveProjectiles() BANKED
 {
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
     {
@@ -83,7 +83,7 @@ void moveProjectiles()
     }
 }
 
-void fireMachineGun()
+void fireMachineGun() BANKED
 {
     while (shots < MAX_PROJECTILES)
     {
@@ -107,7 +107,7 @@ void fireMachineGun()
 }
 
 // Initialize ship struct
-void setupShip()
+void setupShip() BANKED
 {
     set_sprite_palette(0, 1, sprPalette);
 
@@ -147,7 +147,7 @@ void setupShip()
     MovePlayer(&ship, ship.x, ship.y);
 }
 
-void SetupEnemyShip()
+void SetupEnemyShip() BANKED
 {
     eShip1.x = 80;
     eShip1.y = 30;
@@ -159,7 +159,7 @@ void SetupEnemyShip()
     // Load sprites for ship
 }
 
-void SetColliders()
+void SetColliders() BANKED
 {
     // Reset colliders
     ship.colliderTop = ship.y;
@@ -168,7 +168,7 @@ void SetColliders()
     ship.colliderBottom = ship.y + ship.height;
 }
 
-void inputLoop()
+void inputLoop() BANKED
 {
     uint8_t joyInput = joypad();
 
