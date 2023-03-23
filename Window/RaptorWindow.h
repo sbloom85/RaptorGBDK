@@ -6,7 +6,7 @@
 
  Info:
    Section       : 
-   Bank          : 2
+   Bank          : 1
    Map size      : 20 x 2
    Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\RaptorDialogTiles.gbr
    Plane count   : 2 planes (16 bits)
@@ -22,7 +22,7 @@
 
 #define RaptorWindowWidth 20
 #define RaptorWindowHeight 2
-#define RaptorWindowBank 2
+#define RaptorWindowBank 1
 
 #define RaptorWindow RaptorWindowPLN0
 extern const void __bank_RaptorWindowPLN0;

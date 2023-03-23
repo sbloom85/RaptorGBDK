@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 2
 
 /*
 
@@ -25,7 +25,7 @@
 */
 
 /* CGBpalette entries. */
-const void __at(1) __bank_RaptorMapTilesCGB;
+const void __at(2) __bank_RaptorMapTilesCGB;
 const unsigned char RaptorMapTilesCGB[] =
 {
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
@@ -37,7 +37,7 @@ const unsigned char RaptorMapTilesCGB[] =
   0x02,0x02,0x02,0x00
 };
 /* Start of tile array. */
-const void __at(1) __bank_RaptorMapTiles;
+const void __at(2) __bank_RaptorMapTiles;
 const unsigned char RaptorMapTiles[] =
 {
   0x00,0xFF,0x00,0xFF,0x00,0xFF,0x00,0xFF,

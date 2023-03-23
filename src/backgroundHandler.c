@@ -327,12 +327,13 @@ void set_camera() NONBANKED
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
 
+            SWITCH_ROM_MBC5(1);
             updateHud();
             VBK_REG = 1;
             set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
             VBK_REG = 0;
             set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
-            SWITCH_ROM_MBC5(1);
+            
         }
         old_map_pos_y = map_pos_y; 
     }
@@ -468,6 +469,7 @@ void Hanger() BANKED
 void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgPalette[0]);
+    SWITCH_ROM_MBC5(2);
     set_bkg_data(0, 51, RaptorMapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
@@ -477,7 +479,7 @@ void BravoOne() NONBANKED
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
-    SWITCH_ROM_MBC5(2);
+    
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = 1;
@@ -491,12 +493,10 @@ void BravoOne() NONBANKED
 
     set_win_data(72, 55, RaptorDialog);
 
-    SWITCH_ROM_MBC5(2);
     VBK_REG = 1;
     set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
     VBK_REG = 0;
     set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
-    SWITCH_ROM_MBC5(1);
 
     move_win(7, 128);
 
