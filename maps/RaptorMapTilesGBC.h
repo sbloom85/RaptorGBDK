@@ -1,6 +1,6 @@
 /*
 
- RAPTORMAPTILESGBSC.H
+ RAPTORMAPTILESGBC.H
 
  Include File.
 
@@ -22,11 +22,11 @@
 
 */
 
-#ifndef __RaptorMapTilesGBSC_h_INCLUDE
-#define __RaptorMapTilesGBSC_h_INCLUDE
+#ifndef __RaptorMapTilesGBC_h_INCLUDE
+#define __RaptorMapTilesGBC_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorMapTilesBank 0
+#define RaptorMapTilesBank 2
 
 /* Super Gameboy palette 0 */
 #define RaptorMapTilesSGBPal0c0 6076
@@ -77,10 +77,10 @@
 #define RaptorMapTilesCGBPal3c3 206
 
 /* Gameboy Color palette 4 */
-#define RaptorMapTilesCGBPal4c0 6076
-#define RaptorMapTilesCGBPal4c1 8935
-#define RaptorMapTilesCGBPal4c2 6596
-#define RaptorMapTilesCGBPal4c3 5344
+#define RaptorMapTilesCGBPal4c0 15857
+#define RaptorMapTilesCGBPal4c1 8458
+#define RaptorMapTilesCGBPal4c2 202
+#define RaptorMapTilesCGBPal4c3 68
 
 /* Gameboy Color palette 5 */
 #define RaptorMapTilesCGBPal5c0 6076
@@ -100,10 +100,12 @@
 #define RaptorMapTilesCGBPal7c2 502
 #define RaptorMapTilesCGBPal7c3 4228
 /* CGBpalette entries. */
+extern const void __bank_RaptorMapTilesCGB;
 extern const unsigned char RaptorMapTilesCGB[];
 /* Start of tile array. */
+extern const void __bank_RaptorMapTiles;
 extern const unsigned char RaptorMapTiles[];
 
 #endif
 
-/* End of RAPTORMAPTILESGBSC.H */
+/* End of RAPTORMAPTILESGBC.H */

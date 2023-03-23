@@ -1,3 +1,5 @@
+#pragma bank 0
+
 #include "gb.h"
 #include "sgb.h"
 #include "cgb.h"
@@ -18,6 +20,8 @@ void InitializeSound()
 
 void main(void)
 {
+    //ENABLE_RAM;
+
     SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;
@@ -29,11 +33,14 @@ void main(void)
     }
 
     InitializeSound();
+    SWITCH_ROM_MBC5(2);
     Title();
     Hanger();
     initProjectiles();
     init_camera();
+    //SWITCH_ROM_MBC5(2);
     BravoOne();
+    //SWITCH_ROM_MBC5(1);
     setupShip();
     SetColliders();
 

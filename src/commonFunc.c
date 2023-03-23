@@ -1,3 +1,5 @@
+#pragma bank 0
+
 #include "commonFunc.h"
 
 uint8_t getGBType()

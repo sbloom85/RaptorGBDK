@@ -26,7 +26,7 @@
 #define __RaptorDialogTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorDialogBank 0
+#define RaptorDialogBank 2
 
 /* Super Gameboy palette 0 */
 #define RaptorDialogSGBPal0c0 6076
@@ -100,8 +100,10 @@
 #define RaptorDialogCGBPal7c2 502
 #define RaptorDialogCGBPal7c3 4228
 /* CGBpalette entries. */
+extern const void __bank_RaptorDialogCGB;
 extern const unsigned char RaptorDialogCGB[];
 /* Start of tile array. */
+extern const void __bank_RaptorDialog;
 extern const unsigned char RaptorDialog[];
 
 #endif

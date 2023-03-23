@@ -1,3 +1,5 @@
+#pragma bank 2
+
 #include "gb.h"
 #include "sgb.h"
 #include "cgb.h"
