@@ -44,8 +44,8 @@ struct Enemy {
     uint8_t  dmgAmount;         // Values upto 255
     uint8_t  health;            // Values upto 255
     uint16_t cashGiven;         // Values upto 65535
-    uint8_t  colliderLeft;       // Left collider
-    uint8_t  colliderRight;      // Right collider
-    uint8_t  colliderColTop;     // Top collider
-    uint8_t  colliderBottom;     // Bottom collider
+    uint8_t  colliderLeft;      // Left collider
+    uint8_t  colliderRight;     // Right collider
+    uint8_t  colliderColTop;    // Top collider
+    uint8_t  colliderBottom;    // Bottom collider
 };

@@ -12,6 +12,7 @@
 
 #include "commonFunc.h"
 #include "spriteHandler.h"
+#include "backgroundHandler.h"
 
 #include "../Window/RaptorDialogTiles.h"
 #include "../Window/RaptorWindow.h"
@@ -346,8 +347,9 @@ void Title() NONBANKED
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
-    PerformantDelay(200);
+    PerformantDelay(130);
     fadeout();
+    HIDE_BKG;
 }
 
 void Menu() NONBANKED
@@ -362,13 +364,80 @@ void Menu() NONBANKED
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Menu_map);
 
+    SHOW_BKG;
+
     while (1)
     {
         if (joypad() & J_A)
         {
             fadeout();
+            HIDE_BKG;
             break;
         }
+    }
+}
+
+void WepShop() BANKED
+{
+    set_bkg_palette(0, 4, &bkgShopPalette[0]);
+    set_bkg_data(0, 47, ShopTiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBPaletteWater);
+    }
+
+    VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, ShopScreenPLN1);
+    VBK_REG = 0;
+    set_bkg_tiles(0, 0, 20, 18, ShopScreenPLN0);
+
+    HIDE_SPRITES;
+    SHOW_BKG;
+
+    while (1)
+    {
+        if (joypad() & J_A)
+        {
+            fadeout();
+            HIDE_BKG;
+            SHOW_SPRITES;
+            Hanger();
+        }
+    }
+}
+
+void gameInit() BANKED
+{
+    initProjectiles();
+    init_camera();
+    setupShip();
+    SetColliders();
+
+    SHOW_WIN;
+
+    set_win_data(72, 55, RaptorDialog);
+
+    VBK_REG = 1;
+    set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
+    VBK_REG = 0;
+    set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
+
+    move_win(7, 128);
+}
+
+void gameLoop() BANKED
+{
+    //Main Game Loop
+    while (1)
+    {
+        set_camera();
+
+        scroll_cam_up();
+
+        moveProjectiles();
+
+        inputLoop();
+
+        PerformantDelay(2);
     }
 }
 
@@ -392,7 +461,7 @@ void HangerSelection(enum selected selection) BANKED
 void Hanger() BANKED
 {
     //Helps hide some graphics corruption
-    set_bkg_palette(0, 1, &black_palette[0]); 
+    set_bkg_palette(0, 1, &black_palette[0]);
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
     
@@ -401,15 +470,17 @@ void Hanger() BANKED
     }
 
     //VBK_REG = 1;
-    set_bkg_tiles(0, 0, 20, 18, Hanger_map);
-    //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Hanger_map);
+    VBK_REG = 0;
+    set_bkg_tiles(0, 0, 20, 18, Hanger_map);
 
     enum selected selection;
     selection = 1;
 
     InitCursor();
     MoveCursor(30, 74); //Default to Fly for now.
+
+    SHOW_BKG;
 
     while (1)
     {
@@ -463,11 +534,14 @@ void Hanger() BANKED
 
         if (joyInput & J_A && selection == Fly)
         {
+            HIDE_SPRITES;
             fadeout();
-            break;
-        } /*else if (joyInput & J_A && selection == Shop) {
-            //Todo
-        } else if (joyInput & J_A && selection == Save) {
+            gameInit();
+            BravoOne();
+            gameLoop();
+        } else if (joyInput & J_A && selection == Shop) {
+            WepShop();
+        } /*else if (joyInput & J_A && selection == Save) {
             //Todo
         }*/ else if (joyInput & J_A && selection == Exit) {
             reset();
@@ -504,16 +578,7 @@ void BravoOne() NONBANKED
         set_bkg_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20);
     }
 
-    SHOW_WIN;
-
-    set_win_data(72, 55, RaptorDialog);
-
-    VBK_REG = 1;
-    set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
-    VBK_REG = 0;
-    set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
-
-    move_win(7, 128);
+    gameLoop();
 
     //map_pos_y = 0;
     old_map_pos_y = 255;
@@ -524,4 +589,5 @@ void BravoOne() NONBANKED
     #else
         SWITCH_ROM_MBC5(2);
     #endif
+    
 }

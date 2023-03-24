@@ -26,85 +26,85 @@
 #define __ShopTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define ShopBank 2
+#define ShopTilesBank 2
 
 /* Super Gameboy palette 0 */
-#define ShopSGBPal0c0 6076
-#define ShopSGBPal0c1 8935
-#define ShopSGBPal0c2 6596
-#define ShopSGBPal0c3 5344
+#define ShopTilesSGBPal0c0 6076
+#define ShopTilesSGBPal0c1 8935
+#define ShopTilesSGBPal0c2 6596
+#define ShopTilesSGBPal0c3 5344
 
 /* Super Gameboy palette 1 */
-#define ShopSGBPal1c0 6076
-#define ShopSGBPal1c1 8935
-#define ShopSGBPal1c2 6596
-#define ShopSGBPal1c3 5344
+#define ShopTilesSGBPal1c0 6076
+#define ShopTilesSGBPal1c1 8935
+#define ShopTilesSGBPal1c2 6596
+#define ShopTilesSGBPal1c3 5344
 
 /* Super Gameboy palette 2 */
-#define ShopSGBPal2c0 6076
-#define ShopSGBPal2c1 8935
-#define ShopSGBPal2c2 6596
-#define ShopSGBPal2c3 5344
+#define ShopTilesSGBPal2c0 6076
+#define ShopTilesSGBPal2c1 8935
+#define ShopTilesSGBPal2c2 6596
+#define ShopTilesSGBPal2c3 5344
 
 /* Super Gameboy palette 3 */
-#define ShopSGBPal3c0 6076
-#define ShopSGBPal3c1 8935
-#define ShopSGBPal3c2 6596
-#define ShopSGBPal3c3 5344
+#define ShopTilesSGBPal3c0 6076
+#define ShopTilesSGBPal3c1 8935
+#define ShopTilesSGBPal3c2 6596
+#define ShopTilesSGBPal3c3 5344
 
 /* Gameboy Color palette 0 */
-#define ShopCGBPal0c0 24345
-#define ShopCGBPal0c1 18004
-#define ShopCGBPal0c2 13775
-#define ShopCGBPal0c3 7434
+#define ShopTilesCGBPal0c0 24345
+#define ShopTilesCGBPal0c1 18004
+#define ShopTilesCGBPal0c2 13775
+#define ShopTilesCGBPal0c3 7434
 
 /* Gameboy Color palette 1 */
-#define ShopCGBPal1c0 24345
-#define ShopCGBPal1c1 18004
-#define ShopCGBPal1c2 13775
-#define ShopCGBPal1c3 19
+#define ShopTilesCGBPal1c0 24345
+#define ShopTilesCGBPal1c1 18004
+#define ShopTilesCGBPal1c2 13775
+#define ShopTilesCGBPal1c3 19
 
 /* Gameboy Color palette 2 */
-#define ShopCGBPal2c0 24345
-#define ShopCGBPal2c1 18004
-#define ShopCGBPal2c2 13775
-#define ShopCGBPal2c3 1377
+#define ShopTilesCGBPal2c0 24345
+#define ShopTilesCGBPal2c1 18004
+#define ShopTilesCGBPal2c2 13775
+#define ShopTilesCGBPal2c3 1377
 
 /* Gameboy Color palette 3 */
-#define ShopCGBPal3c0 24345
-#define ShopCGBPal3c1 18004
-#define ShopCGBPal3c2 13775
-#define ShopCGBPal3c3 21276
+#define ShopTilesCGBPal3c0 24345
+#define ShopTilesCGBPal3c1 18004
+#define ShopTilesCGBPal3c2 13775
+#define ShopTilesCGBPal3c3 21276
 
 /* Gameboy Color palette 4 */
-#define ShopCGBPal4c0 6076
-#define ShopCGBPal4c1 8935
-#define ShopCGBPal4c2 6596
-#define ShopCGBPal4c3 5344
+#define ShopTilesCGBPal4c0 6076
+#define ShopTilesCGBPal4c1 8935
+#define ShopTilesCGBPal4c2 6596
+#define ShopTilesCGBPal4c3 5344
 
 /* Gameboy Color palette 5 */
-#define ShopCGBPal5c0 6076
-#define ShopCGBPal5c1 8935
-#define ShopCGBPal5c2 6596
-#define ShopCGBPal5c3 5344
+#define ShopTilesCGBPal5c0 6076
+#define ShopTilesCGBPal5c1 8935
+#define ShopTilesCGBPal5c2 6596
+#define ShopTilesCGBPal5c3 5344
 
 /* Gameboy Color palette 6 */
-#define ShopCGBPal6c0 6076
-#define ShopCGBPal6c1 8935
-#define ShopCGBPal6c2 6596
-#define ShopCGBPal6c3 5344
+#define ShopTilesCGBPal6c0 6076
+#define ShopTilesCGBPal6c1 8935
+#define ShopTilesCGBPal6c2 6596
+#define ShopTilesCGBPal6c3 5344
 
 /* Gameboy Color palette 7 */
-#define ShopCGBPal7c0 6076
-#define ShopCGBPal7c1 8935
-#define ShopCGBPal7c2 6596
-#define ShopCGBPal7c3 5344
+#define ShopTilesCGBPal7c0 6076
+#define ShopTilesCGBPal7c1 8935
+#define ShopTilesCGBPal7c2 6596
+#define ShopTilesCGBPal7c3 5344
 /* CGBpalette entries. */
-extern const void __bank_ShopCGB;
-extern const unsigned char ShopCGB[];
+extern const void __bank_ShopTilesCGB;
+extern const unsigned char ShopTilesCGB[];
 /* Start of tile array. */
-extern const void __bank_Shop;
-extern const unsigned char Shop[];
+extern const void __bank_ShopTiles;
+extern const unsigned char ShopTiles[];
 
 #endif
 

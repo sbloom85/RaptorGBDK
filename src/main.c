@@ -3,6 +3,7 @@
 #include "gb.h"
 #include "sgb.h"
 #include "cgb.h"
+#include "bgb_emu.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,6 +20,8 @@ void InitializeSound()
 
 void main(void)
 {
+    //BGB_MESSAGE("TEST"); //For debuging
+
     //ENABLE_RAM_MBC5; //We don't need extra ram banks right now.
 
     SHOW_BKG;
@@ -51,23 +54,4 @@ void main(void)
         SWITCH_ROM_MBC5(2);
     #endif
     Hanger();
-    initProjectiles();
-    init_camera();
-    BravoOne();
-    setupShip();
-    SetColliders();
-
-    //Main Game Loop
-    while (1)
-    {
-        set_camera();
-
-        scroll_cam_up();
-
-        moveProjectiles();
-
-        inputLoop();
-
-        PerformantDelay(2);
-    }
 }

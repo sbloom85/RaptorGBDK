@@ -7,6 +7,8 @@ void set_camera();
 void Title();
 void Menu();
 void Hanger();
+void WepShop();
+void gameLoop();
 void BravoOne();
 
 #endif

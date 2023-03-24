@@ -143,7 +143,7 @@ void setupShip() BANKED
     set_sprite_data(7, 1, RaptorTLE7);
     set_sprite_tile(7, 7);
     ship.spriteids[7] = 7;
-
+    SHOW_SPRITES;
     MovePlayer(&ship, ship.x, ship.y);
 }
 
