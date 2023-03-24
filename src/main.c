@@ -32,7 +32,8 @@ void main(void)
     }
 
     InitializeSound();
-    //Title, Menu, Intro are Bank 1
+    //Bank 1:
+    //Title, Menu, Intro
     #ifdef MEGADUCK
         SWITCH_ROM_MEGADUCK(1);
     #else
@@ -40,10 +41,10 @@ void main(void)
     #endif
     Title();
     Menu();
+    //Bank 2:
     //Hanger, Shop, Sector Select, 
     //Background and Sprite Handlers
     //Menu, Hanger, and Player Sprites
-    //Are Bank 2
     #ifdef MEGADUCK
         SWITCH_ROM_MEGADUCK(2);
     #else

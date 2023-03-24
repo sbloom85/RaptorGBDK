@@ -295,18 +295,14 @@ void set_camera() NONBANKED
     // update hardware scroll position
     SCY_REG = camera_y;
 
-    map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
+    //Row that updates + 18u updates last line.
+    map_pos_y = (uint8_t)(camera_y >> 3u); 
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
             #ifdef MEGADUCK
-            {
                 SWITCH_ROM_MEGADUCK(3);
-            }
-            #endif
-            #ifndef MEGADUCK
-            {
+            #else
                 SWITCH_ROM_MBC5(3);
-            }
             #endif
             VBK_REG = 1;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
@@ -314,14 +310,9 @@ void set_camera() NONBANKED
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
 
             #ifdef MEGADUCK
-            {
                 SWITCH_ROM_MEGADUCK(2);
-            }
-            #endif
-            #ifndef MEGADUCK
-            {
+            #else
                 SWITCH_ROM_MBC5(2);
-            }
             #endif
             updateHud();
             VBK_REG = 1;
@@ -394,7 +385,8 @@ void HangerSelection(enum selected selection) BANKED
 
 void Hanger() BANKED
 {
-    set_bkg_palette(0, 1, &black_palette[0]); //Helps hide some graphics corruption
+    //Helps hide some graphics corruption
+    set_bkg_palette(0, 1, &black_palette[0]); 
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
     
@@ -405,7 +397,7 @@ void Hanger() BANKED
     //VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map);
     //VBK_REG = 0;
-    //set_bkg_tiles(0, 0, 20, 18, Intro_map);
+    //set_bkg_tiles(0, 0, 20, 18, Hanger_map);
 
     enum selected selection;
     selection = 1;
@@ -480,7 +472,8 @@ void Hanger() BANKED
 void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
-    //Bravo Map 1 in Bank 3
+    //Bank 3:
+    //Bravo Map 1 and Enemy Sprites
     #ifdef MEGADUCK
         SWITCH_ROM_MEGADUCK(3);
     #else
@@ -492,7 +485,6 @@ void BravoOne() NONBANKED
     }
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
-
     
     for (uint8_t i = 144; i--;)
     {
