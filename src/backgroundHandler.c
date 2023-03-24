@@ -18,6 +18,10 @@
 
 int8_t BGP_REG_OLD;
 
+uint8_t currentMapBank = 3;
+unsigned char *currentMapPLN0;
+unsigned char *currentMapPLN1;
+
 const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
@@ -295,25 +299,21 @@ void set_camera() NONBANKED
     // update hardware scroll position
     SCY_REG = camera_y;
 
+    #ifdef MEGADUCK
+        SWITCH_ROM_MEGADUCK(currentMapBank);
+    #else
+        SWITCH_ROM_MBC5(currentMapBank);
+    #endif
+
     //Row that updates + 18u updates last line.
     map_pos_y = (uint8_t)(camera_y >> 3u); 
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            #ifdef MEGADUCK
-                SWITCH_ROM_MEGADUCK(3);
-            #else
-                SWITCH_ROM_MBC5(3);
-            #endif
             VBK_REG = 1;
-            set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
+            set_bkg_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN1, 20);
             VBK_REG = 0;
-            set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
+            set_bkg_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20);
 
-            #ifdef MEGADUCK
-                SWITCH_ROM_MEGADUCK(2);
-            #else
-                SWITCH_ROM_MBC5(2);
-            #endif
             updateHud();
             VBK_REG = 1;
             set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
@@ -326,6 +326,12 @@ void set_camera() NONBANKED
     
     // set old camera position to current camera position
     old_camera_y = camera_y;
+
+    #ifdef MEGADUCK
+        SWITCH_ROM_MEGADUCK(2);
+    #else
+        SWITCH_ROM_MBC5(2);
+    #endif
 }
 
 void Title() NONBANKED
@@ -474,10 +480,11 @@ void BravoOne() NONBANKED
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     //Bank 3:
     //Bravo Map 1 and Enemy Sprites
+    currentMapBank = 3;
     #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(3);
+        SWITCH_ROM_MEGADUCK(currentMapBank);
     #else
-        SWITCH_ROM_MBC5(3);
+        SWITCH_ROM_MBC5(currentMapBank);
     #endif
     set_bkg_data(0, 52, Bravo1MapTiles);
     if (sgb_check()) {
@@ -485,13 +492,16 @@ void BravoOne() NONBANKED
     }
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
+
+    currentMapPLN0 = (unsigned char*)BravoWave1PLN0;
+    currentMapPLN1 = (unsigned char*)BravoWave1PLN1;
     
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = 1;
-        set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN1, 20);
+        set_bkg_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN1, 20);
         VBK_REG = 0;
-        set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
+        set_bkg_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20);
     }
 
     SHOW_WIN;
