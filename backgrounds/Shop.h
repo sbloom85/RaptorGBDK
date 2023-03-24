@@ -6,7 +6,7 @@
 
  Info:
    Section       : 
-   Bank          : 0
+   Bank          : 1
    Map size      : 20 x 18
    Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\Shop.gbr
    Plane count   : 2 planes (16 bits)
@@ -22,10 +22,12 @@
 
 #define ShopScreenWidth 20
 #define ShopScreenHeight 18
-#define ShopScreenBank 0
+#define ShopScreenBank 1
 
 #define ShopScreen ShopScreenPLN0
+extern const void __bank_ShopScreenPLN0;
 extern const unsigned char ShopScreenPLN0[];
+extern const void __bank_ShopScreenPLN01;
 extern const unsigned char ShopScreenPLN1[];
 
 #endif

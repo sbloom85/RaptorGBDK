@@ -5,7 +5,7 @@
  Include File.
 
  Info:
-  Form                 : Each tile separate.
+  Form                 : All tiles as one unit.
   Format               : Gameboy 4 color.
   Compression          : None.
   Counter              : None.
@@ -26,7 +26,7 @@
 #define __ShopTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define ShopBank 0
+#define ShopBank 1
 
 /* Super Gameboy palette 0 */
 #define ShopSGBPal0c0 6076
@@ -100,54 +100,11 @@
 #define ShopCGBPal7c2 6596
 #define ShopCGBPal7c3 5344
 /* CGBpalette entries. */
+extern const void __bank_ShopCGB;
 extern const unsigned char ShopCGB[];
-extern const unsigned char ShopTLE0[];
-extern const unsigned char ShopTLE1[];
-extern const unsigned char ShopTLE2[];
-extern const unsigned char ShopTLE3[];
-extern const unsigned char ShopTLE4[];
-extern const unsigned char ShopTLE5[];
-extern const unsigned char ShopTLE6[];
-extern const unsigned char ShopTLE7[];
-extern const unsigned char ShopTLE8[];
-extern const unsigned char ShopTLE9[];
-extern const unsigned char ShopTLE10[];
-extern const unsigned char ShopTLE11[];
-extern const unsigned char ShopTLE12[];
-extern const unsigned char ShopTLE13[];
-extern const unsigned char ShopTLE14[];
-extern const unsigned char ShopTLE15[];
-extern const unsigned char ShopTLE16[];
-extern const unsigned char ShopTLE17[];
-extern const unsigned char ShopTLE18[];
-extern const unsigned char ShopTLE19[];
-extern const unsigned char ShopTLE20[];
-extern const unsigned char ShopTLE21[];
-extern const unsigned char ShopTLE22[];
-extern const unsigned char ShopTLE23[];
-extern const unsigned char ShopTLE24[];
-extern const unsigned char ShopTLE25[];
-extern const unsigned char ShopTLE26[];
-extern const unsigned char ShopTLE27[];
-extern const unsigned char ShopTLE28[];
-extern const unsigned char ShopTLE29[];
-extern const unsigned char ShopTLE30[];
-extern const unsigned char ShopTLE31[];
-extern const unsigned char ShopTLE32[];
-extern const unsigned char ShopTLE33[];
-extern const unsigned char ShopTLE34[];
-extern const unsigned char ShopTLE35[];
-extern const unsigned char ShopTLE36[];
-extern const unsigned char ShopTLE37[];
-extern const unsigned char ShopTLE38[];
-extern const unsigned char ShopTLE39[];
-extern const unsigned char ShopTLE40[];
-extern const unsigned char ShopTLE41[];
-extern const unsigned char ShopTLE42[];
-extern const unsigned char ShopTLE43[];
-extern const unsigned char ShopTLE44[];
-extern const unsigned char ShopTLE45[];
-extern const unsigned char ShopTLE46[];
+/* Start of tile array. */
+extern const void __bank_Shop;
+extern const unsigned char Shop[];
 
 #endif
 

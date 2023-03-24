@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 52
+  Tiles                : 0 to 71
 
   Palette colors       : Included.
   SGB Palette          : None.

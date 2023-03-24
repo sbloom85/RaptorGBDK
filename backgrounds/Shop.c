@@ -1,3 +1,5 @@
+#pragma bank 1
+
 /*
 
  SHOP.C
@@ -6,7 +8,7 @@
 
  Info:
    Section       : 
-   Bank          : 0
+   Bank          : 1
    Map size      : 20 x 18
    Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\Shop.gbr
    Plane count   : 2 planes (16 bits)
@@ -20,9 +22,10 @@
 
 #define ShopScreenWidth 20
 #define ShopScreenHeight 18
-#define ShopScreenBank 0
+#define ShopScreenBank 1
 
 #define ShopScreen ShopScreenPLN0
+const void __at(1) __bank_ShopScreenPLN0;
 const unsigned char ShopScreenPLN0[] =
 {
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
@@ -63,6 +66,7 @@ const unsigned char ShopScreenPLN0[] =
   0x2C,0x2C,0x2C,0x2C,0x2C,0x2D,0x2C,0x2D,0x2C,0x2E
 };
 
+const void __at(1) __bank_ShopScreenPLN01;
 const unsigned char ShopScreenPLN1[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,

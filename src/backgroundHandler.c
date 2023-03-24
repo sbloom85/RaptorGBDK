@@ -245,7 +245,7 @@ void updateHud() NONBANKED
     }
 }
 
-void fadein()
+void fadein() BANKED
 {
     //BGP_REG_OLD = BGP_REG;
     for (int i = 4; --i;)
@@ -260,7 +260,7 @@ void fadein()
 
 //Thanks to basxto for the fadeout code.
 //Slightly edited.
-void fadeout()
+void fadeout() BANKED
 {
     BGP_REG_OLD = BGP_REG;
     for (int i = 1; i != 4; ++i) 
