@@ -298,13 +298,31 @@ void set_camera() NONBANKED
     map_pos_y = (uint8_t)(camera_y >> 3u); //Row that updates + 18u updates last line.
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            SWITCH_ROM_MBC5(2);
+            #ifdef MEGADUCK
+            {
+                SWITCH_ROM_MEGADUCK(2);
+            }
+            #endif
+            #ifndef MEGADUCK
+            {
+                SWITCH_ROM_MBC5(2);
+            }
+            #endif
             VBK_REG = 1;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN1, 20);
             VBK_REG = 0;
             set_bkg_submap(0, map_pos_y, 20, 1, BravoWave1PLN0, 20);
 
-            SWITCH_ROM_MBC5(1);
+            #ifdef MEGADUCK
+            {
+                SWITCH_ROM_MEGADUCK(1);
+            }
+            #endif
+            #ifndef MEGADUCK
+            {
+                SWITCH_ROM_MBC5(1);
+            }
+            #endif
             updateHud();
             VBK_REG = 1;
             set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
@@ -446,7 +464,16 @@ void Hanger() BANKED
 void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
-    SWITCH_ROM_MBC5(2);
+    #ifdef MEGADUCK
+    {
+        SWITCH_ROM_MEGADUCK(2);
+    }
+    #endif
+    #ifndef MEGADUCK
+    {
+        SWITCH_ROM_MBC5(2);
+    }
+    #endif
     set_bkg_data(0, 52, Bravo1MapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
@@ -462,7 +489,16 @@ void BravoOne() NONBANKED
         VBK_REG = 0;
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
-    SWITCH_ROM_MBC5(1);
+    #ifdef MEGADUCK
+    {
+        SWITCH_ROM_MEGADUCK(1);
+    }
+    #endif
+    #ifndef MEGADUCK
+    {
+        SWITCH_ROM_MBC5(1);
+    }
+    #endif
 
     SHOW_WIN;
 

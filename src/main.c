@@ -31,8 +31,17 @@ void main(void)
         cpu_slow();
     }
 
-    InitializeSound();
-    SWITCH_ROM_MBC5(1);
+    InitializeSound(); 
+    #ifdef MEGADUCK
+    {
+        SWITCH_ROM_MEGADUCK(1);
+    }
+    #endif
+    #ifndef MEGADUCK
+    {
+        SWITCH_ROM_MBC5(1);
+    }
+    #endif
     Title();
     Hanger();
     initProjectiles();
