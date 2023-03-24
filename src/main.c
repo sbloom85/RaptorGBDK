@@ -33,26 +33,16 @@ void main(void)
 
     InitializeSound();
     #ifdef MEGADUCK
-    {
         SWITCH_ROM_MEGADUCK(1);
-    }
-    #endif
-    #ifndef MEGADUCK
-    {
+    #else
         SWITCH_ROM_MBC5(1);
-    }
     #endif
     Title();
     Menu();
     #ifdef MEGADUCK
-    {
         SWITCH_ROM_MEGADUCK(2);
-    }
-    #endif
-    #ifndef MEGADUCK
-    {
+    #else
         SWITCH_ROM_MBC5(2);
-    }
     #endif
     Hanger();
     initProjectiles();

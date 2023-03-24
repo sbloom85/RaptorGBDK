@@ -349,6 +349,7 @@ void Title() NONBANKED
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
+    PerformantDelay(200);
     fadeout();
 }
 
@@ -480,14 +481,9 @@ void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     #ifdef MEGADUCK
-    {
         SWITCH_ROM_MEGADUCK(3);
-    }
-    #endif
-    #ifndef MEGADUCK
-    {
+    #else
         SWITCH_ROM_MBC5(3);
-    }
     #endif
     set_bkg_data(0, 52, Bravo1MapTiles);
     if (sgb_check()) {
@@ -505,14 +501,9 @@ void BravoOne() NONBANKED
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
     #ifdef MEGADUCK
-    {
         SWITCH_ROM_MEGADUCK(2);
-    }
-    #endif
-    #ifndef MEGADUCK
-    {
+    #else
         SWITCH_ROM_MBC5(2);
-    }
     #endif
 
     SHOW_WIN;
