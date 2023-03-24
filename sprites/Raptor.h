@@ -26,7 +26,7 @@
 #define __Raptor_h_INCLUDE
 
 /* Bank of tiles. */
-#define RaptorBank 1
+#define RaptorBank 2
 extern const void __bank_RaptorTLE0;
 extern const unsigned char RaptorTLE0[];
 extern const void __bank_RaptorTLE1;

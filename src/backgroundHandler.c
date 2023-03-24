@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 2
 
 #include "gb.h"
 #include "sgb.h"
@@ -300,12 +300,12 @@ void set_camera() NONBANKED
         if (camera_y < old_camera_y) {
             #ifdef MEGADUCK
             {
-                SWITCH_ROM_MEGADUCK(2);
+                SWITCH_ROM_MEGADUCK(3);
             }
             #endif
             #ifndef MEGADUCK
             {
-                SWITCH_ROM_MBC5(2);
+                SWITCH_ROM_MBC5(3);
             }
             #endif
             VBK_REG = 1;
@@ -315,12 +315,12 @@ void set_camera() NONBANKED
 
             #ifdef MEGADUCK
             {
-                SWITCH_ROM_MEGADUCK(1);
+                SWITCH_ROM_MEGADUCK(2);
             }
             #endif
             #ifndef MEGADUCK
             {
-                SWITCH_ROM_MBC5(1);
+                SWITCH_ROM_MBC5(2);
             }
             #endif
             updateHud();
@@ -337,7 +337,7 @@ void set_camera() NONBANKED
     old_camera_y = camera_y;
 }
 
-void Title() BANKED
+void Title() NONBANKED
 {
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
@@ -348,6 +348,21 @@ void Title() BANKED
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
+
+    fadeout();
+}
+
+void Menu() NONBANKED
+{
+    set_bkg_palette(0, Menu_PALETTE_COUNT, &Menu_palettes[0]);
+    set_bkg_data(0, Menu_TILE_COUNT, Menu_tiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBPaletteWater);
+    }
+    //VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Menu_map);
+    //VBK_REG = 0;
+    //set_bkg_tiles(0, 0, 20, 18, Menu_map);
 
     while (1)
     {
@@ -466,12 +481,12 @@ void BravoOne() NONBANKED
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     #ifdef MEGADUCK
     {
-        SWITCH_ROM_MEGADUCK(2);
+        SWITCH_ROM_MEGADUCK(3);
     }
     #endif
     #ifndef MEGADUCK
     {
-        SWITCH_ROM_MBC5(2);
+        SWITCH_ROM_MBC5(3);
     }
     #endif
     set_bkg_data(0, 52, Bravo1MapTiles);
@@ -491,12 +506,12 @@ void BravoOne() NONBANKED
     }
     #ifdef MEGADUCK
     {
-        SWITCH_ROM_MEGADUCK(1);
+        SWITCH_ROM_MEGADUCK(2);
     }
     #endif
     #ifndef MEGADUCK
     {
-        SWITCH_ROM_MBC5(1);
+        SWITCH_ROM_MBC5(2);
     }
     #endif
 

@@ -1,4 +1,4 @@
-#pragma bank 2
+#pragma bank 3
 
 /*
 
@@ -8,9 +8,9 @@
 
  Info:
    Section       : 
-   Bank          : 2
+   Bank          : 3
    Map size      : 20 x 255
-   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\RaptorBGTilesGBC.gbr
+   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\Bravo1BGTilesGBC.gbr
    Plane count   : 2 planes (16 bits)
    Plane order   : Planes are continues
    Tile offset   : 0
@@ -22,10 +22,10 @@
 
 #define BravoWave1Width 20
 #define BravoWave1Height 255
-#define BravoWave1Bank 2
+#define BravoWave1Bank 3
 
 #define BravoWave1 BravoWave1PLN0
-const void __at(2) __bank_BravoWave1PLN0;
+const void __at(3) __bank_BravoWave1PLN0;
 const unsigned char BravoWave1PLN0[] =
 {
   0x09,0x09,0x09,0x09,0x09,0x09,0x09,0x09,0x09,0x09,
@@ -540,7 +540,7 @@ const unsigned char BravoWave1PLN0[] =
   0x09,0x09,0x09,0x09,0x09,0x09,0x09,0x09,0x15,0x00
 };
 
-const void __at(2) __bank_BravoWave1PLN01;
+const void __at(3) __bank_BravoWave1PLN01;
 const unsigned char BravoWave1PLN1[] =
 {
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,

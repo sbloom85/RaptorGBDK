@@ -1,4 +1,4 @@
-#pragma bank 2
+#pragma bank 3
 
 /*
 
@@ -25,7 +25,7 @@
 */
 
 /* CGBpalette entries. */
-const void __at(2) __bank_Bravo1MapTilesCGB;
+const void __at(3) __bank_Bravo1MapTilesCGB;
 const unsigned char Bravo1MapTilesCGB[] =
 {
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
@@ -39,7 +39,7 @@ const unsigned char Bravo1MapTilesCGB[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 /* Start of tile array. */
-const void __at(2) __bank_Bravo1MapTiles;
+const void __at(3) __bank_Bravo1MapTiles;
 const unsigned char Bravo1MapTiles[] =
 {
   0x00,0xFF,0x00,0xFF,0x00,0xFF,0x00,0xFF,

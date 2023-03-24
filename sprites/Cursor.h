@@ -26,7 +26,7 @@
 #define __Cursor_h_INCLUDE
 
 /* Bank of tiles. */
-#define CursorTileBank 1
+#define CursorTileBank 2
 extern const void __bank_CursorTileTLE0;
 extern const unsigned char CursorTileTLE0[];
 

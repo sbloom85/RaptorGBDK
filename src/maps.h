@@ -1,4 +1,5 @@
 #include "../backgrounds/Title.h"
+#include "../backgrounds/Menu.h"
 #include "../backgrounds/Hanger.h"
 #include "../maps/Bravo1TilesGBC.h"
 #include "../maps/BravoW1GBC.h"

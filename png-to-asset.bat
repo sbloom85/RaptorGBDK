@@ -1,2 +1,2 @@
-C:\gbdk\bin\png2asset.exe "HangerGBC3.png" -map -noflip -c "Hanger.c"
+C:\gbdk\bin\png2asset.exe "BACKGRND_PIC2.png" -map -noflip -c "Menu.c"
 pause

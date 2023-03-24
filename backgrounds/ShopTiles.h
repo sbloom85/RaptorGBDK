@@ -26,7 +26,7 @@
 #define __ShopTiles_h_INCLUDE
 
 /* Bank of tiles. */
-#define ShopBank 1
+#define ShopBank 2
 
 /* Super Gameboy palette 0 */
 #define ShopSGBPal0c0 6076

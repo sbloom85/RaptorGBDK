@@ -31,7 +31,7 @@ void main(void)
         cpu_slow();
     }
 
-    InitializeSound(); 
+    InitializeSound();
     #ifdef MEGADUCK
     {
         SWITCH_ROM_MEGADUCK(1);
@@ -43,6 +43,17 @@ void main(void)
     }
     #endif
     Title();
+    Menu();
+    #ifdef MEGADUCK
+    {
+        SWITCH_ROM_MEGADUCK(2);
+    }
+    #endif
+    #ifndef MEGADUCK
+    {
+        SWITCH_ROM_MBC5(2);
+    }
+    #endif
     Hanger();
     initProjectiles();
     init_camera();

@@ -26,7 +26,7 @@
 #define __MchBullet_h_INCLUDE
 
 /* Bank of tiles. */
-#define MchBulletBank 1
+#define MchBulletBank 2
 extern const void __bank_MchBulletTLE0;
 extern const unsigned char MchBulletTLE0[];
 extern const void __bank_MchBulletTLE1;

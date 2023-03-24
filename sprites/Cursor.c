@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 2
 
 /*
 
@@ -24,7 +24,7 @@
 
 */
 
-const void __at(1) __bank_CursorTileTLE0;
+const void __at(2) __bank_CursorTileTLE0;
 const unsigned char CursorTileTLE0[] =
 {
   0x00,0x18,0x18,0x00,0x18,0x00,0x66,0x81,

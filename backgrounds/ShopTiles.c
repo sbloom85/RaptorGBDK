@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 2
 
 /*
 
@@ -25,7 +25,7 @@
 */
 
 /* CGBpalette entries. */
-const void __at(1) __bank_ShopCGB;
+const void __at(2) __bank_ShopCGB;
 const unsigned char ShopCGB[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -36,7 +36,7 @@ const unsigned char ShopCGB[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 /* Start of tile array. */
-const void __at(1) __bank_Shop;
+const void __at(2) __bank_Shop;
 const unsigned char Shop[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
