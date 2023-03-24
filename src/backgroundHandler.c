@@ -480,6 +480,7 @@ void Hanger() BANKED
 void BravoOne() NONBANKED
 {
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
+    //Bravo Map 1 in Bank 3
     #ifdef MEGADUCK
         SWITCH_ROM_MEGADUCK(3);
     #else
@@ -500,11 +501,6 @@ void BravoOne() NONBANKED
         VBK_REG = 0;
         set_bkg_submap(0, map_pos_y +i, 20, 1, BravoWave1PLN0, 20);
     }
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(2);
-    #else
-        SWITCH_ROM_MBC5(2);
-    #endif
 
     SHOW_WIN;
 
@@ -519,4 +515,11 @@ void BravoOne() NONBANKED
 
     //map_pos_y = 0;
     old_map_pos_y = 255;
+
+    //Switch back to Bank 2 for Background Handler use.
+    #ifdef MEGADUCK
+        SWITCH_ROM_MEGADUCK(2);
+    #else
+        SWITCH_ROM_MBC5(2);
+    #endif
 }
