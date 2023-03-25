@@ -12,10 +12,13 @@
 
 #include "sound.h"
 #include "spriteHandler.h"
+#include "commonFunc.h"
 
 #define MAX_PROJECTILES 20
 
 struct projectile newProjectile[MAX_PROJECTILES];
+
+UINT8 game_time;
 
 // Game Character Struct
 struct Player ship;
@@ -85,7 +88,7 @@ void moveProjectiles() BANKED
 
 void fireMachineGun() BANKED
 {
-    while (shots < MAX_PROJECTILES)
+    while (shots < MAX_PROJECTILES && IS_FRAME_4)
     {
         if (!newProjectile[shots].enabled)
         {

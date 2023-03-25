@@ -429,6 +429,8 @@ void gameLoop() BANKED
     //Main Game Loop
     while (1)
     {
+        game_time++;
+
         set_camera();
 
         scroll_cam_up();
