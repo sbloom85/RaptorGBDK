@@ -2,6 +2,7 @@
 #define COMMONFUNC_H_INCLUDE
 
 #include "gb.h"
+#include "spriteStructs.h"
 #include <stdio.h>
 
 #define IS_FRAME_256 ((game_time & 0xFF) == 0)
@@ -17,6 +18,8 @@
 
 extern UBYTE _cpu;
 extern UINT8 game_time;
+
+extern struct Player ship;
 
 uint8_t getGBType();
 void PerformantDelay(uint8_t numLoops);

@@ -245,7 +245,7 @@ void updateHud() NONBANKED
         }
         if (i == 38) //Weapon
         {
-            RaptorWindowUpdatePLN0[i] = 0x76;
+            RaptorWindowUpdatePLN0[i] = 0x76 + ship.weapon;
         }
     }
 }

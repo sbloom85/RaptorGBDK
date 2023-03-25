@@ -99,16 +99,20 @@ void fireWeapon() BANKED
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE0);
                     break;
                 case 1:
-                    MachineGunSound();    // Plays sound effect from sound.h
+                    MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE1);
                     break;
                 case 2:
-                    MachineGunSound();    // Plays sound effect from sound.h
+                    MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE2);
                     break;
                 case 3:
-                    MachineGunSound();    // Plays sound effect from sound.h
+                    MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE3);
+                    break;
+                case 4:
+                    MachineGunSound();    // Plays sound effect from sound.h
+                    set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE4);
                     break;
             }
             
@@ -226,7 +230,7 @@ void inputLoop() BANKED
         }
         else if (joyInput & J_B)
         {
-            if (ship.weapon < 3)
+            if (ship.weapon < 4)
             {
                 ship.weapon++;
             } else {
