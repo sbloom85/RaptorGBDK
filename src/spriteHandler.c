@@ -138,6 +138,7 @@ void setupShip() BANKED
     ship.height = 24;
     ship.enabled = 1;
     ship.visible = 1;
+    ship.numShields = 0;
 
     // Load sprites for ship
     set_sprite_data(0, 1, RaptorTLE0);

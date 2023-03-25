@@ -1,3 +1,6 @@
+#ifndef SPRITESRCT_H_INCLUDE
+#define SPRITESRCT_H_INCLUDE
+
 #include "gb.h"
 
 enum dmgTypes {DmgNormal = 0, DmgMissile = 1, DmgBomb = 3};
@@ -49,3 +52,5 @@ struct Enemy {
     uint8_t  colliderColTop;    // Top collider
     uint8_t  colliderBottom;    // Bottom collider
 };
+
+#endif

@@ -221,23 +221,38 @@ void updateHud() NONBANKED
         }
         if (i == 31) //Shield Icon Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x7D;
+            if (ship.numShields > 0)
+                RaptorWindowUpdatePLN0[i] = 0x7D;
+            else
+                RaptorWindowUpdatePLN0[i] = 0x7C;
         }
         if (i == 32) //Shield Icon Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x7D;
+            if (ship.numShields > 1)
+                RaptorWindowUpdatePLN0[i] = 0x7D;
+            else
+                RaptorWindowUpdatePLN0[i] = 0x7C;
         }
         if (i == 33) //Shield Icon Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x7D;
+            if (ship.numShields > 2)
+                RaptorWindowUpdatePLN0[i] = 0x7D;
+            else
+                RaptorWindowUpdatePLN0[i] = 0x7C;
         }
         if (i == 34) //Shield Icon Pos 4
         {
-            RaptorWindowUpdatePLN0[i] = 0x7D;
+            if (ship.numShields > 3)
+                RaptorWindowUpdatePLN0[i] = 0x7D;
+            else
+                RaptorWindowUpdatePLN0[i] = 0x7C;
         }
         if (i == 35) //Shield Icon Pos 5
         {
-            RaptorWindowUpdatePLN0[i] = 0x7D;
+            if (ship.numShields > 4)
+                RaptorWindowUpdatePLN0[i] = 0x7D;
+            else
+                RaptorWindowUpdatePLN0[i] = 0x7C;
         }
         if (i == 37) //W Char
         {
