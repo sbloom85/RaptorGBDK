@@ -229,7 +229,7 @@ void inputLoop() BANKED
                 //delay(10);
             fireWeapon();
         }
-        else if (joyInput & J_B)
+        else if (joyInput & J_B && IS_FRAME_4)
         {
             if (ship.weapon < 4)
             {

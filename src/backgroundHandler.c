@@ -133,14 +133,6 @@ void updateHud() NONBANKED
     for (uint8_t i = 40; i--;)
     {
         //Line 1
-        if (i < 4 || i > 14 && i < 20) //Empty Space
-        {
-            RaptorWindowUpdatePLN0[i] = 0x75;
-        }
-        if (i == 4) //Cash Sign
-        {
-            RaptorWindowUpdatePLN0[i] = 0x48;
-        }
         if (i == 5) //Cash Pos 0
         {
             RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[0];
@@ -183,14 +175,6 @@ void updateHud() NONBANKED
         }
         
         //Line 2
-        if (i == 20 || i == 25 || i == 30 || i == 36 || i == 39) //Empty Space
-        {
-            RaptorWindowUpdatePLN0[i] = 0x75;
-        }
-        if (i == 21) //H Char
-        {
-            RaptorWindowUpdatePLN0[i] = 0x5A;
-        }
         if (i == 22) //Health Pos 1
         {
             //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP1;
@@ -202,10 +186,6 @@ void updateHud() NONBANKED
         if (i == 24) //Health Pos 3
         {
             //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP3;
-        }
-        if (i == 26) //S Char
-        {
-            RaptorWindowUpdatePLN0[i] = 0x65;
         }
         if (i == 27) //Shield Pos 1
         {
@@ -253,10 +233,6 @@ void updateHud() NONBANKED
                 RaptorWindowUpdatePLN0[i] = 0x7D;
             else
                 RaptorWindowUpdatePLN0[i] = 0x7C;
-        }
-        if (i == 37) //W Char
-        {
-            RaptorWindowUpdatePLN0[i] = 0x69;
         }
         if (i == 38) //Weapon
         {
