@@ -14,7 +14,7 @@
 #include "spriteHandler.h"
 #include "commonFunc.h"
 
-#define MAX_PROJECTILES 20
+#define MAX_PROJECTILES 10
 
 struct projectile newProjectile[MAX_PROJECTILES];
 
@@ -118,10 +118,6 @@ void fireWeapon() BANKED
             set_sprite_tile(newProjectile[shots].id, newProjectile[shots].id);
             shots = MAX_PROJECTILES; //Break out of loop.
         }
-        //if (newProjectile[0].enabled)
-        //{
-
-        //}
         shots++;
     }
     shots = 0;
@@ -226,13 +222,16 @@ void inputLoop() BANKED
         {
             //if (shots > 1)
                 //delay(10);
-            ship.weapon = 0;
             fireWeapon();
         }
         else if (joyInput & J_B)
         {
-            ship.weapon = 1;
-            fireWeapon();
+            if (ship.weapon < 3)
+            {
+                ship.weapon++;
+            } else {
+                ship.weapon = 0;
+            }
         }
 
         if (joyInput & J_SELECT)
