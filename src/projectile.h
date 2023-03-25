@@ -1,5 +1,5 @@
 #include "gb.h"
-#include "../sprites/MchBullet.h"
+#include "../sprites/WProjectiles.h"
 
 struct projectile {
     uint8_t id;

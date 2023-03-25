@@ -86,17 +86,35 @@ void moveProjectiles() BANKED
     }
 }
 
-void fireMachineGun() BANKED
+void fireWeapon() BANKED
 {
     while (shots < MAX_PROJECTILES && IS_FRAME_4)
     {
         if (!newProjectile[shots].enabled)
         {
-            MachineGunSound();    // Plays sound effect from sound.h
+            switch (ship.weapon)
+            {
+                case 0:
+                    MachineGunSound();    // Plays sound effect from sound.h
+                    set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE0);
+                    break;
+                case 1:
+                    MachineGunSound();    // Plays sound effect from sound.h
+                    set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE1);
+                    break;
+                case 2:
+                    MachineGunSound();    // Plays sound effect from sound.h
+                    set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE2);
+                    break;
+                case 3:
+                    MachineGunSound();    // Plays sound effect from sound.h
+                    set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE3);
+                    break;
+            }
+            
             newProjectile[shots].x = ship.x + 12;
             newProjectile[shots].y = ship.y + 4;
             newProjectile[shots].enabled = 1;
-            set_sprite_data(newProjectile[shots].id, 1, MchBulletTLE0);
             set_sprite_tile(newProjectile[shots].id, newProjectile[shots].id);
             shots = MAX_PROJECTILES; //Break out of loop.
         }
@@ -208,11 +226,13 @@ void inputLoop() BANKED
         {
             //if (shots > 1)
                 //delay(10);
-            fireMachineGun();
+            ship.weapon = 0;
+            fireWeapon();
         }
         else if (joyInput & J_B)
         {
-            
+            ship.weapon = 1;
+            fireWeapon();
         }
 
         if (joyInput & J_SELECT)
