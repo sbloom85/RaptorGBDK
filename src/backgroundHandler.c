@@ -401,6 +401,7 @@ void gameInit() BANKED
     initProjectiles();
     init_camera();
     setupShip();
+    SetupEnemyShip();
     SetColliders();
 
     SHOW_WIN;

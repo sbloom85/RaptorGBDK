@@ -9,12 +9,13 @@
 #include "projectile.h"
 #include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
+#include "../sprites/BravoShip1.h"
 
 #include "sound.h"
 #include "spriteHandler.h"
 #include "commonFunc.h"
 
-#define MAX_PROJECTILES 10
+#define MAX_PROJECTILES 20
 
 struct projectile newProjectile[MAX_PROJECTILES];
 
@@ -30,7 +31,8 @@ const uint8_t moveSpeed = 2;
 int8_t shots = 0;
 
 const UWORD sprPalette[] = {
-	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5)
+	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5),
+    RGB_GREEN, RGB(25, 25, 25), RGB(15, 15, 15), RGB(5, 5, 5),
 };
 
 void InitCursor() BANKED
@@ -88,7 +90,7 @@ void moveProjectiles() BANKED
 
 void fireWeapon() BANKED
 {
-    while (shots < MAX_PROJECTILES && IS_FRAME_4)
+    while (shots < 8 && IS_FRAME_4)
     {
         if (!newProjectile[shots].enabled)
         {
@@ -130,7 +132,7 @@ void fireWeapon() BANKED
 // Initialize ship struct
 void setupShip() BANKED
 {
-    set_sprite_palette(0, 1, sprPalette);
+    set_sprite_palette(0, 2, &sprPalette[0]);
 
     ship.x = 80;
     ship.y = 110;
@@ -169,16 +171,84 @@ void setupShip() BANKED
     MovePlayer(&ship, ship.x, ship.y);
 }
 
-void SetupEnemyShip() BANKED
+void SetupEnemyShip() NONBANKED
 {
     eShip1.x = 80;
-    eShip1.y = 30;
+    eShip1.y = 80;
     eShip1.width = 32;
-    eShip1.height = 24;
+    eShip1.height = 32;
     eShip1.enabled = 1;
-    eShip1.visible = 1;
+    eShip1.visible = 0;
 
-    // Load sprites for ship
+    if (eShip1.visible)
+    {
+        #ifdef MEGADUCK
+            SWITCH_ROM_MEGADUCK(BravoShip1TilesBank);
+        #else
+            SWITCH_ROM_MBC5(BravoShip1TilesBank);
+        #endif
+    
+        // Load sprites for ship
+        set_sprite_data(16, 10, BravoShip1Tiles);
+        set_sprite_tile(16, 16);
+        set_sprite_tile(17, 17);
+        set_sprite_tile(18, 18);
+        set_sprite_tile(19, 19);
+        set_sprite_tile(20, 20);
+        set_sprite_tile(21, 21);
+        set_sprite_tile(22, 22);
+        set_sprite_tile(23, 23);
+        set_sprite_tile(24, 24);
+        set_sprite_tile(25, 25);
+
+        //Color the Sprites with Pal1 
+        set_sprite_prop(16, 1);
+        set_sprite_prop(17, 1);
+        set_sprite_prop(18, 1);
+        set_sprite_prop(19, 1);
+        set_sprite_prop(20, 1);
+        set_sprite_prop(21, 1);
+        set_sprite_prop(22, 1);
+        set_sprite_prop(23, 1);
+        set_sprite_prop(24, 1);
+        set_sprite_prop(25, 1);
+
+        #ifdef MEGADUCK
+            SWITCH_ROM_MEGADUCK(2);
+        #else
+            SWITCH_ROM_MBC5(2);
+        #endif
+
+        move_sprite(16, eShip1.x, eShip1.y);
+        move_sprite(17, eShip1.x + 8, eShip1.y);
+        move_sprite(18, eShip1.x + 16, eShip1.y);
+        move_sprite(19, eShip1.x + 24, eShip1.y);
+        move_sprite(20, eShip1.x, eShip1.y + 8);
+        move_sprite(21, eShip1.x + 8, eShip1.y + 8);
+        move_sprite(22, eShip1.x + 16, eShip1.y + 8);
+        move_sprite(23, eShip1.x + 24, eShip1.y + 8);
+        move_sprite(24, eShip1.x + 8, eShip1.y + 16);
+        move_sprite(25, eShip1.x + 16, eShip1.y + 16);
+    }
+
+    /*set_sprite_data(16, 8, eShip01);
+    set_sprite_tile(16, 16);
+    set_sprite_tile(17, 17);
+    set_sprite_tile(18, 18);
+    set_sprite_tile(19, 19);
+    set_sprite_tile(20, 20);
+    set_sprite_tile(21, 21);
+    //set_sprite_tile(22, 22);
+    //set_sprite_tile(23, 23);
+    
+    move_sprite(16, eShip1.x, eShip1.y);
+    move_sprite(17, eShip1.x + 8, eShip1.y);
+    move_sprite(18, eShip1.x, eShip1.y + 8);
+    move_sprite(19, eShip1.x + 8, eShip1.y + 8);
+    move_sprite(20, eShip1.x, eShip1.y + 16);
+    move_sprite(21, eShip1.x + 8, eShip1.y + 16);
+    //move_sprite(22, eShip1.x, eShip1.y + 24);
+    //move_sprite(23, eShip1.x + 8, eShip1.y + 24);*/
 }
 
 void SetColliders() BANKED

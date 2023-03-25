@@ -38,8 +38,8 @@ struct Player
 
 struct Enemy {
     uint8_t  spriteids[12];     // Character uses 12 sprites
-    uint8_t  x, y,              // Character X and Y positions
-             width, height;     // Character width and height
+    int16_t  x, y;              // Character X and Y positions
+    uint8_t  width, height;     // Character width and height
     uint8_t  visible:1,         // Bool
              enabled:1,         // Bool
              dmgType:2,         // Values upto 3
