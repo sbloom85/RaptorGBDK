@@ -29,7 +29,7 @@ void main(void)
     DISPLAY_ON;
 
     //Same CPU Speed as DMG to assure game runs right on both.
-    if (getGBType() == CGB_TYPE)
+    if (getGBType() == 3)
     {
         cpu_slow();
     }

@@ -15,7 +15,11 @@
 #define Menu_PALETTE_COUNT 1
 #define Menu_COLORS_PER_PALETTE 4
 #define Menu_TOTAL_COLORS 4
-#define Menu_MAP_ATTRIBUTES 0
+#define Menu_MAP_ATTRIBUTES Menu_map_attributes
+#define Menu_MAP_ATTRIBUTES_WIDTH 20
+#define Menu_MAP_ATTRIBUTES_HEIGHT 18
+#define Menu_MAP_ATTRIBUTES_PACKED_WIDTH 20
+#define Menu_MAP_ATTRIBUTES_PACKED_HEIGHT 18
 
 BANKREF_EXTERN(Menu)
 
@@ -23,5 +27,6 @@ extern const palette_color_t Menu_palettes[4];
 extern const uint8_t Menu_tiles[3152];
 
 extern const unsigned char Menu_map[360];
+extern const unsigned char Menu_map_attributes[360];
 
 #endif

@@ -15,7 +15,11 @@
 #define Credits_PALETTE_COUNT 1
 #define Credits_COLORS_PER_PALETTE 4
 #define Credits_TOTAL_COLORS 4
-#define Credits_MAP_ATTRIBUTES 0
+#define Credits_MAP_ATTRIBUTES Credits_map_attributes
+#define Credits_MAP_ATTRIBUTES_WIDTH 20
+#define Credits_MAP_ATTRIBUTES_HEIGHT 18
+#define Credits_MAP_ATTRIBUTES_PACKED_WIDTH 20
+#define Credits_MAP_ATTRIBUTES_PACKED_HEIGHT 18
 
 BANKREF_EXTERN(Credits)
 
@@ -23,5 +27,6 @@ extern const palette_color_t Credits_palettes[4];
 extern const uint8_t Credits_tiles[3104];
 
 extern const unsigned char Credits_map[360];
+extern const unsigned char Credits_map_attributes[360];
 
 #endif
