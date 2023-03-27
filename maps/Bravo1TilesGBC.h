@@ -83,16 +83,16 @@
 #define Bravo1MapTilesCGBPal4c3 68
 
 /* Gameboy Color palette 5 */
-#define Bravo1MapTilesCGBPal5c0 6076
-#define Bravo1MapTilesCGBPal5c1 8935
-#define Bravo1MapTilesCGBPal5c2 6596
-#define Bravo1MapTilesCGBPal5c3 5344
+#define Bravo1MapTilesCGBPal5c0 19028
+#define Bravo1MapTilesCGBPal5c1 15857
+#define Bravo1MapTilesCGBPal5c2 11629
+#define Bravo1MapTilesCGBPal5c3 7401
 
 /* Gameboy Color palette 6 */
-#define Bravo1MapTilesCGBPal6c0 6076
-#define Bravo1MapTilesCGBPal6c1 8935
-#define Bravo1MapTilesCGBPal6c2 6596
-#define Bravo1MapTilesCGBPal6c3 5344
+#define Bravo1MapTilesCGBPal6c0 5521
+#define Bravo1MapTilesCGBPal6c1 4397
+#define Bravo1MapTilesCGBPal6c2 2250
+#define Bravo1MapTilesCGBPal6c3 70
 
 /* Gameboy Color palette 7 */
 #define Bravo1MapTilesCGBPal7c0 32767
