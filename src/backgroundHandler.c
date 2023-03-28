@@ -14,8 +14,8 @@
 #include "spriteHandler.h"
 #include "backgroundHandler.h"
 
-#include "../Window/RaptorDialogTiles.h"
-#include "../Window/RaptorWindow.h"
+#include "../Window/RaptorDialogTilesV2.h"
+#include "../Window/RaptorWindowV2.h"
 
 int8_t BGP_REG_OLD;
 
