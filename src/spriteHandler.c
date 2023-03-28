@@ -9,7 +9,7 @@
 #include "projectile.h"
 #include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
-#include "../sprites/BravoShip1.h"
+#include "../sprites/ScottBravoShip1V3.h"
 
 #include "sound.h"
 #include "spriteHandler.h"
@@ -32,7 +32,9 @@ int8_t shots = 0;
 
 const UWORD sprPalette[] = {
 	RGB_GREEN, RGB_RED, RGB(15, 15, 15), RGB(5, 5, 5),
-    RGB_GREEN, RGB(25, 25, 25), RGB(15, 15, 15), RGB(5, 5, 5),
+    RGB_GREEN, RGB(20, 20, 20), RGB(15, 15, 15), RGB(5, 5, 5),
+    RGB_GREEN, RGB_CYAN, RGB(15, 15, 15), RGB(5, 5, 5),
+    RGB_GREEN, RGB_BROWN, RGB(15, 15, 15), RGB(5, 5, 5),
 };
 
 void InitCursor() BANKED
@@ -58,6 +60,20 @@ void MovePlayer(struct Player* character, uint8_t x, uint8_t y) BANKED
     move_sprite(character->spriteids[5], x + (spriteSize + 0), y + (spriteSize + 16));
     move_sprite(character->spriteids[6], x + (spriteSize + 8), y + (spriteSize + 16));
     move_sprite(character->spriteids[7], x + (spriteSize + 16), y + (spriteSize + 16));
+}
+
+void MoveEnemy()
+{
+    //eShip1.y += eShip1.speed;
+    move_sprite(16, eShip1.x, eShip1.y);
+    move_sprite(17, eShip1.x + 8, eShip1.y);
+    move_sprite(18, eShip1.x + 16, eShip1.y);
+    move_sprite(19, eShip1.x, eShip1.y + 8);
+    move_sprite(20, eShip1.x + 8, eShip1.y + 8);
+    move_sprite(21, eShip1.x + 16, eShip1.y + 8);
+    move_sprite(22, eShip1.x + 24, eShip1.y + 8);
+    //move_sprite(24, eShip1.x + 8, eShip1.y + 16);
+    //move_sprite(25, eShip1.x + 16, eShip1.y + 16);
 }
 
 void initProjectiles() BANKED
@@ -132,7 +148,7 @@ void fireWeapon() BANKED
 // Initialize ship struct
 void setupShip() BANKED
 {
-    set_sprite_palette(0, 2, &sprPalette[0]);
+    set_sprite_palette(0, 3, &sprPalette[0]);
 
     ship.x = 80;
     ship.y = 110;
@@ -174,13 +190,14 @@ void setupShip() BANKED
 void SetupEnemyShip() NONBANKED
 {
     eShip1.x = 80;
-    eShip1.y = 80;
+    eShip1.y = -220;
     eShip1.width = 32;
-    eShip1.height = 32;
+    eShip1.height = 24;
     eShip1.enabled = 1;
-    eShip1.visible = 0;
+    eShip1.visible = 1;
+    eShip1.speed = 2;
 
-    if (eShip1.visible)
+    if (eShip1.enabled)
     {
         #ifdef MEGADUCK
             SWITCH_ROM_MEGADUCK(BravoShip1TilesBank);
@@ -189,7 +206,7 @@ void SetupEnemyShip() NONBANKED
         #endif
     
         // Load sprites for ship
-        set_sprite_data(16, 10, BravoShip1Tiles);
+        set_sprite_data(16, 8, BravoShip1Tiles);
         set_sprite_tile(16, 16);
         set_sprite_tile(17, 17);
         set_sprite_tile(18, 18);
@@ -198,20 +215,20 @@ void SetupEnemyShip() NONBANKED
         set_sprite_tile(21, 21);
         set_sprite_tile(22, 22);
         set_sprite_tile(23, 23);
-        set_sprite_tile(24, 24);
-        set_sprite_tile(25, 25);
+        //set_sprite_tile(24, 24);
+        //set_sprite_tile(25, 25);
 
-        //Color the Sprites with Pal1 
-        set_sprite_prop(16, 1);
-        set_sprite_prop(17, 1);
-        set_sprite_prop(18, 1);
-        set_sprite_prop(19, 1);
-        set_sprite_prop(20, 1);
-        set_sprite_prop(21, 1);
-        set_sprite_prop(22, 1);
-        set_sprite_prop(23, 1);
-        set_sprite_prop(24, 1);
-        set_sprite_prop(25, 1);
+        //Color the Sprites with Pal2 
+        set_sprite_prop(16, 2);
+        set_sprite_prop(17, 2);
+        set_sprite_prop(18, 2);
+        set_sprite_prop(19, 2);
+        set_sprite_prop(20, 2);
+        set_sprite_prop(21, 2);
+        set_sprite_prop(22, 2);
+        set_sprite_prop(23, 2);
+        //set_sprite_prop(24, 2);
+        //set_sprite_prop(25, 2);
 
         #ifdef MEGADUCK
             SWITCH_ROM_MEGADUCK(2);
@@ -219,16 +236,7 @@ void SetupEnemyShip() NONBANKED
             SWITCH_ROM_MBC5(2);
         #endif
 
-        move_sprite(16, eShip1.x, eShip1.y);
-        move_sprite(17, eShip1.x + 8, eShip1.y);
-        move_sprite(18, eShip1.x + 16, eShip1.y);
-        move_sprite(19, eShip1.x + 24, eShip1.y);
-        move_sprite(20, eShip1.x, eShip1.y + 8);
-        move_sprite(21, eShip1.x + 8, eShip1.y + 8);
-        move_sprite(22, eShip1.x + 16, eShip1.y + 8);
-        move_sprite(23, eShip1.x + 24, eShip1.y + 8);
-        move_sprite(24, eShip1.x + 8, eShip1.y + 16);
-        move_sprite(25, eShip1.x + 16, eShip1.y + 16);
+        
     }
 
     /*set_sprite_data(16, 8, eShip01);

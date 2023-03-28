@@ -20,6 +20,7 @@ extern UBYTE _cpu;
 extern UINT8 game_time;
 
 extern struct Player ship;
+extern struct Enemy eShip1;
 
 uint8_t getGBType();
 void PerformantDelay(uint8_t numLoops);

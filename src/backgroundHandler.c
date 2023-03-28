@@ -25,15 +25,16 @@ unsigned char *currentMapPLN1;
 
 const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
-static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
+static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
+static const uint16_t white_palette[] = {RGB_WHITE, RGB_WHITE, RGB_WHITE, RGB_WHITE, RGB_WHITE, RGB_WHITE, RGB_WHITE};
 static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 
 unsigned char RaptorWindowUpdatePLN0[] =
 {
-  0x75,0x75,0x75,0x75,0x48,0x49,0x49,0x49,0x49,0x49,
-  0x49,0x49,0x49,0x49,0x49,0x75,0x75,0x75,0x75,0x75,
-  0x75,0x5A,0x49,0x49,0x49,0x75,0x65,0x49,0x49,0x49,
-  0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x69,0x76,0x75
+  0x75,0x75,0x75,0x75,0x67,0x68,0x68,0x68,0x68,0x68,
+  0x68,0x68,0x68,0x68,0x68,0x75,0x75,0x75,0x75,0x75,
+  0x75,0x72,0x68,0x68,0x68,0x75,0x73,0x68,0x68,0x68,
+  0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x74,0x76,0x75
 };
 
 // current and old positions of the camera in pixels
@@ -135,43 +136,43 @@ void updateHud() NONBANKED
         //Line 1
         if (i == 5) //Cash Pos 0
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[0];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[0];
         }
         if (i == 6) //Cash Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[1];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[1];
         }
         if (i == 7) //Cash Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[2];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[2];
         }
         if (i == 8) //Cash Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[3];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[3];
         }
         if (i == 9) //Cash Pos 4
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[4];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[4];
         }
         if (i == 10) //Cash Pos 5
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[5];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[5];
         }
         if (i == 11) //Cash Pos 6
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[6];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[6];
         }
         if (i == 12) //Cash Pos 7
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[7];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[7];
         }
         if (i == 13) //Cash Pos 8
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[8];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[8];
         }
         if (i == 14) //Cash Pos 9
         {
-            RaptorWindowUpdatePLN0[i] = 0x49 + windowCash.Cash[9];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[9];
         }
         
         //Line 2
@@ -241,7 +242,7 @@ void updateHud() NONBANKED
     }
 }
 
-void fadein() BANKED
+void fadeinCGB() BANKED
 {
     //BGP_REG_OLD = BGP_REG;
     for (int i = 4; --i;)
@@ -254,16 +255,68 @@ void fadein() BANKED
     //BGP_REG = BGP_REG_OLD;
 }
 
+void fadein() BANKED
+{
+    
+    for (int i = 3; i--;)
+    {
+        switch (i)
+        {
+            case 0:
+                BGP_REG = 0xE4;
+                break;
+            case 1:
+                BGP_REG = 0xF9;
+                break;
+            case 2:
+                BGP_REG = 0xFE;
+                break;
+            case 3:
+                BGP_REG = 0xFF;
+                break;
+        }
+        //PerformantDelay(10);
+    }
+}
+
 //Thanks to basxto for the fadeout code.
 //Slightly edited.
-void fadeout() BANKED
+void fadeoutCGB() BANKED
 {
     BGP_REG_OLD = BGP_REG;
-    for (int i = 1; i != 4; ++i) 
+    for (int i = 1; i < 4; i++) 
     {
         BGP_REG = (0xFFE4 >> (i << 1));
         set_bkg_palette(0, 1, fadeout_palette + i);
         set_sprite_palette(0, 1, fadeout_palette + i);
+        PerformantDelay(20);
+    }
+    BGP_REG = BGP_REG_OLD;
+}
+
+void fadeout() BANKED
+{
+    BGP_REG_OLD = BGP_REG;
+    if (sgb_check()) {
+        SGBTransferPalettes(fadeout_palette);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        switch (i)
+        {
+            case 0:
+                BGP_REG = 0xE4;
+                break;
+            case 1:
+                BGP_REG = 0xF9;
+                break;
+            case 2:
+                BGP_REG = 0xFE;
+                break;
+            case 3:
+                BGP_REG = 0xFF;
+                break;
+        }
         PerformantDelay(20);
     }
     BGP_REG = BGP_REG_OLD;
@@ -280,7 +333,7 @@ void init_camera() BANKED
 
 void scroll_cam_up() BANKED
 {
-    if (camera_y > -2040)
+    if (camera_y > -2048)
     {
         camera_y--;
     }
@@ -339,21 +392,27 @@ void Title() NONBANKED
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
     PerformantDelay(130);
-    fadeout();
+    if (getGBType() == 3)
+    {
+        fadeoutCGB();
+    } else {
+        fadeout();
+    }
     HIDE_BKG;
 }
 
 void Menu() NONBANKED
 {
+    //fadeinnew();
     set_bkg_palette(0, Menu_PALETTE_COUNT, &Menu_palettes[0]);
     set_bkg_data(0, Menu_TILE_COUNT, Menu_tiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
-    //VBK_REG = 1;
+    VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Menu_map_attributes);
+    VBK_REG = 0;
     set_bkg_tiles(0, 0, 20, 18, Menu_map);
-    //VBK_REG = 0;
-    //set_bkg_tiles(0, 0, 20, 18, Menu_map);
 
     SHOW_BKG;
 
@@ -361,8 +420,14 @@ void Menu() NONBANKED
     {
         if (joypad() & J_A)
         {
-            fadeout();
+            if (getGBType() == 3)
+            {
+                fadeoutCGB();
+            } else {
+                fadeout();
+            }
             HIDE_BKG;
+            SHOW_SPRITES;
             break;
         }
     }
@@ -370,6 +435,7 @@ void Menu() NONBANKED
 
 void WepShop() BANKED
 {
+    //fadeinnew();
     set_bkg_palette(0, 4, &bkgShopPalette[0]);
     set_bkg_data(0, 47, ShopTiles);
     if (sgb_check()) {
@@ -388,7 +454,12 @@ void WepShop() BANKED
     {
         if (joypad() & J_A)
         {
-            fadeout();
+            if (getGBType() == 3)
+            {
+                fadeoutCGB();
+            } else {
+                fadeout();
+            }
             HIDE_BKG;
             SHOW_SPRITES;
             Hanger();
@@ -401,12 +472,13 @@ void gameInit() BANKED
     initProjectiles();
     init_camera();
     setupShip();
-    SetupEnemyShip();
+    //SetupEnemyShip();
     SetColliders();
 
+    SHOW_SPRITES;
     SHOW_WIN;
 
-    set_win_data(72, 55, RaptorDialog);
+    set_win_data(103, 24, RaptorDialog);
 
     VBK_REG = 1;
     set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
@@ -426,6 +498,8 @@ void gameLoop() BANKED
         set_camera();
 
         scroll_cam_up();
+
+        //MoveEnemy();
 
         moveProjectiles();
 
@@ -454,6 +528,7 @@ void HangerSelection(enum selected selection) BANKED
 
 void Hanger() BANKED
 {
+    //fadeinnew();
     //Helps hide some graphics corruption
     set_bkg_palette(0, 1, &black_palette[0]);
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
@@ -463,8 +538,8 @@ void Hanger() BANKED
         SGBTransferPalettes(bkgSGBPaletteHanger);
     }
 
-    //VBK_REG = 1;
-    //set_bkg_tiles(0, 0, 20, 18, Hanger_map);
+    VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Hanger_map_attributes);
     VBK_REG = 0;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map);
 
@@ -529,7 +604,12 @@ void Hanger() BANKED
         if (joyInput & J_A && selection == Fly)
         {
             HIDE_SPRITES;
-            fadeout();
+            if (getGBType() == 3)
+            {
+                fadeoutCGB();
+            } else {
+                fadeout();
+            }
             gameInit();
             BravoOne();
             gameLoop();
@@ -554,7 +634,7 @@ void BravoOne() NONBANKED
     #else
         SWITCH_ROM_MBC5(currentMapBank);
     #endif
-    set_bkg_data(0, 52, Bravo1MapTiles);
+    set_bkg_data(0, 102, Bravo1MapTiles);
     if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
     }
