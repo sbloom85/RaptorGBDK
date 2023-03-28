@@ -1,7 +1,7 @@
 #pragma bank 0
 
 #include "gb.h"
-#include "sgb.h"
+//#include "sgb.h"
 #include "cgb.h"
 #include "bgb_emu.h"
 #include <stdio.h>
@@ -28,7 +28,7 @@ void main(void)
     SHOW_SPRITES;
     DISPLAY_ON;
 
-    //Same CPU Speed as DMG to assure game runs right on both.
+    //Same CPU Speed as DMG for lower power usage.
     if (getGBType() == 3)
     {
         cpu_slow();
@@ -37,21 +37,13 @@ void main(void)
     InitializeSound();
     //Bank 1:
     //Title, Menu, Intro
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(1);
-    #else
-        SWITCH_ROM_MBC5(1);
-    #endif
+    SWITCH_ROM_MBC5(1);
     Title();
     Menu();
     //Bank 2:
     //Hanger, Shop, Sector Select, 
     //Background and Sprite Handlers
     //Menu, Hanger, and Player Sprites
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(2);
-    #else
-        SWITCH_ROM_MBC5(2);
-    #endif
+    SWITCH_ROM_MBC5(2);
     Hanger();
 }

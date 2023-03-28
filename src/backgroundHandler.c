@@ -1,7 +1,7 @@
 #pragma bank 2
 
 #include "gb.h"
-#include "sgb.h"
+//#include "sgb.h"
 #include "cgb.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,6 +42,7 @@ int16_t camera_y, old_camera_y;
 // current and old position of the map in tiles
 uint8_t map_pos_y, old_map_pos_y;
 
+/*
 //Thanks to GB Studio which the SGB code is based off.
 typedef struct sgb_pal_packet_t {
     UBYTE cmd;
@@ -54,7 +55,7 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED
     data.cmd = (SGB_PAL_01 << 3) | 1;
     memcpy(data.palettes, &SGBPallete[0], sizeof(data.palettes));
     sgb_transfer((void *)&data);
-}
+}*/
 
 struct windowCashStruct {
     char Cash[10];
@@ -297,9 +298,9 @@ void fadeoutCGB() BANKED
 void fadeout() BANKED
 {
     BGP_REG_OLD = BGP_REG;
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(fadeout_palette);
-    }
+    }*/
     for (int i = 0; i < 4; i++)
     {
         switch (i)
@@ -344,11 +345,7 @@ void set_camera() NONBANKED
     // update hardware scroll position
     SCY_REG = camera_y;
 
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(currentMapBank);
-    #else
-        SWITCH_ROM_MBC5(currentMapBank);
-    #endif
+    SWITCH_ROM_MBC5(currentMapBank);
 
     //Row that updates + 18u updates last line.
     map_pos_y = (uint8_t)(camera_y >> 3u); 
@@ -372,20 +369,16 @@ void set_camera() NONBANKED
     // set old camera position to current camera position
     old_camera_y = camera_y;
 
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(2);
-    #else
-        SWITCH_ROM_MBC5(2);
-    #endif
+    SWITCH_ROM_MBC5(2);
 }
 
 void Title() NONBANKED
 {
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteTitle);
-    }
+    }*/
     //VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
@@ -406,9 +399,9 @@ void Menu() NONBANKED
     //fadeinnew();
     set_bkg_palette(0, Menu_PALETTE_COUNT, &Menu_palettes[0]);
     set_bkg_data(0, Menu_TILE_COUNT, Menu_tiles);
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
-    }
+    }*/
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Menu_map_attributes);
     VBK_REG = 0;
@@ -438,9 +431,9 @@ void WepShop() BANKED
     //fadeinnew();
     set_bkg_palette(0, 4, &bkgShopPalette[0]);
     set_bkg_data(0, 47, ShopTiles);
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
-    }
+    }*/
 
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, ShopScreenPLN1);
@@ -534,9 +527,9 @@ void Hanger() BANKED
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
     
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteHanger);
-    }
+    }*/
 
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map_attributes);
@@ -629,15 +622,11 @@ void BravoOne() NONBANKED
     //Bank 3:
     //Bravo Map 1 and Enemy Sprites
     currentMapBank = 3;
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(currentMapBank);
-    #else
-        SWITCH_ROM_MBC5(currentMapBank);
-    #endif
+    SWITCH_ROM_MBC5(currentMapBank);
     set_bkg_data(0, 102, Bravo1MapTiles);
-    if (sgb_check()) {
+    /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
-    }
+    }*/
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
@@ -658,10 +647,5 @@ void BravoOne() NONBANKED
     old_map_pos_y = 255;
 
     //Switch back to Bank 2 for Background Handler use.
-    #ifdef MEGADUCK
-        SWITCH_ROM_MEGADUCK(2);
-    #else
-        SWITCH_ROM_MBC5(2);
-    #endif
-    
+    SWITCH_ROM_MBC5(2);
 }

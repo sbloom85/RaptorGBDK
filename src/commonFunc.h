@@ -17,7 +17,7 @@
 #define IS_FRAME_EVEN ((game_time & 0x1) == 0)
 
 extern UBYTE _cpu;
-extern UINT8 game_time;
+extern uint8_t game_time;
 
 extern struct Player ship;
 extern struct Enemy eShip1;

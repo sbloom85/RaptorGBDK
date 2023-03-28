@@ -6,7 +6,7 @@
 #include "../maps/Bravo1TilesGBC.h"
 #include "../maps/BravoW1GBC.h"
 
-const UWORD bkgSGBPaletteTitle[] = {
+/*const UWORD bkgSGBPaletteTitle[] = {
 	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)
 };
 
@@ -15,8 +15,8 @@ const UWORD bkgSGBPaletteHanger[] = {
 };
 
 const UWORD bkgSGBPaletteWater[] = {
-	Bravo1MapTilesCGBPal1c0, Bravo1MapTilesCGBPal1c1, Bravo1MapTilesCGBPal2c2, RGB(5, 5, 5),
-};
+	RGB(4, 8, 31), RGB(2, 4, 15), RGB(2, 4, 11), RGB(2, 3, 4),
+};*/
 
 const UWORD bkgShopPalette[] = {
     ShopTilesCGBPal0c0, ShopTilesCGBPal0c1, ShopTilesCGBPal0c2, ShopTilesCGBPal0c3,

@@ -1,7 +1,7 @@
 #pragma bank 2
 
 #include "gb.h"
-#include "sgb.h"
+//#include "sgb.h"
 #include "cgb.h"
 #include <stdio.h>
 //#include <stdlib.h>
@@ -19,7 +19,7 @@
 
 struct projectile newProjectile[MAX_PROJECTILES];
 
-UINT8 game_time;
+uint8_t game_time;
 
 // Game Character Struct
 struct Player ship;
@@ -64,7 +64,7 @@ void MovePlayer(struct Player* character, uint8_t x, uint8_t y) BANKED
 
 void MoveEnemy()
 {
-    //eShip1.y += eShip1.speed;
+    eShip1.y += eShip1.speed;
     move_sprite(16, eShip1.x, eShip1.y);
     move_sprite(17, eShip1.x + 8, eShip1.y);
     move_sprite(18, eShip1.x + 16, eShip1.y);
@@ -199,11 +199,7 @@ void SetupEnemyShip() NONBANKED
 
     if (eShip1.enabled)
     {
-        #ifdef MEGADUCK
-            SWITCH_ROM_MEGADUCK(BravoShip1TilesBank);
-        #else
-            SWITCH_ROM_MBC5(BravoShip1TilesBank);
-        #endif
+        SWITCH_ROM_MBC5(BravoShip1TilesBank);
     
         // Load sprites for ship
         set_sprite_data(16, 8, BravoShip1Tiles);
@@ -230,13 +226,7 @@ void SetupEnemyShip() NONBANKED
         //set_sprite_prop(24, 2);
         //set_sprite_prop(25, 2);
 
-        #ifdef MEGADUCK
-            SWITCH_ROM_MEGADUCK(2);
-        #else
-            SWITCH_ROM_MBC5(2);
-        #endif
-
-        
+        SWITCH_ROM_MBC5(2);
     }
 
     /*set_sprite_data(16, 8, eShip01);
