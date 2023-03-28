@@ -1,6 +1,6 @@
 /*
 
- RAPTORDIALOGTILES.H
+ RAPTORDIALOGTILESV2.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 72 to 127
+  Tiles                : 103 to 127
 
   Palette colors       : Included.
   SGB Palette          : None.
@@ -22,8 +22,8 @@
 
 */
 
-#ifndef __RaptorDialogTiles_h_INCLUDE
-#define __RaptorDialogTiles_h_INCLUDE
+#ifndef __RaptorDialogTilesV2_h_INCLUDE
+#define __RaptorDialogTilesV2_h_INCLUDE
 
 /* Bank of tiles. */
 #define RaptorDialogBank 0
@@ -106,4 +106,4 @@ extern const unsigned char RaptorDialog[];
 
 #endif
 
-/* End of RAPTORDIALOGTILES.H */
+/* End of RAPTORDIALOGTILESV2.H */
