@@ -3,9 +3,9 @@
     b.  Weapon Sprites - IN PROGRESS
     c.  Background Tiles - IN PROGRESS
     d.  HUD
-        i. Shields and Health
-        ii. Selected weapon
-        iii. Money
+        i. Shields and Health - STUCK (RetroGamer02)
+        ii. Selected weapon - DONE (RetroGamer02)
+        iii. Money - STUCK (RetroGamer02)
 
 2.  Create Collisions
     a.  Enemy and Player - IN PROGRESS (Scott)
@@ -24,11 +24,21 @@
 
 5.  Code controls
     a.  Basic Movement - DONE (RetroGamer02)
-    b.  Weapon Controls - IN PROGRESS (RetroGamer02)
+    b.  Weapon Controls - DONE? (RetroGamer02)
         i. Primary weapon - DONE (RetroGamer02)
-        ii. Secondary weapon
-        iii. Weapon cycle
+        ii. Secondary weapon - IN PROGRESS (RetroGamer02)
+        iii. Weapon cycle - DONE? (RetroGamer02)
 
 6.  Code camera movement - DONE (RetroGamer02)
 
-7.  Super Game Boy compatibility - IN PROGRESS (RetroGamer02)
+7.  Super Game Boy compatibility - Canceled (RetroGamer02)
+
+8. Fix Fadeout PLN1 bug
+
+9. Make Main menu usable
+
+10. Update Hanger picture - IN PROGRESS (RetroGamer02)
+
+11. Work on Enemy behaviur on Map. 
+    a. To spawn at correct points on map
+    b. Not loop on screen.
