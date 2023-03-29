@@ -9,7 +9,7 @@
 #include "projectile.h"
 #include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
-#include "../sprites/ScottBravoShip1V3.h"
+#include "../sprites/BravoShip1.h"
 
 #include "sound.h"
 #include "spriteHandler.h"
