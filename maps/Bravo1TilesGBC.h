@@ -53,10 +53,10 @@
 #define Bravo1MapTilesSGBPal3c3 5344
 
 /* Gameboy Color palette 0 */
-#define Bravo1MapTilesCGBPal0c0 12953
-#define Bravo1MapTilesCGBPal0c1 9716
-#define Bravo1MapTilesCGBPal0c2 6479
-#define Bravo1MapTilesCGBPal0c3 3242
+#define Bravo1MapTilesCGBPal0c0 16640
+#define Bravo1MapTilesCGBPal0c1 3423
+#define Bravo1MapTilesCGBPal0c2 10570
+#define Bravo1MapTilesCGBPal0c3 4228
 
 /* Gameboy Color palette 1 */
 #define Bravo1MapTilesCGBPal1c0 32264

@@ -39,6 +39,6 @@
 
 10. Update Hanger picture - IN PROGRESS (RetroGamer02)
 
-11. Work on Enemy behaviur on Map. 
+11. Work on Enemy behaviour on Map. 
     a. To spawn at correct points on map
     b. Not loop on screen.
