@@ -34,8 +34,8 @@ unsigned char RaptorWindowUpdatePLN0[] =
 {
   0x75,0x75,0x75,0x75,0x67,0x75,0x75,0x75,0x75,0x75,
   0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,
-  0x75,0x72,0x68,0x68,0x68,0x75,0x73,0x68,0x68,0x68,
-  0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x74,0x76,0x75
+  0x75,0x72,0x75,0x75,0x75,0x75,0x73,0x75,0x75,0x75,
+  0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x74,0x75,0x75
 };
 
 // current and old positions of the camera in pixels
@@ -59,19 +59,34 @@ void SGBTransferPalettes(const UWORD *SGBPallete) BANKED
     sgb_transfer((void *)&data);
 }*/
 
-struct windowCashStruct {
+struct windowStruct {
     char Cash[10];
-} windowCash;
+    char Health[3];
+    char Shield[3];
+} windowData;
 
-    uint8_t HlthP1,
-            HlthP2,
-            HlthP3;
+char* itoa8(int8_t i, char b[]) BANKED
+{
+    char const digit[] = "0123456789";
+    char* p = b;
+    if(i<0){
+        *p++ = '-';
+        i *= -1;
+    }
+    int8_t shifter = i;
+    do{ //Move to where representation ends
+        ++p;
+        shifter = shifter/10;
+    }while(shifter);
+    *p = '\0';
+    do{ //Move back, inserting digits as u go
+        *--p = digit[i%10];
+        i = i/10;
+    }while(i);
+    return b;
+}
 
-    uint8_t ShldP1,
-            ShldP2,
-            ShldP3;
-
-char* itoa2(int32_t i, char b[]) BANKED
+char* itoa32(int32_t i, char b[]) BANKED
 {
     char const digit[] = "0123456789";
     char* p = b;
@@ -94,110 +109,119 @@ char* itoa2(int32_t i, char b[]) BANKED
 
 void updateHud() BANKED
 {
-    int32_t testCashVar = 2147483647;
+    //int32_t testCashVar = 2147483647;
 
-    /*for (int i = 0; i < 10; i++)
-    {
-        windowCash.Cash[i] = 0;
-    }*/
-
-    itoa2(testCashVar, windowCash.Cash);
+    itoa32(ship.cashAmount, windowData.Cash);
+    itoa8(ship.curHealth, windowData.Health);
+    itoa8(ship.curShield, windowData.Shield);
 
     for (uint8_t i = 40; i--;)
     {
         //Line 1
         if (i == 5) //Cash Pos 0
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[0] -48U;
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[0] -48U;
         }
         if (i == 6) //Cash Pos 1
         {
-            if (testCashVar >= 10)
+            if (ship.cashAmount >= 10)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[1] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[1] -48U;
             }
         }
         if (i == 7) //Cash Pos 2
         {
-            if (testCashVar >= 100)
+            if (ship.cashAmount >= 100)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[2] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[2] -48U;
             }
         }
         if (i == 8) //Cash Pos 3
         {
-            if (testCashVar >= 1000)
+            if (ship.cashAmount >= 1000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[3] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[3] -48U;
             }
         }
         if (i == 9) //Cash Pos 4
         {
-            if (testCashVar >= 10000)
+            if (ship.cashAmount >= 10000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[4] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[4] -48U;
             }
         }
         if (i == 10) //Cash Pos 5
         {
-            if (testCashVar >= 100000)
+            if (ship.cashAmount >= 100000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[5] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[5] -48U;
             }
         }
         if (i == 11) //Cash Pos 6
         {
-            if (testCashVar >= 1000000)
+            if (ship.cashAmount >= 1000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[6] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[6] -48U;
             }
         }
         if (i == 12) //Cash Pos 7
         {
-            if (testCashVar >= 10000000)
+            if (ship.cashAmount >= 10000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[7] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[7] -48U;
             }
         }
         if (i == 13) //Cash Pos 8
         {
-            if (testCashVar >= 100000000)
+            if (ship.cashAmount >= 100000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[8] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[8] -48U;
             }
         }
         if (i == 14) //Cash Pos 9
         {
-            if (testCashVar >= 1000000000)
+            if (ship.cashAmount >= 1000000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[9] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowData.Cash[9] -48U;
             }
         }
         
         //Line 2
         if (i == 22) //Health Pos 1
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP1;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Health[0] -17U;
         }
         if (i == 23) //Health Pos 2
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP2;
+            if (ship.curHealth >= 10)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Health[1] -17U;
+            }
         }
         if (i == 24) //Health Pos 3
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49 + windowData.HlthP3;
+            if (ship.curHealth >= 100)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Health[2] -17U;
+            }
         }
         if (i == 27) //Shield Pos 1
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP1;
+            RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Shield[0] -17U;
         }
         if (i == 28) //Shield Pos 2
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP2;
+            if (ship.curShield >= 10)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Shield[1] -17U;
+            }
         }
         if (i == 29) //Shield Pos 3
         {
-            //RaptorWindowUpdatePLN0[i] = 0x49  + windowData.ShldP3;
+            if (ship.curShield >= 100)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x49 + windowData.Shield[2] -17U;
+            }
         }
         if (i == 31) //Shield Icon Pos 1
         {

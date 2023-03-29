@@ -110,6 +110,7 @@ void fireWeapon() BANKED
     {
         if (!newProjectile[shots].enabled)
         {
+            ship.cashAmount += 100; //Disable later.
             switch (ship.weapon)
             {
                 case 0:
@@ -157,6 +158,7 @@ void setupShip() BANKED
     ship.enabled = 1;
     ship.visible = 1;
     ship.numShields = 0;
+    ship.curHealth = 100;
 
     // Load sprites for ship
     set_sprite_data(0, 1, RaptorTLE0);
