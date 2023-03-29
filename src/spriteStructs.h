@@ -29,7 +29,7 @@ struct Player
              ownsDeathRay:1;    // Bool
     int8_t   curHealth,         // Values upto 127
              curShield;         // Values upto 127
-    uint32_t cashAmount;        // Values upto 4294967296
+    int32_t  cashAmount;        // Values upto 2147483647
     uint8_t  colliderLeft;      // Left collider
     uint8_t  colliderRight;     // Right collider
     uint8_t  colliderTop;       // Top collider

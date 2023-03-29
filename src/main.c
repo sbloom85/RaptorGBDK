@@ -22,7 +22,7 @@ void main(void)
 {
     //BGB_MESSAGE("TEST"); //For debuging
 
-    //ENABLE_RAM_MBC5; //We don't need extra ram banks right now.
+    //ENABLE_RAM; //We don't need extra ram banks right now.
 
     SHOW_BKG;
     SHOW_SPRITES;
@@ -37,13 +37,13 @@ void main(void)
     InitializeSound();
     //Bank 1:
     //Title, Menu, Intro
-    SWITCH_ROM_MBC5(1);
+    SWITCH_ROM(1);
     Title();
     Menu();
     //Bank 2:
     //Hanger, Shop, Sector Select, 
     //Background and Sprite Handlers
     //Menu, Hanger, and Player Sprites
-    SWITCH_ROM_MBC5(2);
+    SWITCH_ROM(2);
     Hanger();
 }

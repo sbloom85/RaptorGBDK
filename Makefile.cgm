@@ -11,7 +11,7 @@ LCC = $(GBDK_HOME)bin/lcc
 
 # You can set flags for LCC here
 # For example, you can uncomment the line below to turn on debug output
-# LCCFLAGS = -debug
+ LCCFLAGS = -debug 
 
 # You can set the name of the .gb ROM file here
 PROJECTNAME    = Raptor
@@ -25,7 +25,7 @@ SNDDIR		= Sounds
 WINDIR		= Window
 #RESDIR      = res
 BINS	    = $(PROJECTNAME).gbc
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(WINDIR),$(notdir $(wildcard $(dir)/*.c))) 
+CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(WINDIR),$(notdir $(wildcard $(dir)/*.c)))
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
 OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
 

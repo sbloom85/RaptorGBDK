@@ -3,6 +3,7 @@
 #include "gb.h"
 //#include "sgb.h"
 #include "cgb.h"
+#include "bgb_emu.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -31,8 +32,8 @@ static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGR
 
 unsigned char RaptorWindowUpdatePLN0[] =
 {
-  0x75,0x75,0x75,0x75,0x67,0x68,0x68,0x68,0x68,0x68,
-  0x68,0x68,0x68,0x68,0x68,0x75,0x75,0x75,0x75,0x75,
+  0x75,0x75,0x75,0x75,0x67,0x75,0x75,0x75,0x75,0x75,
+  0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,0x75,
   0x75,0x72,0x68,0x68,0x68,0x75,0x73,0x68,0x68,0x68,
   0x75,0x7D,0x7D,0x7D,0x7D,0x7D,0x75,0x74,0x76,0x75
 };
@@ -40,7 +41,8 @@ unsigned char RaptorWindowUpdatePLN0[] =
 // current and old positions of the camera in pixels
 int16_t camera_y, old_camera_y;
 // current and old position of the map in tiles
-uint8_t map_pos_y, old_map_pos_y;
+uint8_t map_pos_y;
+uint8_t old_map_pos_y;
 
 /*
 //Thanks to GB Studio which the SGB code is based off.
@@ -69,20 +71,7 @@ struct windowCashStruct {
             ShldP2,
             ShldP3;
 
-uint8_t * splitter(uint32_t number) NONBANKED
-{
-    static uint8_t values[8];
-
-    for (int i = 0; i < 8; i++)
-    {
-        values[i] = (uint8_t)(number & 0xF);
-        number = (number >> 4);
-    }
-
-    return values;
-}
-
-char* itoa2(int i, char b[]) NONBANKED
+char* itoa2(int32_t i, char b[]) BANKED
 {
     char const digit[] = "0123456789";
     char* p = b;
@@ -90,7 +79,7 @@ char* itoa2(int i, char b[]) NONBANKED
         *p++ = '-';
         i *= -1;
     }
-    int shifter = i;
+    int32_t shifter = i;
     do{ //Move to where representation ends
         ++p;
         shifter = shifter/10;
@@ -103,77 +92,86 @@ char* itoa2(int i, char b[]) NONBANKED
     return b;
 }
 
-void updateHud() NONBANKED
+void updateHud() BANKED
 {
-    uint32_t testCashVar = 1234;
-    //sprintf(windowData.CashP0, "%u", 1);
+    int32_t testCashVar = 2147483647;
 
-    for (int i = 0; i < 10; i++)
+    /*for (int i = 0; i < 10; i++)
     {
         windowCash.Cash[i] = 0;
-    }
+    }*/
 
-    //itoa(testCashVar, windowCash.Cash, 10);
-    //itoa2(testCashVar, windowCash.Cash);
-
-    //sprintf(windowCash.Cash, "%d", testCashVar >> 10);
-
-    //memcpy(&windowCash.Cash, &testCashVar, sizeof(testCashVar));
-
-
-    //windowData.CashP0 = splitter(testCashVar)[0];
-    //windowData.CashP1 = (testCashVar >> 8) & 0xF;
-    //windowData.CashP2 = testCashVar & 0x00F000000;
-    //windowData.CashP3 = testCashVar & 0x000F00000;
-    //windowData.CashP4 = testCashVar & 0x0000F0000;
-    //windowData.CashP5 = (testCashVar * 68) & 0xF;
-    //windowCash.CashP6 = (testCashVar >> 10) & 0xF;
-    //windowCash.CashP7 = (testCashVar / 68) & 0xF;
-    //windowData.CashP8 = (testCashVar / 309) & 0xF;
-    //windowData.CashP9 = (testCashVar >> 8) & 0xFFFFFFFF;
+    itoa2(testCashVar, windowCash.Cash);
 
     for (uint8_t i = 40; i--;)
     {
         //Line 1
         if (i == 5) //Cash Pos 0
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[0];
+            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[0] -48U;
         }
         if (i == 6) //Cash Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[1];
+            if (testCashVar >= 10)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[1] -48U;
+            }
         }
         if (i == 7) //Cash Pos 2
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[2];
+            if (testCashVar >= 100)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[2] -48U;
+            }
         }
         if (i == 8) //Cash Pos 3
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[3];
+            if (testCashVar >= 1000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[3] -48U;
+            }
         }
         if (i == 9) //Cash Pos 4
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[4];
+            if (testCashVar >= 10000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[4] -48U;
+            }
         }
         if (i == 10) //Cash Pos 5
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[5];
+            if (testCashVar >= 100000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[5] -48U;
+            }
         }
         if (i == 11) //Cash Pos 6
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[6];
+            if (testCashVar >= 1000000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[6] -48U;
+            }
         }
         if (i == 12) //Cash Pos 7
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[7];
+            if (testCashVar >= 10000000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[7] -48U;
+            }
         }
         if (i == 13) //Cash Pos 8
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[8];
+            if (testCashVar >= 100000000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[8] -48U;
+            }
         }
         if (i == 14) //Cash Pos 9
         {
-            RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[9];
+            if (testCashVar >= 1000000000)
+            {
+                RaptorWindowUpdatePLN0[i] = 0x68 + windowCash.Cash[9] -48U;
+            }
         }
         
         //Line 2
@@ -334,7 +332,8 @@ void init_camera() BANKED
 
 void scroll_cam_up() BANKED
 {
-    if (camera_y > -2048)
+    //Check frames for slight slow down.
+    if (camera_y > -2048 && (IS_FRAME_ODD || IS_FRAME_4))
     {
         camera_y--;
     }
