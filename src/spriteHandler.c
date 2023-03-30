@@ -11,6 +11,8 @@
 #include "../sprites/Raptor.h"
 #include "../sprites/BravoShip1.h"
 
+#include "../maps/Bravo1DestructibleTiles.h"
+
 #include "sound.h"
 #include "spriteHandler.h"
 #include "commonFunc.h"
@@ -87,14 +89,24 @@ void initProjectiles() BANKED
     }
 }
 
-void moveProjectiles() BANKED
+void moveProjectiles() NONBANKED
 {
-    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    uint8_t objHit = 0;
+
+    /*for (int16_t obj = 0; obj < sizeof(BravoWave1_DestructibleTiles); obj++)
+    {
+        for (uint8_t objAtt = 0; objAtt < 4; objAtt++)
+        {
+            //newProjectile[i].y = BravoWave1_DestructibleTiles[obj][objAtt];
+        }
+    }*/
+
+    for (int8_t i = 0; i < 8; i++)
     {
         if (newProjectile[i].enabled)
         {
             newProjectile[i].y -= 4;
-            if (newProjectile[i].y > 0)
+            if (newProjectile[i].y > 0 && objHit == 0)
             {
                 move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
             } else {

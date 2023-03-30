@@ -268,6 +268,7 @@ void fadeoutCGB() BANKED
     for (int i = 1; i < 4; i++) 
     {
         BGP_REG = (0xFFE4 >> (i << 1));
+        //OBP0_REG
         set_bkg_palette(0, 1, fadeout_palette + i);
         set_sprite_palette(0, 1, fadeout_palette + i);
         PerformantDelay(20);
@@ -275,15 +276,18 @@ void fadeoutCGB() BANKED
     BGP_REG = BGP_REG_OLD;
 }
 
-/*void fadeout() BANKED
+void fadeout() BANKED
 {
-    BGP_REG_OLD = BGP_REG;
-    if (sgb_check()) {
+    //BGP_REG_OLD = BGP_REG;
+    /*if (sgb_check()) {
         SGBTransferPalettes(fadeout_palette);
-    }
+    }*/
+    
     for (int i = 0; i < 4; i++)
     {
-        switch (i)
+        set_bkg_palette(0, 1, fadeout_palette + i);
+        set_sprite_palette(0, 1, fadeout_palette + i);
+        /*switch (i)
         {
             case 0:
                 BGP_REG = 0xE4;
@@ -297,11 +301,11 @@ void fadeoutCGB() BANKED
             case 3:
                 BGP_REG = 0xFF;
                 break;
-        }
+        }*/
         PerformantDelay(20);
     }
-    BGP_REG = BGP_REG_OLD;
-}*/
+    //BGP_REG = BGP_REG_OLD;
+}
 
 void init_camera() BANKED
 {
@@ -378,7 +382,8 @@ void Title() NONBANKED
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
     PerformantDelay(130);
-    fadeoutCGB();
+    //fadeoutCGB();
+    fadeout();
     HIDE_BKG;
 }
 
@@ -401,7 +406,8 @@ void Menu() NONBANKED
     {
         if (joypad() & J_A)
         {
-            fadeoutCGB();
+            //fadeoutCGB();
+            fadeout();
             HIDE_BKG;
             SHOW_SPRITES;
             break;
@@ -430,7 +436,8 @@ void WepShop() BANKED
     {
         if (joypad() & J_A)
         {
-            fadeoutCGB();
+            //fadeoutCGB();
+            fadeout();
             HIDE_BKG;
             SHOW_SPRITES;
             Hanger();
@@ -575,7 +582,8 @@ void Hanger() BANKED
         if (joyInput & J_A && selection == Fly)
         {
             HIDE_SPRITES;
-            fadeoutCGB();
+            //fadeoutCGB();
+            fadeout();
             gameInit();
             BravoOne();
             gameLoop();
