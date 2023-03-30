@@ -4,6 +4,8 @@
 #include "../backgrounds/Shop.h"
 #include "../backgrounds/ShopTiles.h"
 
+#include "../backgrounds/BlankPLN1.h"
+
 #include "../maps/Bravo1TilesGBC.h"
 #include "../maps/Bravo1TilesGBC2.h"
 

@@ -437,6 +437,9 @@ void WepShop() BANKED
         if (joypad() & J_A)
         {
             //fadeoutCGB();
+            VBK_REG = 1;
+            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
+            VBK_REG = 0;
             fadeout();
             HIDE_BKG;
             SHOW_SPRITES;
@@ -583,6 +586,9 @@ void Hanger() BANKED
         {
             HIDE_SPRITES;
             //fadeoutCGB();
+            VBK_REG = 1;
+            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
+            VBK_REG = 0;
             fadeout();
             gameInit();
             BravoOne();
@@ -592,6 +598,9 @@ void Hanger() BANKED
         } /*else if (joyInput & J_A && selection == Save) {
             //Todo
         }*/ else if (joyInput & J_A && selection == Exit) {
+            VBK_REG = 1;
+            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
+            VBK_REG = 0;
             reset();
         }
     }

@@ -33,7 +33,7 @@
 
 7.  Super Game Boy compatibility - Canceled (RetroGamer02)
 
-8. Fix Fadeout PLN1 bug
+8. Fix Fadeout PLN1 bug - DONE (RetroGamer02)
 
 9. Make Main menu usable
 

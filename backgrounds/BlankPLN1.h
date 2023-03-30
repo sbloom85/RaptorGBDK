@@ -1,0 +1,1 @@
+extern const unsigned char Blank_map_attributes[360];
