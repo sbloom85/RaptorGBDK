@@ -6,9 +6,9 @@
 
  Info:
    Section       : 
-   Bank          : 3
+   Bank          : 5
    Map size      : 20 x 255
-   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\Bravo1BGTilesGBC.gbr
+   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\Bravo1BGTilesGBC1.gbr
    Plane count   : 2 planes (16 bits)
    Plane order   : Planes are continues
    Tile offset   : 0
@@ -22,7 +22,7 @@
 
 #define BravoWave1Width 20
 #define BravoWave1Height 255
-#define BravoWave1Bank 3
+#define BravoWave1Bank 5
 
 #define BravoWave1 BravoWave1PLN0
 extern const void __bank_BravoWave1PLN0;

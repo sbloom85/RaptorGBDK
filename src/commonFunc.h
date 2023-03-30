@@ -24,5 +24,7 @@ extern struct Enemy eShip1;
 
 uint8_t getGBType();
 void PerformantDelay(uint8_t numLoops);
+char* itoa8(int8_t i, char b[]);
+char* itoa32(int32_t i, char b[]);
 
 #endif

@@ -4,7 +4,9 @@
 #include "../backgrounds/Shop.h"
 #include "../backgrounds/ShopTiles.h"
 #include "../maps/Bravo1TilesGBC.h"
+#include "../maps/Bravo1TilesGBC2.h"
 #include "../maps/BravoW1GBC.h"
+#include "../maps/Bravo1SecondPLN1.h"
 
 /*const UWORD bkgSGBPaletteTitle[] = {
 	RGB_WHITE, RGB(15, 15, 15), RGB_RED, RGB(5, 5, 5)

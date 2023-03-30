@@ -20,7 +20,9 @@
 
 int8_t BGP_REG_OLD;
 
-uint8_t currentMapBank = 3;
+uint8_t mapTileSet = 0;
+uint8_t currentTileBank = 3;
+uint8_t currentMapBank = 5;
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
 
@@ -64,48 +66,6 @@ struct windowStruct {
     char Health[3];
     char Shield[3];
 } windowData;
-
-char* itoa8(int8_t i, char b[]) BANKED
-{
-    char const digit[] = "0123456789";
-    char* p = b;
-    if(i<0){
-        *p++ = '-';
-        i *= -1;
-    }
-    int8_t shifter = i;
-    do{ //Move to where representation ends
-        ++p;
-        shifter = shifter/10;
-    }while(shifter);
-    *p = '\0';
-    do{ //Move back, inserting digits as u go
-        *--p = digit[i%10];
-        i = i/10;
-    }while(i);
-    return b;
-}
-
-char* itoa32(int32_t i, char b[]) BANKED
-{
-    char const digit[] = "0123456789";
-    char* p = b;
-    if(i<0){
-        *p++ = '-';
-        i *= -1;
-    }
-    int32_t shifter = i;
-    do{ //Move to where representation ends
-        ++p;
-        shifter = shifter/10;
-    }while(shifter);
-    *p = '\0';
-    do{ //Move back, inserting digits as u go
-        *--p = digit[i%10];
-        i = i/10;
-    }while(i);
-    return b;
-}
 
 void updateHud() BANKED
 {
@@ -361,6 +321,12 @@ void scroll_cam_up() BANKED
     {
         camera_y--;
     }
+
+    if (camera_y < -1024)
+    {
+        mapTileSet = 1; //Switch map to second tileset.
+        currentMapPLN1 = (unsigned char*)BravoWave1_2PLN1; //Todo make usable by any map.
+    }
 }
 
 void set_camera() NONBANKED
@@ -368,21 +334,27 @@ void set_camera() NONBANKED
     // update hardware scroll position
     SCY_REG = camera_y;
 
-    SWITCH_ROM_MBC5(currentMapBank);
+    SWITCH_ROM(currentMapBank);
 
     //Row that updates + 18u updates last line.
     map_pos_y = (uint8_t)(camera_y >> 3u); 
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            VBK_REG = 1;
-            set_bkg_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN1, 20);
-            VBK_REG = 0;
-            set_bkg_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20);
-
+            VBK_REG = VBK_ATTRIBUTES;
+            set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN1, 20, 0);
+            VBK_REG = VBK_TILES;
+            if (mapTileSet)
+            {
+                set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20, 127);
+            }
+            else
+            {
+                set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
+            }
             updateHud();
-            VBK_REG = 1;
+            VBK_REG = VBK_ATTRIBUTES;
             set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);
-            VBK_REG = 0;
+            VBK_REG = VBK_TILES;
             set_win_tiles(0, 0, 20, 2, RaptorWindowUpdatePLN0);
             
         }
@@ -392,7 +364,7 @@ void set_camera() NONBANKED
     // set old camera position to current camera position
     old_camera_y = camera_y;
 
-    SWITCH_ROM_MBC5(2);
+    SWITCH_ROM(2);
 }
 
 void Title() NONBANKED
@@ -641,27 +613,38 @@ void Hanger() BANKED
 
 void BravoOne() NONBANKED
 {
+    mapTileSet = 0;
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     //Bank 3:
     //Bravo Map 1 and Enemy Sprites
-    currentMapBank = 3;
-    SWITCH_ROM_MBC5(currentMapBank);
+    
+    currentTileBank = 3;
+    SWITCH_ROM(currentTileBank);
+
+    //VBK_REG = 1;
+    //set_bkg_data(0, 102, Bravo1MapTiles);
+    //set_bkg_data(127, 102, Bravo1MapTiles);
+    //VBK_REG = 0;
     set_bkg_data(0, 102, Bravo1MapTiles);
+    set_bkg_data(127, 102, Bravo1MapTiles2);
     /*if (sgb_check()) {
         SGBTransferPalettes(bkgSGBPaletteWater);
     }*/
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
+    currentMapBank = 5;
+    SWITCH_ROM(currentMapBank);
+
     currentMapPLN0 = (unsigned char*)BravoWave1PLN0;
     currentMapPLN1 = (unsigned char*)BravoWave1PLN1;
     
     for (uint8_t i = 144; i--;)
     {
-        VBK_REG = 1;
-        set_bkg_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN1, 20);
-        VBK_REG = 0;
-        set_bkg_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20);
+        VBK_REG = VBK_ATTRIBUTES;
+        set_bkg_based_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN1, 20, 0);
+        VBK_REG = VBK_TILES;
+        set_bkg_based_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
     }
 
     gameLoop();
@@ -670,5 +653,5 @@ void BravoOne() NONBANKED
     old_map_pos_y = 255;
 
     //Switch back to Bank 2 for Background Handler use.
-    SWITCH_ROM_MBC5(2);
+    SWITCH_ROM(2);
 }

@@ -3,9 +3,9 @@
     b.  Weapon Sprites - IN PROGRESS
     c.  Background Tiles - IN PROGRESS
     d.  HUD
-        i. Shields and Health - STUCK (RetroGamer02)
+        i. Shields and Health - DONE? (RetroGamer02)
         ii. Selected weapon - DONE (RetroGamer02)
-        iii. Money - STUCK (RetroGamer02)
+        iii. Money - DONE? (RetroGamer02)
 
 2.  Create Collisions
     a.  Enemy and Player - IN PROGRESS (Scott)

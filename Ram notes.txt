@@ -1,0 +1,16 @@
+Cart Ram:
+-Wf-ba0
+
+HiRam:
+To get advantages of using HRAM you should declare your variables like:
+SFR AT(0xFD) my_HRAM_var;
+[7:05 AM]
+or else there will be no difference with any other
+
+CGB Ram:
+SVBK_REG = Bank num
+
+Example uint8_t AT(0xD000) myvar;
+
+To place something in an SRAM bank, you'd have to manually manage the bank and declare the variable something like:
+uint8_t _at(some address in WRAM) my_wram_array[some size];
