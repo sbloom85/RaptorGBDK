@@ -259,6 +259,8 @@ void fadeout() BANKED
         PerformantDelay(18);
     }
     BGP_REG = BGP_REG_OLD;
+
+    set_bkg_tiles(0, 0, 20, 18, BlckScrTiles);
 }
 
 void init_camera() BANKED
