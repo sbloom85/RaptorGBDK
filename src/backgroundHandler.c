@@ -223,7 +223,7 @@ void updateHud() BANKED
     }
 }
 
-void fadeinCGB() BANKED
+void fadein() BANKED
 {
     //BGP_REG_OLD = BGP_REG;
     for (int i = 4; --i;)
@@ -236,75 +236,29 @@ void fadeinCGB() BANKED
     //BGP_REG = BGP_REG_OLD;
 }
 
-/*void fadein() BANKED
-{
-    
-    for (int i = 3; i--;)
-    {
-        switch (i)
-        {
-            case 0:
-                BGP_REG = 0xE4;
-                break;
-            case 1:
-                BGP_REG = 0xF9;
-                break;
-            case 2:
-                BGP_REG = 0xFE;
-                break;
-            case 3:
-                BGP_REG = 0xFF;
-                break;
-        }
-        //PerformantDelay(10);
-    }
-}*/
-
 //Thanks to basxto for the fadeout code.
-//Slightly edited.
-void fadeoutCGB() BANKED
+//Edited
+void fadeout() BANKED
 {
+    VBK_REG = 1;
+    set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
+    VBK_REG = 0;
+
     BGP_REG_OLD = BGP_REG;
+
+    /*if (sgb_check()) {
+        SGBTransferPalettes(fadeout_palette);
+    }*/
+
     for (int i = 1; i < 4; i++) 
     {
         BGP_REG = (0xFFE4 >> (i << 1));
         //OBP0_REG
         set_bkg_palette(0, 1, fadeout_palette + i);
         set_sprite_palette(0, 1, fadeout_palette + i);
-        PerformantDelay(20);
+        PerformantDelay(18);
     }
     BGP_REG = BGP_REG_OLD;
-}
-
-void fadeout() BANKED
-{
-    //BGP_REG_OLD = BGP_REG;
-    /*if (sgb_check()) {
-        SGBTransferPalettes(fadeout_palette);
-    }*/
-    
-    for (int i = 0; i < 4; i++)
-    {
-        set_bkg_palette(0, 1, fadeout_palette + i);
-        set_sprite_palette(0, 1, fadeout_palette + i);
-        /*switch (i)
-        {
-            case 0:
-                BGP_REG = 0xE4;
-                break;
-            case 1:
-                BGP_REG = 0xF9;
-                break;
-            case 2:
-                BGP_REG = 0xFE;
-                break;
-            case 3:
-                BGP_REG = 0xFF;
-                break;
-        }*/
-        PerformantDelay(20);
-    }
-    //BGP_REG = BGP_REG_OLD;
 }
 
 void init_camera() BANKED
@@ -437,9 +391,7 @@ void WepShop() BANKED
         if (joypad() & J_A)
         {
             //fadeoutCGB();
-            VBK_REG = 1;
-            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
-            VBK_REG = 0;
+            
             fadeout();
             HIDE_BKG;
             SHOW_SPRITES;
@@ -585,22 +537,17 @@ void Hanger() BANKED
         if (joyInput & J_A && selection == Fly)
         {
             HIDE_SPRITES;
-            //fadeoutCGB();
-            VBK_REG = 1;
-            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
-            VBK_REG = 0;
             fadeout();
             gameInit();
             BravoOne();
             gameLoop();
         } else if (joyInput & J_A && selection == Shop) {
+            fadeout();
             WepShop();
         } /*else if (joyInput & J_A && selection == Save) {
             //Todo
         }*/ else if (joyInput & J_A && selection == Exit) {
-            VBK_REG = 1;
-            set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
-            VBK_REG = 0;
+            fadeout();
             reset();
         }
     }
