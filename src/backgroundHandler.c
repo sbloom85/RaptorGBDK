@@ -69,8 +69,6 @@ struct windowStruct {
 
 void updateHud() BANKED
 {
-    //int32_t testCashVar = 2147483647;
-
     itoa32(ship.cashAmount, windowData.Cash);
     itoa8(ship.curHealth, windowData.Health);
     itoa8(ship.curShield, windowData.Shield);
@@ -238,7 +236,7 @@ void fadeinCGB() BANKED
     //BGP_REG = BGP_REG_OLD;
 }
 
-void fadein() BANKED
+/*void fadein() BANKED
 {
     
     for (int i = 3; i--;)
@@ -260,7 +258,7 @@ void fadein() BANKED
         }
         //PerformantDelay(10);
     }
-}
+}*/
 
 //Thanks to basxto for the fadeout code.
 //Slightly edited.
@@ -277,12 +275,12 @@ void fadeoutCGB() BANKED
     BGP_REG = BGP_REG_OLD;
 }
 
-void fadeout() BANKED
+/*void fadeout() BANKED
 {
     BGP_REG_OLD = BGP_REG;
-    /*if (sgb_check()) {
+    if (sgb_check()) {
         SGBTransferPalettes(fadeout_palette);
-    }*/
+    }
     for (int i = 0; i < 4; i++)
     {
         switch (i)
@@ -303,7 +301,7 @@ void fadeout() BANKED
         PerformantDelay(20);
     }
     BGP_REG = BGP_REG_OLD;
-}
+}*/
 
 void init_camera() BANKED
 {
@@ -380,12 +378,7 @@ void Title() NONBANKED
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
 
     PerformantDelay(130);
-    if (getGBType() == 3)
-    {
-        fadeoutCGB();
-    } else {
-        fadeout();
-    }
+    fadeoutCGB();
     HIDE_BKG;
 }
 
@@ -408,12 +401,7 @@ void Menu() NONBANKED
     {
         if (joypad() & J_A)
         {
-            if (getGBType() == 3)
-            {
-                fadeoutCGB();
-            } else {
-                fadeout();
-            }
+            fadeoutCGB();
             HIDE_BKG;
             SHOW_SPRITES;
             break;
@@ -442,12 +430,7 @@ void WepShop() BANKED
     {
         if (joypad() & J_A)
         {
-            if (getGBType() == 3)
-            {
-                fadeoutCGB();
-            } else {
-                fadeout();
-            }
+            fadeoutCGB();
             HIDE_BKG;
             SHOW_SPRITES;
             Hanger();
@@ -592,12 +575,7 @@ void Hanger() BANKED
         if (joyInput & J_A && selection == Fly)
         {
             HIDE_SPRITES;
-            if (getGBType() == 3)
-            {
-                fadeoutCGB();
-            } else {
-                fadeout();
-            }
+            fadeoutCGB();
             gameInit();
             BravoOne();
             gameLoop();
