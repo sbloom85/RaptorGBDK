@@ -4,6 +4,7 @@
 #include "cgb.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <rand.h>
 
 #include <string.h>
 
@@ -13,11 +14,14 @@
 #include "spriteHandler.h"
 #include "gameHandler.h"
 
+#define 	RAND_MAX   255
+
 uint8_t mapTileSet = 0;
 uint8_t currentMapBank = 5;
 
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
+unsigned char *currentMapPLN2;
 
 // current and old positions of the camera in pixels
 int16_t camera_y, old_camera_y;
@@ -84,107 +88,107 @@ void updateHud() BANKED
         //Line 1
         if (i == 5) //Cash Pos 0
         {
-            RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[0] -48U;
+            RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[0] -48U;
         }
         if (i == 6) //Cash Pos 1
         {
             if (ship.cashAmount >= 10)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[1] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[1] -48U;
             }
         }
         if (i == 7) //Cash Pos 2
         {
             if (ship.cashAmount >= 100)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[2] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[2] -48U;
             }
         }
         if (i == 8) //Cash Pos 3
         {
             if (ship.cashAmount >= 1000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[3] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[3] -48U;
             }
         }
         if (i == 9) //Cash Pos 4
         {
             if (ship.cashAmount >= 10000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[4] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[4] -48U;
             }
         }
         if (i == 10) //Cash Pos 5
         {
             if (ship.cashAmount >= 100000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[5] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[5] -48U;
             }
         }
         if (i == 11) //Cash Pos 6
         {
             if (ship.cashAmount >= 1000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[6] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[6] -48U;
             }
         }
         if (i == 12) //Cash Pos 7
         {
             if (ship.cashAmount >= 10000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[7] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[7] -48U;
             }
         }
         if (i == 13) //Cash Pos 8
         {
             if (ship.cashAmount >= 100000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[8] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[8] -48U;
             }
         }
         if (i == 14) //Cash Pos 9
         {
             if (ship.cashAmount >= 1000000000)
             {
-                RaptorWindowUpdatePLN0[i] = 0x66 + windowData.Cash[9] -48U;
+                RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[9] -48U;
             }
         }
         
         //Line 2
         if (i == 22) //Health Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Health[0] -17U;
+            RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[0] -17U;
         }
         if (i == 23) //Health Pos 2
         {
             if (ship.curHealth >= 10)
             {
-                RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Health[1] -17U;
+                RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[1] -17U;
             }
         }
         if (i == 24) //Health Pos 3
         {
             if (ship.curHealth >= 100)
             {
-                RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Health[2] -17U;
+                RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[2] -17U;
             }
         }
         if (i == 27) //Shield Pos 1
         {
-            RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Shield[0] -17U;
+            RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[0] -17U;
         }
         if (i == 28) //Shield Pos 2
         {
             if (ship.curShield >= 10)
             {
-                RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Shield[1] -17U;
+                RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[1] -17U;
             }
         }
         if (i == 29) //Shield Pos 3
         {
             if (ship.curShield >= 100)
             {
-                RaptorWindowUpdatePLN0[i] = 0x47 + windowData.Shield[2] -17U;
+                RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[2] -17U;
             }
         }
         if (i == 31) //Shield Icon Pos 1
@@ -224,7 +228,7 @@ void updateHud() BANKED
         }
         if (i == 38) //Weapon
         {
-            RaptorWindowUpdatePLN0[i] = 0x74 + ship.weapon;
+            RaptorWindowUpdatePLN0[i] = 0x75 + ship.weapon;
         }
     }
 }
@@ -245,25 +249,6 @@ void scroll_cam_up() BANKED
     {
         camera_y--;
     }
-
-    //mapTileSet = 1;
-
-    //uint8_t currentRow;
-    //uint8_t currentColumn;
-    //uint8_t entryValue = BravoWave1PLN2[(20 * currentRow) + currentColumn];
-    uint8_t entryValue = BravoWave1PLN2[(20 * (map_pos_y >> 2)) + 0];
-
-    if (entryValue == TileSetSecond)
-    {
-        printf("Test");
-    }
-
-    /*if (camera_y < -1124 && camera_y > -1450)
-    {
-        //mapTileSet = 1; //Switch map to second tileset.
-    } else if (camera_y < -1450) {
-        //mapTileSet = 0; //Switch map to second tileset.
-    }*/
 }
 
 void set_camera() NONBANKED
@@ -272,6 +257,28 @@ void set_camera() NONBANKED
     SCY_REG = camera_y;
 
     SWITCH_ROM(currentMapBank);
+
+    //uint8_t curTile;
+    uint8_t tileAttr;
+
+    for (uint8_t i = 21; i--;)
+    {
+        tileAttr = BravoWave1PLN2[(20 * map_pos_y) + i];
+        //curTile = get_bkg_tile_xy(i, map_pos_y);
+
+        if(tileAttr == TileSetSecond)
+        {
+            mapTileSet = 1;
+        }
+
+        /*if(tileAttr == DestrutableLand)
+        {
+            if ()
+            {
+                set_bkg_tile_xy(i, map_pos_y, 0x50);
+            }
+        }*/
+    }
 
     //Row that updates + 18u updates last line.
     map_pos_y = (uint8_t)(camera_y >> 3u); 
@@ -311,7 +318,7 @@ void gameInit() BANKED
     SHOW_SPRITES;
     SHOW_WIN;
 
-    set_win_data(101, 27, RaptorDialog);
+    set_win_data(102, 27, RaptorDialog);
 
     VBK_REG = 1;
     set_win_tiles(0, 0, 20, 2, RaptorWindowPLN1);

@@ -3,6 +3,9 @@
 #include "gb.h"
 #include "cgb.h"
 
+#include <stdio.h>
+#include <string.h>
+
 #include "maps.h"
 
 #include "commonFunc.h"
@@ -59,9 +62,9 @@ void BravoOne() NONBANKED
 
     VBK_REG = 1;
     set_bkg_data(0, 128, Bravo1MapTilesVBank1);
-    //set_bkg_data(128, 100, Bravo1MapTiles);
+    set_bkg_data(128, 128, Bravo1MapTilesVBank1);
     VBK_REG = 0;
-    set_bkg_data(0, 100, Bravo1MapTilesMain);
+    set_bkg_data(0, 102, Bravo1MapTilesMain);
     set_bkg_data(128, 128, Bravo1MapTilesSecond);
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
@@ -71,7 +74,10 @@ void BravoOne() NONBANKED
 
     currentMapPLN0 = (unsigned char*)BravoWave1PLN0;
     currentMapPLN1 = (unsigned char*)BravoWave1PLN1;
+    currentMapPLN2 = (unsigned char*)BravoWave1PLN2;
     
+    //memcpy(0xCA00, currentMapPLN2, sizeof(currentMapPLN2));
+
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = VBK_ATTRIBUTES;
