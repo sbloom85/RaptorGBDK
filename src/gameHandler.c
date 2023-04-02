@@ -25,8 +25,6 @@ int16_t camera_y, old_camera_y;
 uint8_t map_pos_y;
 uint8_t old_map_pos_y;
 
-static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
-
 struct windowStruct {
     char Cash[10];
     char Health[3];
@@ -229,34 +227,6 @@ void updateHud() BANKED
             RaptorWindowUpdatePLN0[i] = 0x74 + ship.weapon;
         }
     }
-}
-
-void fadein() NONBANKED
-{
-    for (int i = 4; --i;)
-    {
-        set_bkg_palette(0, 1, fadeout_palette + i);
-        set_sprite_palette(0, 1, fadeout_palette + i);
-        PerformantDelay(5);
-    }
-}
-
-//Thanks to basxto for the fadeout code.
-//Edited
-void fadeout() NONBANKED
-{
-    VBK_REG = 1;
-    set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
-    VBK_REG = 0;
-
-    for (int i = 1; i < 4; i++) 
-    {
-        set_bkg_palette(0, 1, fadeout_palette + i);
-        set_sprite_palette(0, 1, fadeout_palette + i);
-        PerformantDelay(18);
-    }
-
-    set_bkg_tiles(0, 0, 20, 18, BlckScrTiles);
 }
 
 void init_camera() BANKED

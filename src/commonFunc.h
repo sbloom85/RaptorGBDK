@@ -3,6 +3,8 @@
 
 #include "gb.h"
 #include "spriteStructs.h"
+#include "../backgrounds/BlankPLN1.h"
+#include "../backgrounds/BlackScrTiles.h"
 #include <stdio.h>
 
 #define IS_FRAME_256 ((game_time & 0xFF) == 0)
@@ -22,5 +24,7 @@ extern struct Player ship;
 extern struct Enemy eShip1;
 
 void PerformantDelay(uint8_t numLoops);
+void fadein();
+void fadeout();
 
 #endif

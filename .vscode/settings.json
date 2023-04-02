@@ -25,6 +25,8 @@
         "bgb_emu.h": "c",
         "gamesectionscommon.h": "c",
         "spritestructs.h": "c",
-        "gamesectionsb0.h": "c"
+        "gamesectionsb0.h": "c",
+        "raptorwindow.h": "c",
+        "blankpln1.h": "c"
     }
 }
