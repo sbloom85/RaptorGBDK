@@ -1,3 +1,5 @@
+#pragma bank 5
+
 /*
 
  ENEMYSHIP2.C

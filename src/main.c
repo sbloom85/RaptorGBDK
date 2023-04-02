@@ -1,15 +1,13 @@
 #pragma bank 0
 
 #include "gb.h"
-//#include "sgb.h"
 #include "cgb.h"
-#include "bgb_emu.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "commonFunc.h"
 #include "spriteHandler.h"
-#include "backgroundHandler.h"
+#include "gameSectionsB0.h"
+#include "gameSectionsB2.h"
+#include "gameHandler.h"
 
 void InitializeSound()
 {
@@ -20,8 +18,6 @@ void InitializeSound()
 
 void main(void)
 {
-    //BGB_MESSAGE("TEST"); //For debuging
-
     //ENABLE_RAM; //We don't need extra ram banks right now.
 
     SHOW_BKG;
@@ -29,10 +25,7 @@ void main(void)
     DISPLAY_ON;
 
     //Same CPU Speed as DMG for lower power usage.
-    if (getGBType() == 3)
-    {
-        cpu_slow();
-    }
+    cpu_slow();
 
     InitializeSound();
     //Bank 1:

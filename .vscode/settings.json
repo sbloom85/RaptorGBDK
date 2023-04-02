@@ -4,6 +4,27 @@
         "raptor.h": "c",
         "gamecharacter.h": "c",
         "raptormaptiles.h": "c",
-        "maps.h": "c"
+        "maps.h": "c",
+        "bravow1tilesgbc3.h": "c",
+        "bravow1tilesgbc.h": "c",
+        "backgroundhandler.h": "c",
+        "commonfunc.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "bravow1tilesmain.h": "c",
+        "bravow1map.h": "c",
+        "blackscrtiles.h": "c",
+        "bravow1tilessecond.h": "c",
+        "spritehandler.h": "c",
+        "bravow1tilesvbank1.h": "c",
+        "shoptiles.h": "c",
+        "tileattributes.h": "c",
+        "iterator": "c",
+        "utility": "c",
+        "cgb.h": "c",
+        "bgb_emu.h": "c",
+        "gamesectionscommon.h": "c",
+        "spritestructs.h": "c",
+        "gamesectionsb0.h": "c"
     }
 }

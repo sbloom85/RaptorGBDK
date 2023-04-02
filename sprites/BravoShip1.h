@@ -26,7 +26,7 @@
 #define __BravoShip1_h_INCLUDE
 
 /* Bank of tiles. */
-#define BravoShip1TilesBank 3
+#define BravoShip1TilesBank 5
 
 /* Super Gameboy palette 0 */
 #define BravoShip1TilesSGBPal0c0 6076
@@ -60,7 +60,7 @@
 
 /* Gameboy Color palette 1 */
 #define BravoShip1TilesCGBPal1c0 992
-#define BravoShip1TilesCGBPal1c1 26425
+#define BravoShip1TilesCGBPal1c1 32489
 #define BravoShip1TilesCGBPal1c2 15855
 #define BravoShip1TilesCGBPal1c3 5285
 

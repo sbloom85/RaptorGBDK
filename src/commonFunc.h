@@ -16,15 +16,11 @@
 #define IS_FRAME_ODD ((game_time & 0x1) == 1)
 #define IS_FRAME_EVEN ((game_time & 0x1) == 0)
 
-extern UBYTE _cpu;
 extern uint8_t game_time;
 
 extern struct Player ship;
 extern struct Enemy eShip1;
 
-uint8_t getGBType();
 void PerformantDelay(uint8_t numLoops);
-char* itoa8(int8_t i, char b[]);
-char* itoa32(int32_t i, char b[]);
 
 #endif

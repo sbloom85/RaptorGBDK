@@ -1,17 +1,13 @@
 #pragma bank 2
 
 #include "gb.h"
-//#include "sgb.h"
 #include "cgb.h"
 #include <stdio.h>
-//#include <stdlib.h>
 #include "spriteStructs.h"
 #include "projectile.h"
 #include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
 #include "../sprites/BravoShip1.h"
-
-#include "../maps/Bravo1DestructibleTiles.h"
 
 #include "sound.h"
 #include "spriteHandler.h"
@@ -80,11 +76,12 @@ void MoveEnemy()
 
 void initProjectiles() BANKED
 {
-    uint8_t startID = 8; //Everything below 8 is resurved for ship.
+    //Everything below 8 is resurved for ship.
+    uint8_t shotStartID = 8;
     for (int8_t i = 0; i < MAX_PROJECTILES; i++)
     {
-        newProjectile[i].id = startID;
-        startID++;
+        newProjectile[i].id = shotStartID;
+        shotStartID++;
         newProjectile[i].enabled = 0;
     }
 }
@@ -213,7 +210,7 @@ void SetupEnemyShip() NONBANKED
 
     if (eShip1.enabled)
     {
-        SWITCH_ROM_MBC5(BravoShip1TilesBank);
+        SWITCH_ROM(BravoShip1TilesBank);
     
         // Load sprites for ship
         set_sprite_data(16, 8, BravoShip1Tiles);
@@ -240,7 +237,7 @@ void SetupEnemyShip() NONBANKED
         //set_sprite_prop(24, 2);
         //set_sprite_prop(25, 2);
 
-        SWITCH_ROM_MBC5(2);
+        SWITCH_ROM(2);
     }
 
     /*set_sprite_data(16, 8, eShip01);
