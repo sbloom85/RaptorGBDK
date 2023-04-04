@@ -27,6 +27,7 @@
         "spritestructs.h": "c",
         "gamesectionsb0.h": "c",
         "raptorwindow.h": "c",
-        "blankpln1.h": "c"
+        "blankpln1.h": "c",
+        "wprojectiles.h": "c"
     }
 }
