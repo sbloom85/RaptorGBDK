@@ -8,7 +8,7 @@
    Section       : 
    Bank          : 5
    Map size      : 20 x 255
-   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\BravoW1BGTilesMain.gbr
+   Tile set      : C:\gbdk\GBTD_GBMB_release\GBTD\BravoW1BGTilesSGB.gbr
    Plane count   : 3 planes (24 bits)
    Plane order   : Planes are continues
    Tile offset   : 0

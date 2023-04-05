@@ -31,7 +31,7 @@ void WepShop() BANKED
 
     while (1)
     {
-        PerformantDelay(1);
+        wait_vbl_done();
         
         if (joypad() & J_A)
         {

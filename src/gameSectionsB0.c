@@ -42,7 +42,7 @@ void Menu() NONBANKED
 
     while (1)
     {
-        PerformantDelay(1);
+        wait_vbl_done();
 
         if (joypad() & J_A)
         {
@@ -57,17 +57,23 @@ void Menu() NONBANKED
 
 void BravoOne() NONBANKED
 {
-    mapTileSet = 0;
+    mapTileSet = 1;
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
     
     SWITCH_ROM(Bravo1MapTilesMainBank);
 
     VBK_REG = 1;
-    set_bkg_data(0, 128, Bravo1MapTilesVBank1);
+    //set_bkg_data(0, 128, Bravo1MapTilesVBank1);
     set_bkg_data(128, 128, Bravo1MapTilesVBank1);
     VBK_REG = 0;
-    set_bkg_data(0, 102, Bravo1MapTilesMain);
-    set_bkg_data(128, 128, Bravo1MapTilesSecond);
+    if (sgb_check())
+    {
+        set_bkg_data(0, 128, Bravo1MapTilesMain);
+    } else {
+        set_bkg_data(0, 102, Bravo1MapTilesMain);
+    }
+    
+    set_bkg_data(128, 128, Bravo1MapTilesSGB);
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
@@ -85,7 +91,7 @@ void BravoOne() NONBANKED
         VBK_REG = VBK_ATTRIBUTES;
         set_bkg_based_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN1, 20, 0);
         VBK_REG = VBK_TILES;
-        set_bkg_based_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
+        set_bkg_based_submap(0, map_pos_y +i, 20, 1, (unsigned char*)currentMapPLN0, 20, 128);
     }
 
     gameLoop();

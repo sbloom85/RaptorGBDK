@@ -14,7 +14,7 @@
 
 uint8_t doneScroll = 0;
 
-uint8_t mapTileSet = 0;
+uint8_t mapTileSet = 1;
 uint8_t currentMapBank = 5;
 
 unsigned char *currentMapPLN0;
@@ -235,7 +235,6 @@ void scroll_cam_up() BANKED
     {
         camera_y--;
         //fake_camera_x--;
-        //doneScroll = 0;
     } else if (camera_y <= -2048) {
         doneScroll = 1;
     }
@@ -363,7 +362,7 @@ void gameLoop() NONBANKED
 
         set_camera();
 
-        //tileHitDetection();
+        tileHitDetection();
 
         scroll_cam_up();
 

@@ -25,7 +25,7 @@ void main(void)
     DISPLAY_ON;
 
     //Same CPU Speed as DMG for lower power usage.
-    cpu_slow();
+    //cpu_slow();
 
     InitializeSound();
     //Bank 1:
