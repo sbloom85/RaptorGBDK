@@ -22,6 +22,8 @@
 #define IS_FRAME_ODD ((game_time & 0x1) == 1)
 #define IS_FRAME_EVEN ((game_time & 0x1) == 0)
 
+extern UBYTE _cpu;
+
 //Place in free spot in HighRam
 extern uint8_t AT(0xFFA0) game_time;
 
@@ -30,6 +32,7 @@ extern struct Player ship;
 extern struct Enemy eShip1;
 
 void PerformantDelay(uint8_t numLoops);
+uint8_t getGBType();
 void SGBTransferPalettes(const UWORD *SGBPallete);
 void fadein();
 void fadeout();
