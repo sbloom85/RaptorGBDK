@@ -17,7 +17,8 @@
 
 struct projectile newProjectile[MAX_PROJECTILES];
 
-uint8_t game_time;
+//Place in free spot in HighRam
+uint8_t AT(0xFFA0) game_time;
 
 // Game Character Struct
 struct Player ship;
@@ -88,14 +89,12 @@ void initProjectiles() BANKED
 
 void moveProjectiles() NONBANKED
 {
-    uint8_t objHit = 0;
-
     for (uint8_t i = 0; i < 8; i++)
     {
         if (newProjectile[i].enabled)
         {
             newProjectile[i].y -= 4;
-            if (newProjectile[i].y > 8 && objHit == 0)
+            if (newProjectile[i].y > 8)
             {
                 move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
             } else {

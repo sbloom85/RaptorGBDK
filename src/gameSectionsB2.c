@@ -31,6 +31,8 @@ void WepShop() BANKED
 
     while (1)
     {
+        PerformantDelay(1);
+        
         if (joypad() & J_A)
         {
             fadeout();
@@ -83,7 +85,7 @@ void Hanger() NONBANKED
     {
         uint8_t joyInput = joypad();
 
-        delay(100);
+        PerformantDelay(8);
 
         if (joyInput & J_LEFT)
         {

@@ -42,6 +42,8 @@ void Menu() NONBANKED
 
     while (1)
     {
+        PerformantDelay(1);
+
         if (joypad() & J_A)
         {
             SWITCH_ROM(2);
