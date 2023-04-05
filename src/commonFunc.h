@@ -30,6 +30,7 @@ extern struct Player ship;
 extern struct Enemy eShip1;
 
 void PerformantDelay(uint8_t numLoops);
+void SGBTransferPalettes(const UWORD *SGBPallete);
 void fadein();
 void fadeout();
 

@@ -33,6 +33,10 @@ static const UWORD bkgShopPalette[] = {
     ShopTilesCGBPal3c0, ShopTilesCGBPal3c1, ShopTilesCGBPal3c2, ShopTilesCGBPal3c3,
 };
 
+static const UWORD bkgSGBBravo1Palette[] = {
+  Bravo1MapTilesMainCGBPal1c0, Bravo1MapTilesMainCGBPal1c1, RGB(5, 5, 5), RGB(2, 2, 2)
+};
+
 static const UWORD bkgBravo1Palette[] = {
 	  Bravo1MapTilesMainCGBPal0c0, Bravo1MapTilesMainCGBPal0c1, Bravo1MapTilesMainCGBPal0c2, Bravo1MapTilesMainCGBPal0c3,
     Bravo1MapTilesMainCGBPal1c0, Bravo1MapTilesMainCGBPal1c1, Bravo1MapTilesMainCGBPal1c2, Bravo1MapTilesMainCGBPal1c3,

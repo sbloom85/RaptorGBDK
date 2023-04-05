@@ -19,6 +19,9 @@ void Title() NONBANKED
 {
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(Intro_palettes);
+    }
     //VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
@@ -35,6 +38,9 @@ void Menu() NONBANKED
     SWITCH_ROM(1);
     set_bkg_palette(0, Menu_PALETTE_COUNT, &Menu_palettes[0]);
     set_bkg_data(0, Menu_TILE_COUNT, Menu_tiles);
+    if (sgb_check()) {
+        SGBTransferPalettes(Menu_palettes);
+    }
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Menu_map_attributes);
     VBK_REG = 0;
@@ -59,6 +65,10 @@ void BravoOne() NONBANKED
 {
     mapTileSet = 1;
     set_bkg_palette(0, 8, &bkgBravo1Palette[0]);
+
+    if (sgb_check()) {
+        SGBTransferPalettes(bkgSGBBravo1Palette);
+    }
     
     SWITCH_ROM(Bravo1MapTilesMainBank);
 
