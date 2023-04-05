@@ -3,7 +3,7 @@
 #include "gb.h"
 #include "cgb.h"
 #include <stdio.h>
-#include "spriteStructs.h"
+//#include "spriteStructs.h"
 #include "projectile.h"
 #include "../sprites/Cursor.h"
 #include "../sprites/Raptor.h"
@@ -49,16 +49,16 @@ void MoveCursor(uint8_t x, uint8_t y) NONBANKED
 }
 
 // Move the character
-void MovePlayer(struct Player* character, uint8_t x, uint8_t y) BANKED
+void MovePlayer(uint8_t x, uint8_t y) BANKED
 {
-    move_sprite(character->spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
-    move_sprite(character->spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
-    move_sprite(character->spriteids[2], x + (spriteSize + 0), y + (spriteSize + 8));
-    move_sprite(character->spriteids[3], x + (spriteSize + 8), y + (spriteSize + 8));
-    move_sprite(character->spriteids[4], x + (spriteSize - 8), y + (spriteSize + 16));
-    move_sprite(character->spriteids[5], x + (spriteSize + 0), y + (spriteSize + 16));
-    move_sprite(character->spriteids[6], x + (spriteSize + 8), y + (spriteSize + 16));
-    move_sprite(character->spriteids[7], x + (spriteSize + 16), y + (spriteSize + 16));
+    move_sprite(ship.spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
+    move_sprite(ship.spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
+    move_sprite(ship.spriteids[2], x + (spriteSize + 0), y + (spriteSize + 8));
+    move_sprite(ship.spriteids[3], x + (spriteSize + 8), y + (spriteSize + 8));
+    move_sprite(ship.spriteids[4], x + (spriteSize - 8), y + (spriteSize + 16));
+    move_sprite(ship.spriteids[5], x + (spriteSize + 0), y + (spriteSize + 16));
+    move_sprite(ship.spriteids[6], x + (spriteSize + 8), y + (spriteSize + 16));
+    move_sprite(ship.spriteids[7], x + (spriteSize + 16), y + (spriteSize + 16));
 }
 
 void MoveEnemy()
@@ -159,6 +159,7 @@ void setupShip() BANKED
     ship.visible = 1;
     ship.numShields = 0;
     ship.curHealth = 100;
+    ship.cashAmount = 0;
 
     // Load sprites for ship
     set_sprite_data(0, 1, RaptorTLE0);
@@ -185,8 +186,9 @@ void setupShip() BANKED
     set_sprite_data(7, 1, RaptorTLE7);
     set_sprite_tile(7, 7);
     ship.spriteids[7] = 7;
+
     SHOW_SPRITES;
-    MovePlayer(&ship, ship.x, ship.y);
+    MovePlayer(ship.x, ship.y);
 }
 
 void SetupEnemyShip() NONBANKED
@@ -268,13 +270,13 @@ void inputLoop() BANKED
         if  ((joyInput & J_UP) && ship.y > 8)
         {
             ship.y -= moveSpeed;
-            MovePlayer(&ship, ship.x, ship.y);
+            MovePlayer(ship.x, ship.y);
             
             SetColliders();
         } else if ((joyInput & J_DOWN) && ship.y < 110)
         {
             ship.y += moveSpeed;
-            MovePlayer(&ship, ship.x, ship.y);
+            MovePlayer(ship.x, ship.y);
 
             SetColliders();
         }
@@ -282,13 +284,13 @@ void inputLoop() BANKED
         if ((joyInput & J_LEFT) && ship.x > 4)
         {
             ship.x -= moveSpeed;
-            MovePlayer(&ship, ship.x, ship.y);
+            MovePlayer(ship.x, ship.y);
 
             SetColliders();
         } else if ((joyInput & J_RIGHT) && ship.x < 140)
         {
             ship.x += moveSpeed;
-            MovePlayer(&ship, ship.x, ship.y);
+            MovePlayer(ship.x, ship.y);
 
             SetColliders();
         }

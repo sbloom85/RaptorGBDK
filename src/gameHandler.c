@@ -17,6 +17,8 @@ uint8_t doneScroll = 0;
 uint8_t mapTileSet = 1;
 uint8_t currentMapBank = 5;
 
+extern struct Player ship;
+
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
 unsigned char *currentMapPLN2;
@@ -79,6 +81,8 @@ char* itoa32(int32_t i, char b[]) BANKED
 
 void updateHud() BANKED
 {
+    
+    
     if (IS_FRAME_2)
     {
         itoa32(ship.cashAmount, windowData.Cash);

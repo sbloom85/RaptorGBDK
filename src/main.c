@@ -18,8 +18,6 @@ void InitializeSound()
 
 void main(void)
 {
-    //ENABLE_RAM; //We don't need extra ram banks right now.
-
     SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;

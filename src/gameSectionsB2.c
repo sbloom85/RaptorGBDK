@@ -12,6 +12,8 @@
 #include "gameSectionsB0.h"
 #include "gameSectionsB2.h"
 
+#include "sram/sramHandler.h"
+
 const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
@@ -149,9 +151,9 @@ void Hanger() NONBANKED
         } else if (joyInput & J_A && selection == Shop) {
             fadeout();
             WepShop();
-        } /*else if (joyInput & J_A && selection == Save) {
-            //Todo
-        }*/ else if (joyInput & J_A && selection == Exit) {
+        } else if (joyInput & J_A && selection == Save) {
+            saveData();
+        } else if (joyInput & J_A && selection == Exit) {
             fadeout();
             SWITCH_ROM(1);
             HIDE_SPRITES;

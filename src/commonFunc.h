@@ -28,7 +28,6 @@ extern UBYTE _cpu;
 extern uint8_t AT(0xFFA0) game_time;
 
 extern struct projectile newProjectile[20];
-extern struct Player ship;
 extern struct Enemy eShip1;
 
 void PerformantDelay(uint8_t numLoops);
