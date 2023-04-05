@@ -1,3 +1,5 @@
+#pragma bank 2
+
 #include "../gb.h"
 #include "../spriteStructs.h"
 
@@ -5,9 +7,10 @@
 
 extern struct Player ship;
 
-char playerName[12] = {"PlayerName"};
-char playerCoSign[12] = {"CallSign"};
-struct Player shipData;
+//8 Arrays each 12 Chars long
+char playerName[12][8];
+char playerCoSign[12][8];
+struct Player shipSavData;
 
 void saveData()
 {
@@ -15,19 +18,27 @@ void saveData()
 
     SWITCH_RAM(0);
     
-    shipData.cashAmount = ship.cashAmount;
-    shipData.colliderBottom = ship.colliderBottom;
-    shipData.colliderLeft = ship.colliderLeft;
-    shipData.colliderRight = ship.colliderRight;
-    shipData.colliderTop = ship.colliderTop;
-    shipData.curHealth = ship.curHealth;
-    shipData.curShield = ship.curShield;
-    shipData.enabled = ship.enabled;
-    shipData.height = ship.height;
-    shipData.ionScanner = ship.ionScanner;
-    shipData.mBomb = ship.mBomb;
-    shipData.numShields = ship.numShields;
+    playerName[0][0] = (char)"Test1";
+    playerCoSign[0][0] = (char)"Test2";
 
+    shipSavData.weapon = ship.weapon;
+    shipSavData.mBomb = ship.mBomb;
+    shipSavData.ionScanner = ship.ionScanner;
+    shipSavData.numShields = ship.numShields;
+
+    shipSavData.ownsMachGun = ship.ownsMachGun;
+    shipSavData.ownsAirMiss = ship.ownsAirMiss;
+    shipSavData.ownsGrnMiss = ship.ownsGrnMiss;
+    shipSavData.ownsPlasCannon = ship.ownsPlasCannon;
+    shipSavData.ownsDumbFire = ship.ownsDumbFire;
+    shipSavData.ownsMicroMiss = ship.ownsMicroMiss;
+    shipSavData.ownsPulseCannon = ship.ownsPulseCannon;
+    shipSavData.ownsDeathRay = ship.ownsDeathRay;
+
+    shipSavData.curHealth = ship.curHealth;
+    shipSavData.curShield = ship.curShield;
+    shipSavData.cashAmount = ship.cashAmount;
+    
     DISABLE_RAM;
 }
 
@@ -37,18 +48,26 @@ void loadData()
 
     SWITCH_RAM(0);
 
-    ship.cashAmount = shipData.cashAmount;
-    ship.colliderBottom = shipData.colliderBottom;
-    ship.colliderLeft = shipData.colliderLeft;
-    ship.colliderRight = shipData.colliderRight;
-    ship.colliderTop = shipData.colliderTop;
-    ship.curHealth = shipData.curHealth;
-    ship.curShield = shipData.curShield;
-    ship.enabled = shipData.enabled;
-    ship.height = shipData.height;
-    ship.ionScanner = shipData.ionScanner;
-    ship.mBomb = shipData.mBomb;
-    ship.numShields = shipData.numShields;
+    playerName[0][0] = (char)"Test1";
+    playerCoSign[0][0] = (char)"Test2";
+
+    ship.weapon = shipSavData.weapon;
+    ship.mBomb = shipSavData.mBomb;
+    ship.ionScanner = shipSavData.ionScanner;
+    ship.numShields = shipSavData.numShields;
+
+    ship.ownsMachGun = shipSavData.ownsMachGun;
+    ship.ownsAirMiss = shipSavData.ownsAirMiss;
+    ship.ownsGrnMiss = shipSavData.ownsGrnMiss;
+    ship.ownsPlasCannon = shipSavData.ownsPlasCannon;
+    ship.ownsDumbFire = shipSavData.ownsDumbFire;
+    ship.ownsMicroMiss = shipSavData.ownsMicroMiss;
+    ship.ownsPulseCannon = shipSavData.ownsPulseCannon;
+    ship.ownsDeathRay = shipSavData.ownsDeathRay;
+
+    ship.curHealth = shipSavData.curHealth;
+    ship.curShield = shipSavData.curShield;
+    ship.cashAmount = shipSavData.cashAmount;
 
     DISABLE_RAM;
 }
