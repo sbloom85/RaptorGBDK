@@ -24,6 +24,7 @@
 
 extern UBYTE _cpu;
 
+
 //Place in free spot in HighRam
 extern uint8_t AT(0xFFA0) game_time;
 
@@ -35,5 +36,7 @@ uint8_t getGBType();
 void SGBTransferPalettes(const UWORD *SGBPallete);
 void fadein();
 void fadeout();
+void fadeoutDMG();
+void fadeoutCGB();
 
 #endif

@@ -1,4 +1,6 @@
 
+#pragma bank 0
+
 #include "../gb.h"
 #include "../spriteStructs.h"
 

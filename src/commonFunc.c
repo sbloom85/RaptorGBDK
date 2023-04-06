@@ -10,6 +10,8 @@
 
 #include <string.h>
 
+int8_t BGP_REG_OLD;
+
 static const uint16_t fadeout_palette[] = {RGB_WHITE, RGB_LIGHTGRAY,  RGB_DARKGRAY, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 
 // More CPU efficient delay
@@ -80,7 +82,31 @@ void fadein() NONBANKED
 
 //Thanks to basxto for the fadeout code.
 //Edited
-void fadeout() NONBANKED
+void fadeout()
+{
+    if (getGBType() == 5 || getGBType() == 6)
+    {
+        fadeoutCGB();
+    } else {
+        fadeoutDMG();
+    }
+}
+
+//Must be Banked to work
+void fadeoutDMG() BANKED
+{
+    BGP_REG_OLD = BGP_REG;
+    for (int i = 1; i != 4; ++i) 
+    {
+        BGP_REG = (0xFFE4 >> (i << 1));
+        PerformantDelay(18);
+    }
+    BGP_REG = BGP_REG_OLD;
+
+    set_bkg_tiles(0, 0, 20, 18, BlckScrTiles);
+}
+
+void fadeoutCGB() NONBANKED
 {
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Blank_map_attributes);
