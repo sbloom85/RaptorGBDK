@@ -26,11 +26,12 @@ unsigned char *currentMapPLN2;
 
 // current and old positions of the camera in pixels
 //int16_t  fake_camera_x; //AT(0xFFA1)
-int16_t camera_y, old_camera_y;
+int16_t AT(0xFFA1) camera_y;
+int16_t AT(0xFFA3) old_camera_y;
 // current and old position of the map in tiles
-uint8_t map_pos_x;
-uint8_t map_pos_y;
-uint8_t old_map_pos_y;
+//uint8_t map_pos_x;
+uint8_t AT(0xFFA5) map_pos_y;
+uint8_t AT(0xFFA6) old_map_pos_y;
 
 struct windowStruct {
     char Cash[10];

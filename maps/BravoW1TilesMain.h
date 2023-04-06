@@ -26,7 +26,7 @@
 #define __BravoW1TilesMain_h_INCLUDE
 
 /* Bank of tiles. */
-#define Bravo1MapTilesMainBank 3
+#define Bravo1MapTilesMainBank 4
 
 /* Super Gameboy palette 0 */
 #define Bravo1MapTilesMainSGBPal0c0 6076
