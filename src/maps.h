@@ -34,7 +34,7 @@ static const UWORD bkgShopPalette[] = {
 };
 
 static const UWORD bkgSGBBravo1Palette[] = {
-  RGB(31, 31, 20), Bravo1MapTilesMainCGBPal2c0, RGB(0, 12, 20), RGB(6, 6, 6)
+  RGB(31, 31, 20), RGB(0, 8, 16), RGB(0, 12, 20), RGB(6, 6, 6)
 };
 
 static const UWORD bkgBravo1Palette[] = {
