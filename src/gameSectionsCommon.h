@@ -1,6 +1,6 @@
 #ifndef GAMESECTC_H_INCLUDE
 #define GAMESECTC_H_INCLUDE
-#include "gb.h"
+#include <gb/gb.h>
 
 extern int8_t BGP_REG_OLD;
 extern uint8_t mapTileSet;

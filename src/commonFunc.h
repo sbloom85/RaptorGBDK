@@ -1,7 +1,7 @@
 #ifndef COMMONFUNC_H_INCLUDE
 #define COMMONFUNC_H_INCLUDE
 
-#include "gb.h"
+#include <gb/gb.h>
 #include "spriteStructs.h"
 #include "projectile.h"
 #include "../backgrounds/BlankPLN1.h"

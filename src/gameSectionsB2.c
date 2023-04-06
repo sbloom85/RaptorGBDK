@@ -1,7 +1,7 @@
 #pragma bank 2
 
-#include "gb.h"
-#include "cgb.h"
+#include <gb/gb.h>
+#include <gb/cgb.h>
 
 #include "maps.h"
 

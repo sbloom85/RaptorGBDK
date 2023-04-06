@@ -1,8 +1,8 @@
 #pragma bank 0
 
-#include "gb.h"
-#include "sgb.h"
-#include "cgb.h"
+#include <gb/gb.h>
+#include <gb/sgb.h>
+#include <gb/cgb.h>
 #include "commonFunc.h"
 
 #include <stdio.h>

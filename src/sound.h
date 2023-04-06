@@ -32,7 +32,7 @@
 // 1100 0011    is 0xC3, initialize, not consecutive, frequency = MSB + LSB = 011 0000 0000 = 0x300
     
 
-#include "gb.h"
+#include <gb/gb.h>
 #include "hUGEDriver.h"
 #include <stddef.h>
 
