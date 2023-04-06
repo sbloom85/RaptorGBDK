@@ -21,7 +21,8 @@ struct projectile newProjectile[MAX_PROJECTILES];
 uint8_t AT(0xFFA0) game_time;
 
 // Game Character Struct
-struct Player ship;
+struct PlayerData playData;
+struct PlayerShip ship;
 struct Enemy eShip1;
 
 const uint8_t spriteSize = 8;
@@ -110,8 +111,8 @@ void fireWeapon() BANKED
     {
         if (!newProjectile[shots].enabled)
         {
-            ship.cashAmount += 100; //Disable later.
-            switch (ship.weapon)
+            playData.cashAmount += 100; //Disable later.
+            switch (playData.weapon)
             {
                 case 0:
                     MachineGunSound();    // Plays sound effect from sound.h
@@ -146,6 +147,27 @@ void fireWeapon() BANKED
     shots = 0;
 }
 
+void playerInit() BANKED
+{
+    playData.weapon = 0;
+    playData.mBomb = 0;
+    playData.ionScanner = 0;
+    playData.numShields = 0;
+
+    playData.ownsMachGun = 1;
+    playData.ownsAirMiss = 0;
+    playData.ownsGrnMiss = 0;
+    playData.ownsPlasCannon = 0;
+    playData.ownsDumbFire = 0;
+    playData.ownsMicroMiss = 0;
+    playData.ownsPulseCannon = 0;
+    playData.ownsDeathRay = 0;
+
+    playData.curHealth = 75;
+    playData.curShield = 0;
+    playData.cashAmount = 10000;
+}
+
 // Initialize ship struct
 void setupShip() BANKED
 {
@@ -157,9 +179,6 @@ void setupShip() BANKED
     ship.height = 24;
     ship.enabled = 1;
     ship.visible = 1;
-    ship.numShields = 0;
-    ship.curHealth = 100;
-    ship.cashAmount = 0;
 
     // Load sprites for ship
     set_sprite_data(0, 1, RaptorTLE0);
@@ -303,11 +322,11 @@ void inputLoop() BANKED
         }
         else if (joyInput & J_B && IS_FRAME_4)
         {
-            if (ship.weapon < 4)
+            if (playData.weapon < 4)
             {
-                ship.weapon++;
+                playData.weapon++;
             } else {
-                ship.weapon = 0;
+                playData.weapon = 0;
             }
         }
 

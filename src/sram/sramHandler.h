@@ -3,7 +3,7 @@
 
 #include "../gb.h"
 
-void saveData();
-void loadData();
+void saveData(uint8_t saveSlot);
+void loadData(uint8_t saveSlot);
 
 #endif

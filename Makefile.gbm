@@ -40,7 +40,7 @@ compile.bat: Makefile
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 	$(LCC) $(LCCFLAGS) -c -o $@ $<
 
-# Compile .c files in "src/" to .o object files
+# Compile .c files in "src/sram" to .o object files
 $(OBJDIR)/%.o:	$(SAVDIR)/%.c
 	$(LCC) $(LCCFLAGS) -Wf-ba0 -c -o $@ $<
 

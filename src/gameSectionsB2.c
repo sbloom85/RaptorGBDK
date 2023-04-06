@@ -88,6 +88,8 @@ void Hanger() NONBANKED
     InitCursor();
     MoveCursor(30, 74); //Default to Fly for now.
 
+    playerInit();
+
     SHOW_SPRITES;
     SHOW_BKG;
 
@@ -152,7 +154,7 @@ void Hanger() NONBANKED
             fadeout();
             WepShop();
         } else if (joyInput & J_A && selection == Save) {
-            saveData();
+            saveData(0);
         } else if (joyInput & J_A && selection == Exit) {
             fadeout();
             SWITCH_ROM(1);

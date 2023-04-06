@@ -1,73 +1,77 @@
-#pragma bank 2
 
 #include "../gb.h"
 #include "../spriteStructs.h"
 
+#include <stdio.h>
+#include <string.h>
+
 #include "sramHandler.h"
 
-extern struct Player ship;
+#define MAX_SAVES 4
 
-//8 Arrays each 12 Chars long
-char playerName[12][8];
-char playerCoSign[12][8];
-struct Player shipSavData;
+extern struct PlayerData playData;
 
-void saveData()
+char playerName[12][MAX_SAVES];
+char playerCoSign[12][MAX_SAVES];
+struct PlayerData playSavData[MAX_SAVES];
+//struct PlayerData playSavData[MAX_SAVES];
+
+void saveData(uint8_t saveSlot)
 {
     ENABLE_RAM;
 
     SWITCH_RAM(0);
     
-    playerName[0][0] = (char)"Test1";
-    playerCoSign[0][0] = (char)"Test2";
+    memcpy(playerName[saveSlot], "Test1", 5);
+    memcpy(playerCoSign[saveSlot], "Test2", 5);
 
-    shipSavData.weapon = ship.weapon;
-    shipSavData.mBomb = ship.mBomb;
-    shipSavData.ionScanner = ship.ionScanner;
-    shipSavData.numShields = ship.numShields;
+    playSavData[saveSlot].weapon = playData.weapon;
+    playSavData[saveSlot].mBomb = playData.mBomb;
+    playSavData[saveSlot].ionScanner = playData.ionScanner;
+    playSavData[saveSlot].numShields = playData.numShields;
 
-    shipSavData.ownsMachGun = ship.ownsMachGun;
-    shipSavData.ownsAirMiss = ship.ownsAirMiss;
-    shipSavData.ownsGrnMiss = ship.ownsGrnMiss;
-    shipSavData.ownsPlasCannon = ship.ownsPlasCannon;
-    shipSavData.ownsDumbFire = ship.ownsDumbFire;
-    shipSavData.ownsMicroMiss = ship.ownsMicroMiss;
-    shipSavData.ownsPulseCannon = ship.ownsPulseCannon;
-    shipSavData.ownsDeathRay = ship.ownsDeathRay;
+    playSavData[saveSlot].ownsMachGun = playData.ownsMachGun;
+    playSavData[saveSlot].ownsAirMiss = playData.ownsAirMiss;
+    playSavData[saveSlot].ownsGrnMiss = playData.ownsGrnMiss;
+    playSavData[saveSlot].ownsPlasCannon = playData.ownsPlasCannon;
+    playSavData[saveSlot].ownsDumbFire = playData.ownsDumbFire;
+    playSavData[saveSlot].ownsMicroMiss = playData.ownsMicroMiss;
+    playSavData[saveSlot].ownsPulseCannon = playData.ownsPulseCannon;
+    playSavData[saveSlot].ownsDeathRay = playData.ownsDeathRay;
 
-    shipSavData.curHealth = ship.curHealth;
-    shipSavData.curShield = ship.curShield;
-    shipSavData.cashAmount = ship.cashAmount;
-    
+    playSavData[saveSlot].curHealth = playData.curHealth;
+    playSavData[saveSlot].curShield = playData.curShield;
+    playSavData[saveSlot].cashAmount = playData.cashAmount;
+
     DISABLE_RAM;
 }
 
-void loadData()
+/*void loadData(uint8_t saveSlot)
 {
     ENABLE_RAM;
 
     SWITCH_RAM(0);
+    
+    //memcpy(playerName[saveSlot], "Test1", 5);
+    //memcpy(playerCoSign[saveSlot], "Test2", 5);
 
-    playerName[0][0] = (char)"Test1";
-    playerCoSign[0][0] = (char)"Test2";
+    ship.weapon = playSavData[saveSlot].weapon;
+    ship.mBomb = playSavData[saveSlot].mBomb;
+    ship.ionScanner = playSavData[saveSlot].ionScanner;
+    ship.numShields = playSavData[saveSlot].numShields;
 
-    ship.weapon = shipSavData.weapon;
-    ship.mBomb = shipSavData.mBomb;
-    ship.ionScanner = shipSavData.ionScanner;
-    ship.numShields = shipSavData.numShields;
+    ship.ownsMachGun = playSavData[saveSlot].ownsMachGun;
+    ship.ownsAirMiss = playSavData[saveSlot].ownsAirMiss;
+    ship.ownsGrnMiss = playSavData[saveSlot].ownsGrnMiss;
+    ship.ownsPlasCannon = playSavData[saveSlot].ownsPlasCannon;
+    ship.ownsDumbFire = playSavData[saveSlot].ownsDumbFire;
+    ship.ownsMicroMiss = playSavData[saveSlot].ownsMicroMiss;
+    ship.ownsPulseCannon = playSavData[saveSlot].ownsPulseCannon;
+    ship.ownsDeathRay = playSavData[saveSlot].ownsDeathRay;
 
-    ship.ownsMachGun = shipSavData.ownsMachGun;
-    ship.ownsAirMiss = shipSavData.ownsAirMiss;
-    ship.ownsGrnMiss = shipSavData.ownsGrnMiss;
-    ship.ownsPlasCannon = shipSavData.ownsPlasCannon;
-    ship.ownsDumbFire = shipSavData.ownsDumbFire;
-    ship.ownsMicroMiss = shipSavData.ownsMicroMiss;
-    ship.ownsPulseCannon = shipSavData.ownsPulseCannon;
-    ship.ownsDeathRay = shipSavData.ownsDeathRay;
-
-    ship.curHealth = shipSavData.curHealth;
-    ship.curShield = shipSavData.curShield;
-    ship.cashAmount = shipSavData.cashAmount;
+    ship.curHealth = playSavData[saveSlot].curHealth;
+    ship.curShield = playSavData[saveSlot].curShield;
+    ship.cashAmount = playSavData[saveSlot].cashAmount;
 
     DISABLE_RAM;
-}
+}*/

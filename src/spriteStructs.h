@@ -7,15 +7,10 @@ enum dmgTypes {DmgNormal = 0, DmgMissile = 1, DmgBomb = 3};
 enum weapons {MachGun = 0, AirMiss = 1, GrnMiss = 2,
               PlasCannon = 3, DumbFire = 4, DeathRay = 5};
 
-// Generic character structure: id, position, graphics
-struct Player
-{
-    uint8_t  spriteids[12];     // Character uses 12 sprites
-    uint8_t  x, y,              // Character X and Y positions
-             width, height;     // Character width and height
-    uint8_t  visible:1,         // Bool
-             enabled:1,         // Bool
-             weapon:3,          // Upto 7 diffrent weapons
+#define MAX_SAVES 4
+
+struct PlayerData {
+    uint8_t  weapon:3,          // Upto 7 diffrent weapons
              mBomb:2,           // Upto 3 mega bombs
              ionScanner:1;      // Bool
     uint8_t  numShields;        // Values upto 255
@@ -30,6 +25,17 @@ struct Player
     int8_t   curHealth,         // Values upto 127
              curShield;         // Values upto 127
     int32_t  cashAmount;        // Values upto 2147483647
+};
+
+// Generic character structure: id, position, graphics
+struct PlayerShip
+{
+    uint8_t  spriteids[12];     // Character uses 12 sprites
+    uint8_t  x, y,              // Character X and Y positions
+             width, height;     // Character width and height
+    uint8_t  visible:1,         // Bool
+             enabled:1;         // Bool
+
     uint8_t  colliderLeft;      // Left collider
     uint8_t  colliderRight;     // Right collider
     uint8_t  colliderTop;       // Top collider

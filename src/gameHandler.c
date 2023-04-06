@@ -12,12 +12,13 @@
 #include "spriteHandler.h"
 #include "gameHandler.h"
 
+extern struct PlayerData playData;
+extern struct PlayerShip ship;
+
 uint8_t doneScroll = 0;
 
 uint8_t mapTileSet = 1;
 uint8_t currentMapBank = 5;
-
-extern struct Player ship;
 
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
@@ -85,9 +86,9 @@ void updateHud() BANKED
     
     if (IS_FRAME_2)
     {
-        itoa32(ship.cashAmount, windowData.Cash);
-        itoa8(ship.curHealth, windowData.Health);
-        itoa8(ship.curShield, windowData.Shield);
+        itoa32(playData.cashAmount, windowData.Cash);
+        itoa8(playData.curHealth, windowData.Health);
+        itoa8(playData.curShield, windowData.Shield);
 
         for (uint8_t i = 40; i--;)
         {
@@ -98,55 +99,55 @@ void updateHud() BANKED
                     RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[0] -48U;
                     break;
                 case 6: //Cash Pos 1
-                    if (ship.cashAmount >= 10)
+                    if (playData.cashAmount >= 10)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[1] -48U;
                     }
                     break;
                 case 7: //Cash Pos 2
-                    if (ship.cashAmount >= 100)
+                    if (playData.cashAmount >= 100)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[2] -48U;
                     }
                     break;
                 case 8: //Cash Pos 3
-                    if (ship.cashAmount >= 1000)
+                    if (playData.cashAmount >= 1000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[3] -48U;
                     }
                     break;
                 case 9: //Cash Pos 4
-                    if (ship.cashAmount >= 10000)
+                    if (playData.cashAmount >= 10000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[4] -48U;
                     }
                     break;
                 case 10: //Cash Pos 5
-                    if (ship.cashAmount >= 100000)
+                    if (playData.cashAmount >= 100000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[5] -48U;
                     }
                     break;
                 case 11: //Cash Pos 6
-                    if (ship.cashAmount >= 1000000)
+                    if (playData.cashAmount >= 1000000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[6] -48U;
                     }
                     break;
                 case 12: //Cash Pos 7
-                    if (ship.cashAmount >= 10000000)
+                    if (playData.cashAmount >= 10000000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[7] -48U;
                     }
                     break;
                 case 13: //Cash Pos 8
-                    if (ship.cashAmount >= 100000000)
+                    if (playData.cashAmount >= 100000000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[8] -48U;
                     }
                     break;
                 case 14: //Cash Pos 9
-                    if (ship.cashAmount >= 1000000000)
+                    if (playData.cashAmount >= 1000000000)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x67 + windowData.Cash[9] -48U;
                     }
@@ -157,13 +158,13 @@ void updateHud() BANKED
                     RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[0] -17U;
                     break;
                 case 23: //Health Pos 2
-                    if (ship.curHealth >= 10)
+                    if (playData.curHealth >= 10)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[1] -17U;
                     }
                     break;
                 case 24: //Health Pos 3
-                    if (ship.curHealth >= 100)
+                    if (playData.curHealth >= 100)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Health[2] -17U;
                     }
@@ -172,49 +173,49 @@ void updateHud() BANKED
                     RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[0] -17U;
                     break;
                 case 28: //Shield Pos 2
-                    if (ship.curShield >= 10)
+                    if (playData.curShield >= 10)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[1] -17U;
                     }
                     break;
                 case 29: //Shield Pos 3
-                    if (ship.curShield >= 100)
+                    if (playData.curShield >= 100)
                     {
                         RaptorWindowUpdatePLN0[i] = 0x48 + windowData.Shield[2] -17U;
                     }
                     break;
                 case 31: //Shield Icon Pos 1
-                    if (ship.numShields > 0)
+                    if (playData.numShields > 0)
                         RaptorWindowUpdatePLN0[i] = 0x7D;
                     else
                         RaptorWindowUpdatePLN0[i] = 0x7E;
                     break;
                 case 32: //Shield Icon Pos 2
-                    if (ship.numShields > 1)
+                    if (playData.numShields > 1)
                         RaptorWindowUpdatePLN0[i] = 0x7D;
                     else
                         RaptorWindowUpdatePLN0[i] = 0x7E;
                     break;
                 case 33: //Shield Icon Pos 3
-                    if (ship.numShields > 2)
+                    if (playData.numShields > 2)
                         RaptorWindowUpdatePLN0[i] = 0x7D;
                     else
                         RaptorWindowUpdatePLN0[i] = 0x7E;
                     break;
                 case 34: //Shield Icon Pos 4
-                    if (ship.numShields > 3)
+                    if (playData.numShields > 3)
                         RaptorWindowUpdatePLN0[i] = 0x7D;
                     else
                         RaptorWindowUpdatePLN0[i] = 0x7E;
                     break;
                 case 35: //Shield Icon Pos 5
-                    if (ship.numShields > 4)
+                    if (playData.numShields > 4)
                         RaptorWindowUpdatePLN0[i] = 0x7D;
                     else
                         RaptorWindowUpdatePLN0[i] = 0x7E;
                     break;
                 case 38: //Weapon
-                    RaptorWindowUpdatePLN0[i] = 0x75 + ship.weapon;
+                    RaptorWindowUpdatePLN0[i] = 0x75 + playData.weapon;
                     break;
                 default:
                     break;
@@ -235,11 +236,11 @@ void init_camera() BANKED
 void scroll_cam_up() BANKED
 {
     //Check frames for slight slow down.
-    if (camera_y > -2048 && (IS_FRAME_ODD || IS_FRAME_4))
+    if (camera_y != -2048 && (IS_FRAME_ODD || IS_FRAME_4))
     {
         camera_y--;
         //fake_camera_x--;
-    } else if (camera_y <= -2048) {
+    } else if (camera_y == -2048) {
         doneScroll = 1;
     }
 }
@@ -280,7 +281,7 @@ void tileHitDetection() NONBANKED
                         curLine++;
                         uint8_t projectileX = (newProjectile[shotId].x >> 3)-1U;
                         uint16_t projectileY = (((uint16_t)newProjectile[shotId].y+camera_y)>>3)-1U;
-                        if (curLine > 14)
+                        if (curLine == 15)
                             curLine = 0;
                         shotTileAttr = BravoWave1PLN2[((20 * map_pos_y + curLine)) + map_pos_x];
                         //printf("P%d M%d ", projectileY, curLine); //mapPosYTile >> 9
