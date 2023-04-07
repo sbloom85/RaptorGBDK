@@ -366,6 +366,8 @@ void gameLoop() NONBANKED
     {
         game_time++;
 
+        hUGE_dosound();
+
         set_camera();
 
         tileHitDetection();

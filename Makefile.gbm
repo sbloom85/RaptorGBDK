@@ -28,7 +28,7 @@ WINDIR		= Window
 BINS	    = $(PROJECTNAME).gb
 CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SAVDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(BGDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SPTDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(MAPDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(SNDDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(WINDIR),$(notdir $(wildcard $(dir)/*.c)))
 ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
-OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
+OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o) Sounds/hUGEDriver.lib
 
 all:	prepare $(BINS)
 
@@ -58,7 +58,7 @@ $(OBJDIR)/%.o:	$(MAPDIR)/%.c
 
 # Compile .c files in "Sounds/" to .o object files
 $(OBJDIR)/%.o:	$(SNDDIR)/%.c
-	$(LCC) $(LCCFLAGS) -c -o $@ $<
+	$(LCC) $(LCCFLAGS) -c -o  $@ $<
 
 # Compile .c files in "Window/" to .o object files
 $(OBJDIR)/%.o:	$(WINDIR)/%.c

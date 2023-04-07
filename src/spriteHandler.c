@@ -18,10 +18,10 @@
 struct projectile newProjectile[MAX_PROJECTILES];
 
 //Place in free spot in HighRam
-uint8_t AT(0xFFA0) game_time;
+uint8_t AT(0xFF93) game_time;
 
 // Game Character Struct
-struct PlayerData playData;
+extern struct PlayerData playData;
 struct PlayerShip ship;
 struct Enemy eShip1;
 
@@ -80,7 +80,7 @@ void initProjectiles() BANKED
 {
     //Everything below 8 is resurved for ship.
     uint8_t shotStartID = 8;
-    for (int8_t i = 0; i < MAX_PROJECTILES; i++)
+    for (int8_t i = 0; i != MAX_PROJECTILES; i++)
     {
         newProjectile[i].id = shotStartID;
         shotStartID++;
@@ -90,7 +90,7 @@ void initProjectiles() BANKED
 
 void moveProjectiles() NONBANKED
 {
-    for (uint8_t i = 0; i < 8; i++)
+    for (uint8_t i = 0; i != 8; i++)
     {
         if (newProjectile[i].enabled)
         {
@@ -146,28 +146,6 @@ void fireWeapon() BANKED
     }
     shots = 0;
 }
-
-void playerInit() BANKED
-{
-    playData.weapon = 0;
-    playData.mBomb = 0;
-    playData.ionScanner = 0;
-    playData.numShields = 0;
-
-    playData.ownsMachGun = 1;
-    playData.ownsAirMiss = 0;
-    playData.ownsGrnMiss = 0;
-    playData.ownsPlasCannon = 0;
-    playData.ownsDumbFire = 0;
-    playData.ownsMicroMiss = 0;
-    playData.ownsPulseCannon = 0;
-    playData.ownsDeathRay = 0;
-
-    playData.curHealth = 75;
-    playData.curShield = 0;
-    playData.cashAmount = 10000;
-}
-
 // Initialize ship struct
 void setupShip() BANKED
 {
@@ -322,7 +300,7 @@ void inputLoop() BANKED
         }
         else if (joyInput & J_B && IS_FRAME_4)
         {
-            if (playData.weapon < 4)
+            if (playData.weapon != 4)
             {
                 playData.weapon++;
             } else {
@@ -337,7 +315,11 @@ void inputLoop() BANKED
 
         if (joyInput & J_START)
         {
-            
+            NR10_REG = 0x1D;
+            NR11_REG = 0x40;
+            NR12_REG = 0x73;
+            NR13_REG = 0x73;
+            NR14_REG = 0x86;
         }
 
         // Test if colliders work

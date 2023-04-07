@@ -1,6 +1,6 @@
 #pragma bank 2
 
-#include "hUGEDriver.h"
+#include "../sounds/hUGEDriver.h"
 #include <stddef.h>
 
 static const unsigned char order_cnt = 32;

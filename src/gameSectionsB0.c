@@ -96,6 +96,8 @@ void BravoOne() NONBANKED
     
     //memcpy(0xCA00, currentMapPLN2, sizeof(currentMapPLN2));
 
+    hUGE_init(&Rap08);
+
     for (uint8_t i = 144; i--;)
     {
         VBK_REG = VBK_ATTRIBUTES;

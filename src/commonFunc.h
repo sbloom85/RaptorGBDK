@@ -26,7 +26,7 @@ extern UBYTE _cpu;
 
 
 //Place in free spot in HighRam
-extern uint8_t AT(0xFFA0) game_time;
+extern uint8_t AT(0xFF93) game_time;
 
 extern struct projectile newProjectile[20];
 extern struct Enemy eShip1;

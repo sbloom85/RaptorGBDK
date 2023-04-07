@@ -18,6 +18,29 @@ const enum selected {Shop = 0, Fly = 1, Save = 2, Exit = 3};
 
 static const uint16_t black_palette[] = {RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK};
 
+struct PlayerData playData;
+
+void initPlayer()
+{
+    playData.weapon = 0;
+    playData.mBomb = 0;
+    playData.ionScanner = 0;
+    playData.numShields = 0;
+
+    playData.ownsMachGun = 1;
+    playData.ownsAirMiss = 0;
+    playData.ownsGrnMiss = 0;
+    playData.ownsPlasCannon = 0;
+    playData.ownsDumbFire = 0;
+    playData.ownsMicroMiss = 0;
+    playData.ownsPulseCannon = 0;
+    playData.ownsDeathRay = 0;
+
+    playData.curHealth = 75;
+    playData.curShield = 0;
+    playData.cashAmount = 10000;
+}
+
 void WepShop() BANKED
 {
     set_bkg_palette(0, 4, &bkgShopPalette[0]);
@@ -88,7 +111,7 @@ void Hanger() NONBANKED
     InitCursor();
     MoveCursor(30, 74); //Default to Fly for now.
 
-    playerInit();
+    initPlayer();
 
     SHOW_SPRITES;
     SHOW_BKG;

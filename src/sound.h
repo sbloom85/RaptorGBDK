@@ -32,8 +32,11 @@
 // 1100 0011    is 0xC3, initialize, not consecutive, frequency = MSB + LSB = 011 0000 0000 = 0x300
     
 
+#ifndef SOUND_H_INCLUDE
+#define SOUND_H_INCLUDE
+
 #include <gb/gb.h>
-#include "hUGEDriver.h"
+
 #include <stddef.h>
 
 // Plays when machine gun is fired
@@ -125,7 +128,7 @@ void EnemyShotSound()
 // Plays when the title screen is displayed
 void TitleMusic()
 {
-
+    
 }
 
 // Plays when in the hangar
@@ -181,3 +184,5 @@ void CreditsMusic()
 {
 
 }
+
+#endif

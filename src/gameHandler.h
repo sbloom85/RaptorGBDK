@@ -1,6 +1,8 @@
 #ifndef GAMEHANDLE_H_INCLUDE
 #define GAMEHANDLE_H_INCLUDE
 
+#include "../sounds/hUGEDriver.h"
+
 #include "../Window/RaptorDialogTiles.h"
 #include "../Window/RaptorWindow.h"
 

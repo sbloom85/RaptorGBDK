@@ -3,8 +3,6 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 
-//#include <stdio.h>
-
 #include "commonFunc.h"
 #include "spriteHandler.h"
 #include "gameSectionsB0.h"
@@ -25,22 +23,23 @@ void main(void)
 {
     // Wait 4 frames
     // For SGB on PAL SNES this delay is required on startup, otherwise borders don't show up
-    for (uint8_t i = 4; i != 0; i--) wait_vbl_done();
-
+    if (sgb_check()) 
+    {
+        for (uint8_t i = 4; i != 0; i--) wait_vbl_done();
+    }
+    
     DISPLAY_ON;
 
     //Bank 1:
     //Title, Menu, Intro
     SWITCH_ROM(3);
-    set_sgb_border(SGBBack_tiles, sizeof(SGBBack_tiles), SGBBack_map, sizeof(SGBBack_map), SGBBack_palettes, sizeof(SGBBack_palettes));
-
-    wait_vbl_done();
-
+    if (sgb_check())
+    {
+        set_sgb_border(SGBBack_tiles, sizeof(SGBBack_tiles), SGBBack_map, sizeof(SGBBack_map), SGBBack_palettes, sizeof(SGBBack_palettes));
+    }
+        
     SHOW_BKG;
     SHOW_SPRITES;
-
-    //Same CPU Speed as DMG for lower power usage.
-    //cpu_slow();
 
     InitializeSound();
     SWITCH_ROM(1);
