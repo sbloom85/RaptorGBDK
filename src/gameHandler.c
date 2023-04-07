@@ -372,6 +372,8 @@ void gameLoop() NONBANKED
 
         tileHitDetection();
 
+        hUGE_dosound();
+
         scroll_cam_up();
 
         //MoveEnemy();
@@ -379,6 +381,8 @@ void gameLoop() NONBANKED
         moveProjectiles();
 
         inputLoop();
+
+        hUGE_dosound();
 
         PerformantDelay(2);
     }
