@@ -4,7 +4,7 @@
 static const unsigned char order_cnt = 48;
 
 static const unsigned char P0[] = {
-    DN(A_3,2,0xC88),
+    DN(A_3,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -16,7 +16,7 @@ static const unsigned char P0[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(A_3,2,0xC88),
+    DN(A_3,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -36,7 +36,7 @@ static const unsigned char P0[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(C_4,2,0xC88),
+    DN(C_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -48,7 +48,7 @@ static const unsigned char P0[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(C_4,2,0xC88),
+    DN(C_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -268,7 +268,7 @@ static const unsigned char P3[] = {
     DN(___,0,0x000),
 };
 static const unsigned char P4[] = {
-    DN(D_4,2,0xC88),
+    DN(D_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -280,7 +280,7 @@ static const unsigned char P4[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(D_4,2,0xC88),
+    DN(D_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -300,7 +300,7 @@ static const unsigned char P4[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(C_4,2,0xC88),
+    DN(C_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -312,7 +312,7 @@ static const unsigned char P4[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(C_4,2,0xC88),
+    DN(C_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -324,7 +324,7 @@ static const unsigned char P4[] = {
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
-    DN(D_4,2,0xC88),
+    DN(D_4,1,0xC88),
     DN(___,0,0x000),
     DN(___,0,0x000),
     DN(___,0,0x000),
@@ -1730,4 +1730,4 @@ static const unsigned char waves[] = {
     156,134,229,91,74,149,162,94,142,211,97,116,7,98,72,151,
 };
 
-const hUGESong_t Rap08 = {2, &order_cnt, order1, order2, order3,order4, duty_instruments, wave_instruments, noise_instruments, NULL, waves};
+const hUGESong_t Rap08 = {1, &order_cnt, order1, order2, order3,order4, duty_instruments, wave_instruments, noise_instruments, NULL, waves};
