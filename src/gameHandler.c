@@ -4,7 +4,7 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #endif
-#if defined(__TARGET_sms) || defined(__TARGET_gg)
+#ifdef __TARGET_gg
 #include <sms/sms.h>
 #endif
 #include <stdio.h>
@@ -89,6 +89,13 @@ char* itoa32(int32_t i, char b[]) BANKED
         i = i/10;
     }while(i);
     return b;
+}
+
+void GGDisplayHud() BANKED
+{
+    #ifdef __TARGET_gg
+    set_tile_map_compat(0, (uint8_t)(camera_y >> 3u) +17U, 20, 2, RaptorWindowUpdateGGPLN0);
+    #endif
 }
 
 void updateHud() BANKED
@@ -244,7 +251,7 @@ void init_camera() BANKED
     #ifdef __TARGET_gb
     SCY_REG = camera_y;
     #endif
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     move_bkg(0, camera_y);
     #endif
 }
@@ -327,7 +334,7 @@ void set_camera() NONBANKED
     #ifdef __TARGET_gb
     SCY_REG = camera_y;
     #endif
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     move_bkg(0, camera_y);
     #endif
 
@@ -351,7 +358,7 @@ void set_camera() NONBANKED
                 set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
             }
             #endif
-            #if defined(__TARGET_sms) || defined(__TARGET_gg)
+            #ifdef __TARGET_gg
             set_tile_submap_compat(0, map_pos_y, 20, 1, 20, (unsigned char*)currentMapPLN0);
             #endif
             updateHud();
@@ -389,6 +396,10 @@ void gameInit() BANKED
 
     move_win(7, 128);
     #endif
+
+    //#ifdef __TARGET_gg
+    //set_tile_map_compat(0, 0, 20, 2, RaptorWindowUpdateGGPLN0);
+    //#endif
 }
 
 void gameLoop() NONBANKED
@@ -401,9 +412,11 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #if defined(__TARGET_sms) || defined(__TARGET_gg)
+        #ifdef __TARGET_gg
         //Todo
         #endif
+
+        //GGDisplayHud();
 
         set_camera();
 
@@ -412,9 +425,11 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #if defined(__TARGET_sms) || defined(__TARGET_gg)
+        #ifdef __TARGET_gg
         //Todo
         #endif
+
+        //GGDisplayHud();
 
         scroll_cam_up();
 
@@ -427,9 +442,11 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #if defined(__TARGET_sms) || defined(__TARGET_gg)
+        #ifdef __TARGET_gg
         //Todo
         #endif
+
+        //GGDisplayHud();
 
         PerformantDelay(2);
     }

@@ -4,7 +4,7 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #endif
-#if defined(__TARGET_sms) || defined(__TARGET_gg)
+#ifdef __TARGET_gg
 #include <sms/sms.h>
 #endif
 
@@ -37,7 +37,7 @@ void Title() NONBANKED
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
     #endif
 
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     set_palette(0, TitleGG_PALETTE_COUNT, &TitleGG_palettes[0]);
 
     set_bkg_4bpp_data(0, TitleGG_TILE_COUNT, TitleGG_tiles);
@@ -71,7 +71,7 @@ void Menu() NONBANKED
     set_bkg_tiles(0, 0, 20, 18, Menu_map);
     #endif
 
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     set_palette(0, MenuGG_PALETTE_COUNT, &MenuGG_palettes[0]);
 
     set_bkg_4bpp_data(0, MenuGG_TILE_COUNT, MenuGG_tiles);
@@ -127,10 +127,10 @@ void BravoOne() NONBANKED
     currentMapBank = 6;
     SWITCH_ROM(currentMapBank);
 
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
-    set_palette(0, 1, &BravoW1TilesSMS_palettes[0]);
+    #ifdef __TARGET_gg
+    set_palette(0, 1, &BravoW1TilesGG_palettes[0]);
 
-    set_bkg_4bpp_data(0, BravoW1TilesSMS_TILE_COUNT, BravoW1TilesSMS_tiles);
+    set_bkg_4bpp_data(0, BravoW1TilesGG_TILE_COUNT, BravoW1TilesGG_tiles);
     #endif
 
     #ifdef __TARGET_gb
@@ -138,7 +138,7 @@ void BravoOne() NONBANKED
     currentMapPLN1 = (unsigned char*)BravoWave1PLN1;
     currentMapPLN2 = (unsigned char*)BravoWave1PLN2;
     #endif
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     currentMapPLN0 = (unsigned char*)BravoW1MapGG_map;
     #endif
     
@@ -158,7 +158,7 @@ void BravoOne() NONBANKED
     }
     #endif
 
-    #if defined(__TARGET_sms) || defined(__TARGET_gg)
+    #ifdef __TARGET_gg
     for (uint8_t i = 144; i--;)
     {
         set_tile_submap_compat(0, map_pos_y +i, 20, 1, 20, (unsigned char*)currentMapPLN0);

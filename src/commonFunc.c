@@ -5,7 +5,7 @@
 #include <gb/sgb.h>
 #include <gb/cgb.h>
 #endif
-#if defined(__TARGET_sms) || defined(__TARGET_gg)
+#ifdef __TARGET_gg
 #include <sms/sms.h>
 #endif
 #include "commonFunc.h"

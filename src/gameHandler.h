@@ -8,6 +8,7 @@
 
 void init_camera();
 void scroll_cam_up();
+void GGDisplayHud();
 void set_camera();
 void MoveEnemy();
 void gameInit();
