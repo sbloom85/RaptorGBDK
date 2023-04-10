@@ -11,7 +11,7 @@
 #define BravoW1MapGG_TILE_H 8
 #define BravoW1MapGG_WIDTH 160
 #define BravoW1MapGG_HEIGHT 2040
-#define BravoW1MapGG_TILE_COUNT 11
+#define BravoW1MapGG_TILE_COUNT 0
 #define BravoW1MapGG_PALETTE_COUNT 1
 #define BravoW1MapGG_COLORS_PER_PALETTE 16
 #define BravoW1MapGG_TOTAL_COLORS 16
@@ -19,8 +19,6 @@
 
 BANKREF_EXTERN(BravoW1MapGG)
 
-extern const palette_color_t BravoW1MapGG_palettes[16];
-extern const uint8_t BravoW1MapGG_tiles[352];
 
 extern const unsigned char BravoW1MapGG_map[5100];
 

@@ -22,6 +22,7 @@
 #include "../maps/BravoW1TilesMain.h"
 #include "../maps/BravoW1TilesSGB.h"
 #include "../maps/BravoW1TilesVBank1.h"
+#include "../maps/BravoW1TilesSMS.h"
 #include "../maps/BravoW1Map.h"
 #include "../maps/BravoW1MapGG.h"
 

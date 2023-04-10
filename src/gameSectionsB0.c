@@ -128,9 +128,9 @@ void BravoOne() NONBANKED
     SWITCH_ROM(currentMapBank);
 
     #if defined(__TARGET_sms) || defined(__TARGET_gg)
-    set_palette(0, 1, &BravoW1MapGG_palettes[0]);
+    set_palette(0, 1, &BravoW1TilesSMS_palettes[0]);
 
-    set_bkg_4bpp_data(0, 128, BravoW1MapGG_tiles);
+    set_bkg_4bpp_data(0, BravoW1TilesSMS_TILE_COUNT, BravoW1TilesSMS_tiles);
     #endif
 
     #ifdef __TARGET_gb
