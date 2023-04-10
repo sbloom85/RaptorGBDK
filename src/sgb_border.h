@@ -1,7 +1,12 @@
 #ifndef __SGB_BORDER_H_INCLUDE
 #define __SGB_BORDER_H_INCLUDE
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include <stdint.h>
 
 #define SNES_RGB(R,G,B) (uint16_t)((B) << 10 | (G) << 5 | (R))

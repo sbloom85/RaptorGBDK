@@ -1,3 +1,4 @@
+#ifdef __TARGET_gb
 #pragma bank 5
 
 /*
@@ -1571,3 +1572,4 @@ const unsigned char BravoWave1PLN2[] =
 };
 
 /* End of BRAVOW1MAP.C */
+#endif

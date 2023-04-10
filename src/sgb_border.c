@@ -1,9 +1,10 @@
+#ifdef __TARGET_gb
 #pragma bank 3
 #include "sgb_border.h"
 
 #include <gb/gb.h>
-#include <stdint.h>
 #include <gb/sgb.h>
+#include <stdint.h>
 #include <string.h>
 
 #define SGB_CHR_BLOCK0 0
@@ -70,3 +71,4 @@ void set_sgb_border(unsigned char * tiledata, size_t tiledata_size,
         SGB_TRANSFER((SGB_MASK_EN << 3) | 1, SGB_SCR_UNFREEZE); 
     }
 }
+#endif

@@ -1,6 +1,14 @@
 #ifndef MAPS_H_INCLUDE
 #define MAPS_H_INCLUDE
 
+#ifdef __TARGET_gb
+#include <gb/gb.h>
+#include <gb/cgb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
+
 #include "../backgrounds/Title.h"
 #include "../backgrounds/Menu.h"
 #include "../backgrounds/Hanger.h"
@@ -13,6 +21,7 @@
 #include "../maps/BravoW1TilesSGB.h"
 #include "../maps/BravoW1TilesVBank1.h"
 #include "../maps/BravoW1Map.h"
+#include "../maps/BravoW1MapGG.h"
 
 extern unsigned char *currentMapPLN0;
 extern unsigned char *currentMapPLN1;
@@ -46,6 +55,13 @@ static const UWORD bkgBravo1Palette[] = {
     Bravo1MapTilesMainCGBPal5c0, Bravo1MapTilesMainCGBPal5c1, Bravo1MapTilesMainCGBPal5c2, Bravo1MapTilesMainCGBPal5c3,
     Bravo1MapTilesMainCGBPal6c0, Bravo1MapTilesMainCGBPal6c1, Bravo1MapTilesMainCGBPal6c2, Bravo1MapTilesMainCGBPal6c3,
     Bravo1MapTilesMainCGBPal7c0, Bravo1MapTilesMainCGBPal7c1, Bravo1MapTilesMainCGBPal7c2, Bravo1MapTilesMainCGBPal7c3,
+};
+
+static const palette_color_t bkgBravo1SMSPalette[] = {
+	  RGBHTML(0x000000), RGBHTML(0x555555), RGBHTML(0xAAAAAA), RGBHTML(0xFFFFFF),
+    RGBHTML(0x000000), RGBHTML(0x005500), RGBHTML(0x00AA00), RGBHTML(0x00FF00),
+    RGBHTML(0x000000), RGBHTML(0x0000AA), RGBHTML(0x0055AA), RGBHTML(0x00AAAA),
+    RGBHTML(0x000000), RGBHTML(0xAA5500), RGBHTML(0xFF5500), RGBHTML(0xFFAA00),
 };
 
 #endif

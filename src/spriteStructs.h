@@ -1,7 +1,12 @@
 #ifndef SPRITESRCT_H_INCLUDE
 #define SPRITESRCT_H_INCLUDE
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 
 enum dmgTypes {DmgNormal = 0, DmgMissile = 1, DmgBomb = 3};
 enum weapons {MachGun = 0, AirMiss = 1, GrnMiss = 2,

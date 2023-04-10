@@ -1,7 +1,14 @@
 #ifndef COMMONFUNC_H_INCLUDE
 #define COMMONFUNC_H_INCLUDE
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#include <gb/sgb.h>
+#include <gb/cgb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include "spriteStructs.h"
 #include "projectile.h"
 #include "../backgrounds/BlankPLN1.h"
@@ -24,9 +31,13 @@
 
 extern UBYTE _cpu;
 
-
+#ifdef __TARGET_gb
 //Place in free spot in HighRam
 extern uint8_t AT(0xFF93) game_time;
+#else
+extern uint8_t game_time;
+#endif
+
 
 extern struct projectile newProjectile[20];
 extern struct Enemy eShip1;

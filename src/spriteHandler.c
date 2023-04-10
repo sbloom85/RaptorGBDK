@@ -1,7 +1,12 @@
 #pragma bank 2
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
 #include <gb/cgb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include <stdio.h>
 //#include "spriteStructs.h"
 #include "projectile.h"
@@ -17,8 +22,12 @@
 
 struct projectile newProjectile[MAX_PROJECTILES];
 
+#ifdef __TARGET_gb
 //Place in free spot in HighRam
 uint8_t AT(0xFF93) game_time;
+#else
+uint8_t game_time;
+#endif
 
 // Game Character Struct
 extern struct PlayerData playData;
@@ -40,7 +49,12 @@ const UWORD sprPalette[] = {
 void InitCursor() BANKED
 {
     set_sprite_palette(0, 1, sprPalette);
+    #ifdef __TARGET_gb
     set_sprite_data(0, 1, CursorTileTLE0);
+    #endif
+    #ifdef __TARGET_gg
+    set_sprite_2bpp_data(0, 1, CursorTileTLE0);
+    #endif
     set_sprite_tile(0, 0);
 }
 
@@ -115,24 +129,49 @@ void fireWeapon() BANKED
             switch (playData.weapon)
             {
                 case 0:
+                    #ifdef __TARGET_gb
                     MachineGunSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE0);
+                    #endif
+                    #ifdef __TARGET_gg
+                    set_sprite_2bpp_data(newProjectile[shots].id, 1, WProjectilesTilesTLE0);
+                    #endif
                     break;
                 case 1:
+                    #ifdef __TARGET_gb
                     MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE1);
+                    #endif
+                    #ifdef __TARGET_gg
+                    set_sprite_2bpp_data(newProjectile[shots].id, 1, WProjectilesTilesTLE1);
+                    #endif
                     break;
                 case 2:
+                    #ifdef __TARGET_gb
                     MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE2);
+                    #endif
+                    #ifdef __TARGET_gg
+                    set_sprite_2bpp_data(newProjectile[shots].id, 1, WProjectilesTilesTLE2);
+                    #endif
                     break;
                 case 3:
+                    #ifdef __TARGET_gb
                     MissileSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE3);
+                    #endif
+                    #ifdef __TARGET_gg
+                    set_sprite_2bpp_data(newProjectile[shots].id, 1, WProjectilesTilesTLE3);
+                    #endif
                     break;
                 case 4:
+                    #ifdef __TARGET_gb
                     MachineGunSound();    // Plays sound effect from sound.h
                     set_sprite_data(newProjectile[shots].id, 1, WProjectilesTilesTLE4);
+                    #endif
+                    #ifdef __TARGET_gg
+                    set_sprite_2bpp_data(newProjectile[shots].id, 1, WProjectilesTilesTLE4);
+                    #endif
                     break;
             }
             
@@ -159,28 +198,48 @@ void setupShip() BANKED
     ship.visible = 1;
 
     // Load sprites for ship
+
+    #ifdef __TARGET_gb
     set_sprite_data(0, 1, RaptorTLE0);
+    set_sprite_data(2, 1, RaptorTLE2);
+    set_sprite_data(3, 1, RaptorTLE3);
+    set_sprite_data(4, 1, RaptorTLE4);
+    set_sprite_data(5, 1, RaptorTLE5);
+    set_sprite_data(6, 1, RaptorTLE6);
+    set_sprite_data(7, 1, RaptorTLE7);
+    #endif
+    #ifdef __TARGET_gg
+    set_sprite_2bpp_data(0, 1, RaptorTLE0);
+    set_sprite_2bpp_data(2, 1, RaptorTLE2);
+    set_sprite_2bpp_data(3, 1, RaptorTLE3);
+    set_sprite_2bpp_data(4, 1, RaptorTLE4);
+    set_sprite_2bpp_data(5, 1, RaptorTLE5);
+    set_sprite_2bpp_data(6, 1, RaptorTLE6);
+    set_sprite_2bpp_data(7, 1, RaptorTLE7);
+    #endif
+
+    
     set_sprite_tile(0, 0);
     ship.spriteids[0] = 0;
     set_sprite_data(1, 1, RaptorTLE1);
     set_sprite_tile(1, 1);
     ship.spriteids[1] = 1;
-    set_sprite_data(2, 1, RaptorTLE2);
+    
     set_sprite_tile(2, 2);
     ship.spriteids[2] = 2;
-    set_sprite_data(3, 1, RaptorTLE3);
+    
     set_sprite_tile(3, 3);
     ship.spriteids[3] = 3;
-    set_sprite_data(4, 1, RaptorTLE4);
+    
     set_sprite_tile(4, 4);
     ship.spriteids[4] = 4;
-    set_sprite_data(5, 1, RaptorTLE5);
+    
     set_sprite_tile(5, 5);
     ship.spriteids[5] = 5;
-    set_sprite_data(6, 1, RaptorTLE6);
+    
     set_sprite_tile(6, 6);
     ship.spriteids[6] = 6;
-    set_sprite_data(7, 1, RaptorTLE7);
+    
     set_sprite_tile(7, 7);
     ship.spriteids[7] = 7;
 
@@ -315,11 +374,7 @@ void inputLoop() BANKED
 
         if (joyInput & J_START)
         {
-            NR10_REG = 0x1D;
-            NR11_REG = 0x40;
-            NR12_REG = 0x73;
-            NR13_REG = 0x73;
-            NR14_REG = 0x86;
+            
         }
 
         // Test if colliders work

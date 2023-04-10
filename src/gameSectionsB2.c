@@ -1,7 +1,12 @@
 #pragma bank 2
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
 #include <gb/cgb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 
 #include "maps.h"
 
@@ -44,16 +49,21 @@ void initPlayer()
 void WepShop() BANKED
 {
     set_bkg_palette(0, 4, &bkgShopPalette[0]);
+    
     set_bkg_data(0, 47, ShopTiles);
 
+    #ifdef __TARGET_gb
     if (sgb_check()) {
         SGBTransferPalettes(bkgShopPalette);
     }
+    
 
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, ShopScreenPLN1);
     VBK_REG = 0;
+    #endif
     set_bkg_tiles(0, 0, 20, 18, ShopScreenPLN0);
+    
 
     HIDE_SPRITES;
     SHOW_BKG;
@@ -93,17 +103,20 @@ void Hanger() NONBANKED
 {
     //Helps hide some graphics corruption
     set_bkg_palette(0, 1, &black_palette[0]);
+    
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
-
+    #ifdef __TARGET_gb
     if (sgb_check()) {
         SGBTransferPalettes(Hanger_palettes);
     }
-
+    
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map_attributes);
     VBK_REG = 0;
+    #endif
     set_bkg_tiles(0, 0, 20, 18, Hanger_map);
+    
 
     enum selected selection;
     selection = 1;

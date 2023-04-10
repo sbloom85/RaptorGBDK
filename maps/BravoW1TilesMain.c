@@ -1,3 +1,4 @@
+#ifdef __TARGET_gb
 #pragma bank 4
 
 /*
@@ -308,3 +309,4 @@ const unsigned char Bravo1MapTilesMain[] =
 };
 
 /* End of BRAVOW1TILESMAIN.C */
+#endif

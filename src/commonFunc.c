@@ -1,8 +1,13 @@
 #pragma bank 0
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
 #include <gb/sgb.h>
 #include <gb/cgb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include "commonFunc.h"
 
 #include <stdio.h>
@@ -23,6 +28,7 @@ void PerformantDelay(uint8_t numLoops)
     }
 }
 
+#ifdef __TARGET_gb
 uint8_t getGBType()
 {
     switch (_cpu) {
@@ -79,19 +85,23 @@ void fadein() NONBANKED
         PerformantDelay(5);
     }
 }
+#endif
 
 //Thanks to basxto for the fadeout code.
 //Edited
 void fadeout()
 {
+    #ifdef __TARGET_gb
     if (getGBType() == 5 || getGBType() == 6)
     {
         fadeoutCGB();
     } else {
         fadeoutDMG();
     }
+    #endif
 }
 
+#ifdef __TARGET_gb
 //Must be Banked to work
 void fadeoutDMG() BANKED
 {
@@ -121,6 +131,7 @@ void fadeoutCGB() NONBANKED
 
     set_bkg_tiles(0, 0, 20, 18, BlckScrTiles);
 }
+#endif
 
 //Thanks to DAN COX for the collison code.
 uint8_t collisionCheck(uint8_t x1, uint8_t y1, uint8_t w1, uint8_t h1, uint8_t x2, uint8_t y2, uint8_t w2, uint8_t h2) 

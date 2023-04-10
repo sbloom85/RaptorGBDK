@@ -1,6 +1,11 @@
 #ifndef PROJECTILE_H_INCLUDE
 #define PROJECTILE_H_INCLUDE
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include "../sprites/WProjectiles.h"
 
 struct projectile {

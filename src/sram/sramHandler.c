@@ -1,7 +1,12 @@
 
 #pragma bank 0
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 #include "../spriteStructs.h"
 
 #include <stdio.h>

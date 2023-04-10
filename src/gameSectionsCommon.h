@@ -1,6 +1,11 @@
 #ifndef GAMESECTC_H_INCLUDE
 #define GAMESECTC_H_INCLUDE
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 
 extern int8_t BGP_REG_OLD;
 extern uint8_t mapTileSet;

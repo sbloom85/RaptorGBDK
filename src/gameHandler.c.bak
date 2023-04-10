@@ -333,12 +333,17 @@ void set_camera() NONBANKED
 
     SWITCH_ROM(currentMapBank);
 
+    #ifdef __target_gb
     //Row that updates + 18u updates last line.
     map_pos_y = (uint8_t)(camera_y >> 3u);
+    #endif
+    #ifdef __target_gg
+    map_pos_y = (uint8_t)(camera_y >> 3u) -13;
+    #endif
     //map_pos_x = (uint8_t)(fake_camera_x >> 3u); 
     if (map_pos_y != old_map_pos_y) { 
         if (camera_y < old_camera_y) {
-            #ifdef __TARGET_gb
+            #ifdef __target_gb
             VBK_REG = VBK_ATTRIBUTES;
             set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN1, 20, 0);
             VBK_REG = VBK_TILES;
@@ -351,7 +356,7 @@ void set_camera() NONBANKED
                 set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
             }
             #endif
-            #ifdef __TARGET_gg
+            #ifdef __target_gg
             set_tile_submap_compat(0, map_pos_y, 20, 1, 20, (unsigned char*)currentMapPLN0);
             #endif
             updateHud();

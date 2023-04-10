@@ -1,9 +1,13 @@
 
 build
+midi
 *.cdb
+*.gg
+*.gb
+*.sgb
 *.gbc
 *.ihx
 *.map
 *.noi
-*.sgb
 *.sav
+*.mp3

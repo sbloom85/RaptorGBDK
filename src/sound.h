@@ -35,10 +35,16 @@
 #ifndef SOUND_H_INCLUDE
 #define SOUND_H_INCLUDE
 
+#ifdef __TARGET_gb
 #include <gb/gb.h>
+#endif
+#ifdef __TARGET_gg
+#include <sms/sms.h>
+#endif
 
 #include <stddef.h>
 
+#ifdef __TARGET_gb
 // Plays when machine gun is fired
 void MachineGunSound()
 {
@@ -184,5 +190,6 @@ void CreditsMusic()
 {
 
 }
+#endif
 
 #endif
