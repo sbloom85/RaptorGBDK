@@ -23,6 +23,5 @@ extern const palette_color_t MenuGG_palettes[16];
 extern const uint8_t MenuGG_tiles[7072];
 
 extern const unsigned char MenuGG_map[360];
-#define MenuGG_map_attributes MenuGG_map
 
 #endif

@@ -11,7 +11,7 @@
 #define BravoW1TilesGG_TILE_H 8
 #define BravoW1TilesGG_WIDTH 128
 #define BravoW1TilesGG_HEIGHT 96
-#define BravoW1TilesGG_TILE_COUNT 134
+#define BravoW1TilesGG_TILE_COUNT 151
 #define BravoW1TilesGG_PALETTE_COUNT 1
 #define BravoW1TilesGG_COLORS_PER_PALETTE 16
 #define BravoW1TilesGG_TOTAL_COLORS 16
@@ -19,7 +19,7 @@
 BANKREF_EXTERN(BravoW1TilesGG)
 
 extern const palette_color_t BravoW1TilesGG_palettes[16];
-extern const uint8_t BravoW1TilesGG_tiles[4288];
+extern const uint8_t BravoW1TilesGG_tiles[4832];
 
 
 #endif
