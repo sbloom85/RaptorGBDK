@@ -13,6 +13,8 @@ Emulicious (https://emulicious.net)
 
 ### Game Gear
 
+tiledpalettequant (https://rilden.github.io/tiledpalettequant)
+
 libresprite (https://libresprite.github.io)
 
 Tiled (https://www.mapeditor.org)
