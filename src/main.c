@@ -4,7 +4,7 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #endif
-#ifdef __TARGET_gg
+#if defined(__TARGET_sms) || defined(__TARGET_gg)
 #include <sms/sms.h>
 #endif
 

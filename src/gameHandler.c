@@ -4,7 +4,7 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #endif
-#ifdef __TARGET_gg
+#if defined(__TARGET_sms) || defined(__TARGET_gg)
 #include <sms/sms.h>
 #endif
 #include <stdio.h>
@@ -244,7 +244,7 @@ void init_camera() BANKED
     #ifdef __TARGET_gb
     SCY_REG = camera_y;
     #endif
-    #ifdef __TARGET_gg
+    #if defined(__TARGET_sms) || defined(__TARGET_gg)
     move_bkg(0, camera_y);
     #endif
 }
@@ -327,7 +327,7 @@ void set_camera() NONBANKED
     #ifdef __TARGET_gb
     SCY_REG = camera_y;
     #endif
-    #ifdef __TARGET_gg
+    #if defined(__TARGET_sms) || defined(__TARGET_gg)
     move_bkg(0, camera_y);
     #endif
 
@@ -351,7 +351,7 @@ void set_camera() NONBANKED
                 set_bkg_based_submap(0, map_pos_y, 20, 1, (unsigned char*)currentMapPLN0, 20, 0);
             }
             #endif
-            #ifdef __TARGET_gg
+            #if defined(__TARGET_sms) || defined(__TARGET_gg)
             set_tile_submap_compat(0, map_pos_y, 20, 1, 20, (unsigned char*)currentMapPLN0);
             #endif
             updateHud();
@@ -401,7 +401,7 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #ifdef __TARGET_gg
+        #if defined(__TARGET_sms) || defined(__TARGET_gg)
         //Todo
         #endif
 
@@ -412,7 +412,7 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #ifdef __TARGET_gg
+        #if defined(__TARGET_sms) || defined(__TARGET_gg)
         //Todo
         #endif
 
@@ -427,7 +427,7 @@ void gameLoop() NONBANKED
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
-        #ifdef __TARGET_gg
+        #if defined(__TARGET_sms) || defined(__TARGET_gg)
         //Todo
         #endif
 

@@ -6,7 +6,7 @@
 #include <gb/sgb.h>
 #include <gb/cgb.h>
 #endif
-#ifdef __TARGET_gg
+#if defined(__TARGET_sms) || defined(__TARGET_gg)
 #include <sms/sms.h>
 #endif
 #include "spriteStructs.h"

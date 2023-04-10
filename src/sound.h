@@ -38,7 +38,7 @@
 #ifdef __TARGET_gb
 #include <gb/gb.h>
 #endif
-#ifdef __TARGET_gg
+#if defined(__TARGET_sms) || defined(__TARGET_gg)
 #include <sms/sms.h>
 #endif
 
