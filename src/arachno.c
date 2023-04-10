@@ -1,5 +1,5 @@
 #ifdef __TARGET_gb
-#pragma bank 2
+#pragma bank 3
 
 #include "../sounds/hUGEDriver.h"
 #include <stddef.h>

@@ -1,4 +1,4 @@
-#pragma bank 2
+#pragma bank 3
 
 #ifdef __TARGET_gb
 #include <gb/gb.h>
@@ -286,7 +286,7 @@ void SetupEnemyShip() NONBANKED
         //set_sprite_prop(24, 2);
         //set_sprite_prop(25, 2);
 
-        SWITCH_ROM(2);
+        SWITCH_ROM(3);
     }
 
     /*set_sprite_data(16, 8, eShip01);

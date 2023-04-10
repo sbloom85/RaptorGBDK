@@ -22,7 +22,7 @@
 
 #define BravoWave1Width 20
 #define BravoWave1Height 255
-#define BravoWave1Bank 5
+#define BravoWave1Bank 6
 
 #define BravoWave1 BravoWave1PLN0
 extern const void __bank_BravoWave1PLN0;

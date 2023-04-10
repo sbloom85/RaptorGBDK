@@ -1,4 +1,4 @@
-#pragma bank 2
+#pragma bank 3
 
 #ifdef __TARGET_gb
 #include <gb/gb.h>
@@ -23,7 +23,7 @@ extern struct PlayerShip ship;
 uint8_t doneScroll = 0;
 
 uint8_t mapTileSet = 1;
-uint8_t currentMapBank = 5;
+uint8_t currentMapBank = 6;
 
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
@@ -316,7 +316,7 @@ void tileHitDetection() NONBANKED
             }
         }
 
-        SWITCH_ROM(2);
+        SWITCH_ROM(3);
     }
     #endif
 }
@@ -364,7 +364,7 @@ void set_camera() NONBANKED
     // set old camera position to current camera position
     old_camera_y = camera_y;
     
-    SWITCH_ROM(2);
+    SWITCH_ROM(3);
 }
 
 void gameInit() BANKED

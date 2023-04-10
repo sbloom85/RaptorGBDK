@@ -1,4 +1,4 @@
-#pragma bank 2
+#pragma bank 3
 
 #ifdef __TARGET_gb
 #include <gb/gb.h>

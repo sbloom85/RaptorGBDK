@@ -10,7 +10,9 @@
 #endif
 
 #include "../backgrounds/Title.h"
+#include "../backgrounds/TitleGG.h"
 #include "../backgrounds/Menu.h"
+#include "../backgrounds/MenuGG.h"
 #include "../backgrounds/Hanger.h"
 #include "../backgrounds/Shop.h"
 #include "../backgrounds/ShopTiles.h"

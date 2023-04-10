@@ -22,6 +22,7 @@
 
 void Title() NONBANKED
 {
+    #ifdef __TARGET_gb
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
@@ -34,10 +35,18 @@ void Title() NONBANKED
     set_bkg_tiles(0, 0, 20, 18, Intro_map);
     //VBK_REG = 0;
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
-    
+    #endif
+
+    #ifdef __TARGET_gg
+    set_palette(0, TitleGG_PALETTE_COUNT, &TitleGG_palettes[0]);
+
+    set_bkg_4bpp_data(0, TitleGG_TILE_COUNT, TitleGG_tiles);
+
+    set_tile_map_compat(0, 0, 20, 18, TitleGG_map);
+    #endif
 
     PerformantDelay(130);
-    SWITCH_ROM(2);
+    SWITCH_ROM(3);
     fadeout();
     SWITCH_ROM(1);
 }
@@ -45,10 +54,12 @@ void Title() NONBANKED
 void Menu() NONBANKED
 {
     SWITCH_ROM(1);
+
+    #ifdef __TARGET_gb
     set_bkg_palette(0, Menu_PALETTE_COUNT, &Menu_palettes[0]);
     
     set_bkg_data(0, Menu_TILE_COUNT, Menu_tiles);
-    #ifdef __TARGET_gb
+    
     if (sgb_check()) {
         SGBTransferPalettes(Menu_palettes);
     }
@@ -56,9 +67,17 @@ void Menu() NONBANKED
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Menu_map_attributes);
     VBK_REG = 0;
-    #endif
-    set_bkg_tiles(0, 0, 20, 18, Menu_map);
     
+    set_bkg_tiles(0, 0, 20, 18, Menu_map);
+    #endif
+
+    #ifdef __TARGET_gg
+    set_palette(0, MenuGG_PALETTE_COUNT, &MenuGG_palettes[0]);
+
+    set_bkg_4bpp_data(0, MenuGG_TILE_COUNT, MenuGG_tiles);
+
+    set_tile_map_compat(0, 0, 20, 18, MenuGG_map);
+    #endif
 
     while (1)
     {
@@ -66,7 +85,7 @@ void Menu() NONBANKED
 
         if (joypad() & J_A)
         {
-            SWITCH_ROM(2);
+            SWITCH_ROM(3);
             fadeout();
             //SWITCH_ROM(1);
             //break;
@@ -105,7 +124,7 @@ void BravoOne() NONBANKED
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
-    currentMapBank = 5;
+    currentMapBank = 6;
     SWITCH_ROM(currentMapBank);
 
     #ifdef __TARGET_gg
@@ -152,5 +171,5 @@ void BravoOne() NONBANKED
     old_map_pos_y = 255;
 
     //Switch back to Bank 2 for Game Handler use.
-    SWITCH_ROM(2);
+    SWITCH_ROM(3);
 }

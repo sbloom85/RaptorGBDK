@@ -1,5 +1,5 @@
 #ifdef __TARGET_gb
-#pragma bank 5
+#pragma bank 6
 
 /*
 
@@ -23,7 +23,7 @@
 
 #define BravoWave1Width 20
 #define BravoWave1Height 255
-#define BravoWave1Bank 5
+#define BravoWave1Bank 6
 
 #define BravoWave1 BravoWave1PLN0
 const void __at(5) __bank_BravoWave1PLN0;
