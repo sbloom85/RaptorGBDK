@@ -77,7 +77,7 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.s
 $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 	$(LCC) $(LCCFLAGS) -S -o $@ $<
 
-# Link the compiled object files into a .gb ROM file
+# Link the compiled object files into a .gg ROM file
 $(BINS):	$(OBJS)
 	$(LCC) $(LCCFLAGS) -debug -Wm-yn"Raptor" -Wm-ys -Wm-yc -Wm-yoA -Wm-ya1 -Wm-yt0x1B -o $(BINS) $(OBJS)
 

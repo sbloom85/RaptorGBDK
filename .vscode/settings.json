@@ -28,6 +28,20 @@
         "gamesectionsb0.h": "c",
         "raptorwindow.h": "c",
         "blankpln1.h": "c",
-        "wprojectiles.h": "c"
+        "wprojectiles.h": "c",
+        "gamehandler.h": "c",
+        "string.h": "c",
+        "projectile.h": "c",
+        "bravoship1.h": "c",
+        "raptordialogtiles.h": "c",
+        "sgb_border.h": "c",
+        "hugedriver.h": "c",
+        "platform.h": "c",
+        "sms.h": "c",
+        "title.h": "c",
+        "bravow1mapsms.h": "c",
+        "metasprites.h": "c",
+        "stdint.h": "c",
+        "bravow1tilessgb.h": "c"
     }
 }

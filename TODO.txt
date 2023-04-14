@@ -42,3 +42,6 @@
 11. Work on Enemy behaviour on Map. 
     a. To spawn at correct points on map
     b. Not loop on screen.
+
+12. Change Frame Skips to Int Scaling.
+(https://laroldsjubilantjunkyard.com/tutorials/how-to-make-a-gameboy-game/smooth-movement-using-sub-pixel-resolution/)

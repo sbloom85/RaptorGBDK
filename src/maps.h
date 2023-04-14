@@ -14,6 +14,7 @@
 #include "../backgrounds/Menu.h"
 #include "../backgrounds/MenuGG.h"
 #include "../backgrounds/Hanger.h"
+#include "../backgrounds/HangerGG.h"
 #include "../backgrounds/Shop.h"
 #include "../backgrounds/ShopTiles.h"
 

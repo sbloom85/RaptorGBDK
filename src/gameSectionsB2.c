@@ -84,29 +84,50 @@ void WepShop() BANKED
 
 void HangerSelection(enum selected selection) BANKED
 {
+    #ifdef __TARGET_gb
     if (selection == Fly)
     {
-        MoveCursor(30, 74);
+        MoveCursor(28, 115);
     } else if (selection == Shop)
     {
-        MoveCursor(135, 74);
+        MoveCursor(135, 111);
     } else if (selection == Save)
     {
-        MoveCursor(150, 50);
+        MoveCursor(104, 59);
     } else //Exit
     {
-        MoveCursor(80, 140);
+        MoveCursor(80, 144);
     }
+    #endif
+    #ifdef __TARGET_gg
+    if (selection == Fly)
+    {
+        MoveCursor(68, 115);
+    } else if (selection == Shop)
+    {
+        MoveCursor(173, 115);
+    } else if (selection == Save)
+    {
+        MoveCursor(142, 66);
+    } else //Exit
+    {
+        MoveCursor(120, 154);
+    }
+    #endif
 }
 
 void Hanger() NONBANKED
 {
+    //Prevents accidentally activating an option
+    PerformantDelay(8);
+
+    #ifdef __TARGET_gb
     //Helps hide some graphics corruption
     set_bkg_palette(0, 1, &black_palette[0]);
     
     set_bkg_data(0, Hanger_TILE_COUNT, Hanger_tiles);
     set_bkg_palette(0, Hanger_PALETTE_COUNT, &Hanger_palettes[0]);
-    #ifdef __TARGET_gb
+    
     if (sgb_check()) {
         SGBTransferPalettes(Hanger_palettes);
     }
@@ -114,15 +135,28 @@ void Hanger() NONBANKED
     VBK_REG = 1;
     set_bkg_tiles(0, 0, 20, 18, Hanger_map_attributes);
     VBK_REG = 0;
-    #endif
-    set_bkg_tiles(0, 0, 20, 18, Hanger_map);
     
+    set_bkg_tiles(0, 0, 20, 18, Hanger_map);
+    #endif
+    
+    #ifdef __TARGET_gg
+    set_palette(0, HangerGG_PALETTE_COUNT, &HangerGG_palettes[0]);
+
+    set_bkg_4bpp_data(0, HangerGG_TILE_COUNT, HangerGG_tiles);
+
+    set_tile_map_compat(0, 0, 20, 18, HangerGG_map);
+    #endif
 
     enum selected selection;
     selection = 1;
 
     InitCursor();
-    MoveCursor(30, 74); //Default to Fly for now.
+    #ifdef __TARGET_gb
+    MoveCursor(28, 115); //Default to Fly for now.
+    #endif
+    #ifdef __TARGET_gg
+    MoveCursor(68, 115); //Default to Fly for now.
+    #endif
 
     initPlayer();
 

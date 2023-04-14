@@ -46,7 +46,9 @@ void Title() NONBANKED
     #endif
 
     PerformantDelay(130);
-    //SWITCH_ROM(3);
+    #ifdef __TARGET_gb
+    SWITCH_ROM(3);
+    #endif
     fadeout();
     SWITCH_ROM(2);
 }
