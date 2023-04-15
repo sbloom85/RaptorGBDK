@@ -420,7 +420,7 @@ void gameLoop() NONBANKED
 
         set_camera();
 
-        tileHitDetection();
+        //tileHitDetection();
 
         #ifdef __TARGET_gb
         hUGE_dosound();
