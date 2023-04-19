@@ -122,6 +122,11 @@ void Hanger() NONBANKED
     PerformantDelay(8);
 
     #ifdef __TARGET_gb
+    hUGE_init(&RapHanger);
+    hUGE_dosound();
+    #endif
+
+    #ifdef __TARGET_gb
     //Helps hide some graphics corruption
     set_bkg_palette(0, 1, &black_palette[0]);
     
@@ -167,7 +172,18 @@ void Hanger() NONBANKED
     {
         uint8_t joyInput = joypad();
 
-        PerformantDelay(8);
+        //PerformantDelay(8);
+
+        for (uint16_t i = 8; i--;)
+        {
+            #ifdef __TARGET_gb
+            hUGE_dosound();
+            #endif
+            #ifdef __TARGET_gg
+            //Todo
+            #endif
+            wait_vbl_done();
+        }
 
         if (joyInput & J_LEFT)
         {

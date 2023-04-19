@@ -77,6 +77,11 @@ void Title() NONBANKED
         //Todo
         #endif
         wait_vbl_done();
+
+        if (joypad() & J_A)
+        {
+            break;
+        }
     }
 
     //PerformantDelayMusic(130);
