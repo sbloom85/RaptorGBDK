@@ -39,9 +39,7 @@ void main(void)
     
     DISPLAY_ON;
 
-    //Bank 1:
-    //Title, Menu, Intro
-    SWITCH_ROM(4);
+    SWITCH_ROM(1);
     #ifdef __TARGET_gb
     if (sgb_check())
     {
@@ -53,13 +51,9 @@ void main(void)
     SHOW_SPRITES;
 
     InitializeSound();
-    SWITCH_ROM(1);
+    //SWITCH_ROM(1);
     Title();
     Menu();
-    //Bank 2:
-    //Hanger, Shop, Sector Select, 
-    //Background and Sprite Handlers
-    //Menu, Hanger, and Player Sprites
     SWITCH_ROM(3);
     Hanger();
 }

@@ -23,7 +23,7 @@ extern struct PlayerShip ship;
 uint8_t doneScroll = 0;
 
 uint8_t mapTileSet = 1;
-uint8_t currentMapBank = 6;
+uint8_t currentMapBank = 5;
 
 unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
@@ -409,12 +409,14 @@ void gameLoop() NONBANKED
     {
         game_time++;
 
+        SWITCH_ROM(6);
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
         #ifdef __TARGET_gg
         //Todo
         #endif
+        SWITCH_ROM(3);
 
         //GGDisplayHud();
 
@@ -422,12 +424,14 @@ void gameLoop() NONBANKED
 
         //tileHitDetection();
 
+        SWITCH_ROM(6);
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
         #ifdef __TARGET_gg
         //Todo
         #endif
+        SWITCH_ROM(3);
 
         //GGDisplayHud();
 
@@ -439,12 +443,14 @@ void gameLoop() NONBANKED
 
         inputLoop();
 
+        SWITCH_ROM(6);
         #ifdef __TARGET_gb
         hUGE_dosound();
         #endif
         #ifdef __TARGET_gg
         //Todo
         #endif
+        SWITCH_ROM(3);
 
         //GGDisplayHud();
 

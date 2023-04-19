@@ -4,6 +4,7 @@
 #include <gb/gb.h>
 #include <gb/sgb.h>
 #include <gb/cgb.h>
+#include "../sounds/hUGEDriver.h"
 #endif
 #ifdef __TARGET_gg
 #include <sms/sms.h>
@@ -24,6 +25,20 @@ void PerformantDelay(uint8_t numLoops)
 {
     for (uint8_t i = numLoops; i--;)
     {
+        wait_vbl_done();
+    }
+}
+
+void PerformantDelayMusic(uint8_t numLoops)
+{
+    for (uint8_t i = numLoops; i--;)
+    {
+        #ifdef __TARGET_gb
+        hUGE_dosound();
+        #endif
+        #ifdef __TARGET_gg
+        //Todo
+        #endif
         wait_vbl_done();
     }
 }

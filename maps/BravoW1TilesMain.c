@@ -1,5 +1,5 @@
 #ifdef __TARGET_gb
-#pragma bank 5
+#pragma bank 4
 
 /*
 
@@ -26,7 +26,7 @@
 */
 
 /* CGBpalette entries. */
-const void __at(3) __bank_Bravo1MapTilesMainCGB;
+const void __at(4) __bank_Bravo1MapTilesMainCGB;
 const unsigned char Bravo1MapTilesMainCGB[] =
 {
   0x03,0x06,0x06,0x06,0x06,0x06,0x06,0x06,
@@ -47,7 +47,7 @@ const unsigned char Bravo1MapTilesMainCGB[] =
   0x07,0x07,0x07,0x07,0x07,0x07,0x07,0x07
 };
 /* Start of tile array. */
-const void __at(3) __bank_Bravo1MapTilesMain;
+const void __at(4) __bank_Bravo1MapTilesMain;
 const unsigned char Bravo1MapTilesMain[] =
 {
   0xFF,0xFF,0xFB,0xFF,0xFF,0xFF,0xBF,0xFF,

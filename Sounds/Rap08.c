@@ -1,4 +1,5 @@
 #ifdef __TARGET_gb
+#pragma bank 6
 #include "hUGEDriver.h"
 #include <stddef.h>
 

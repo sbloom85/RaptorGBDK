@@ -1,5 +1,5 @@
 #ifdef __TARGET_gb
-#pragma bank 4
+#pragma bank 1
 #include "sgb_border.h"
 
 #include <gb/gb.h>

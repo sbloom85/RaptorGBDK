@@ -1,5 +1,5 @@
 #ifdef __TARGET_gb
-#pragma bank 6
+#pragma bank 5
 
 /*
 
@@ -23,10 +23,10 @@
 
 #define BravoWave1Width 20
 #define BravoWave1Height 255
-#define BravoWave1Bank 6
+#define BravoWave1Bank 5
 
 #define BravoWave1 BravoWave1PLN0
-const void __at(6) __bank_BravoWave1PLN0;
+const void __at(5) __bank_BravoWave1PLN0;
 const unsigned char BravoWave1PLN0[] =
 {
   0x00,0x00,0x1D,0x1E,0x1E,0x1B,0x1B,0x1B,0x1B,0x1B,
@@ -541,7 +541,7 @@ const unsigned char BravoWave1PLN0[] =
   0x1B,0x1B,0x1B,0x1B,0x1B,0x1B,0x1B,0x1B,0x19,0x00
 };
 
-const void __at(6) __bank_BravoWave1PLN01;
+const void __at(5) __bank_BravoWave1PLN01;
 const unsigned char BravoWave1PLN1[] =
 {
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
@@ -1056,7 +1056,7 @@ const unsigned char BravoWave1PLN1[] =
   0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01
 };
 
-const void __at(6) __bank_BravoWave1PLN02;
+const void __at(5) __bank_BravoWave1PLN02;
 const unsigned char BravoWave1PLN2[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,

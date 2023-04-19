@@ -22,11 +22,20 @@
 
 void Title() NONBANKED
 {
+    //SWITCH_ROM(1);
+    #ifdef __TARGET_gb
+    hUGE_init(&RapIntro);
+    hUGE_dosound();
+    #endif
+
     #ifdef __TARGET_gb
     set_bkg_palette(0, Intro_PALETTE_COUNT, &Intro_palettes[0]);
     
+    hUGE_dosound();
+
     set_bkg_data(0, Intro_TILE_COUNT, Intro_tiles);
     #ifdef __TARGET_gb
+    hUGE_dosound();
     if (sgb_check()) {
         SGBTransferPalettes(Intro_palettes);
     }
@@ -37,6 +46,13 @@ void Title() NONBANKED
     //set_bkg_tiles(0, 0, 20, 18, Intro_map);
     #endif
 
+    #ifdef __TARGET_gb
+    hUGE_dosound();
+    #endif
+    #ifdef __TARGET_gg
+    //Todo
+    #endif
+
     #ifdef __TARGET_gg
     set_palette(0, TitleGG_PALETTE_COUNT, &TitleGG_palettes[0]);
 
@@ -45,7 +61,31 @@ void Title() NONBANKED
     set_tile_map_compat(0, 0, 20, 18, TitleGG_map);
     #endif
 
-    PerformantDelay(130);
+    #ifdef __TARGET_gb
+    hUGE_dosound();
+    #endif
+    #ifdef __TARGET_gg
+    //Todo
+    #endif
+
+    for (uint16_t i = 1000; i--;)
+    {
+        #ifdef __TARGET_gb
+        hUGE_dosound();
+        #endif
+        #ifdef __TARGET_gg
+        //Todo
+        #endif
+        wait_vbl_done();
+    }
+
+    //PerformantDelayMusic(130);
+
+    hUGE_mute_channel(HT_CH1, HT_CH_MUTE);
+    hUGE_mute_channel(HT_CH2, HT_CH_MUTE);
+    hUGE_mute_channel(HT_CH3, HT_CH_MUTE);
+    hUGE_mute_channel(HT_CH4, HT_CH_MUTE);
+
     #ifdef __TARGET_gb
     SWITCH_ROM(3);
     #endif
@@ -126,7 +166,7 @@ void BravoOne() NONBANKED
 
     map_pos_y = (uint8_t)(camera_y >> 3u);
 
-    currentMapBank = 6;
+    currentMapBank = BravoWave1Bank;
     SWITCH_ROM(currentMapBank);
 
     #ifdef __TARGET_gg
@@ -146,9 +186,11 @@ void BravoOne() NONBANKED
     
     //memcpy(0xCA00, currentMapPLN2, sizeof(currentMapPLN2));
 
+    SWITCH_ROM(6);
     #ifdef __TARGET_gb
     hUGE_init(&Rap08);
     #endif
+    SWITCH_ROM(currentMapBank);
 
     #ifdef __TARGET_gb
     for (uint8_t i = 144; i--;)
