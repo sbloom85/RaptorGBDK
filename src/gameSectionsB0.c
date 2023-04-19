@@ -100,6 +100,10 @@ void Title() NONBANKED
 
 void Menu() NONBANKED
 {
+    #ifdef __TARGET_gb
+    hUGE_init(&RapMenu);
+    #endif
+
     SWITCH_ROM(2);
 
     #ifdef __TARGET_gb
@@ -128,10 +132,20 @@ void Menu() NONBANKED
 
     while (1)
     {
+        #ifdef __TARGET_gb
+        hUGE_dosound();
+        #endif
+        #ifdef __TARGET_gg
+        //Todo
+        #endif
         wait_vbl_done();
 
         if (joypad() & J_A)
         {
+            hUGE_mute_channel(HT_CH1, HT_CH_MUTE);
+            hUGE_mute_channel(HT_CH2, HT_CH_MUTE);
+            hUGE_mute_channel(HT_CH3, HT_CH_MUTE);
+            hUGE_mute_channel(HT_CH4, HT_CH_MUTE);
             SWITCH_ROM(3);
             fadeout();
             //SWITCH_ROM(1);

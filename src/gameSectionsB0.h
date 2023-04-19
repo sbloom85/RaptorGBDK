@@ -4,6 +4,7 @@
 #include "../sounds/hUGEDriver.h"
 
 extern const hUGESong_t RapIntro;
+extern const hUGESong_t RapMenu;
 extern const hUGESong_t Rap08;
 
 void Title();
