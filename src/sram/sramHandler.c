@@ -1,7 +1,7 @@
 
 /*-----------------------------------------------------------------------------
  *
- *  RaptorGB: a Gameboy Demake based off the MSDOS Game 
+ *  RaptorGBDK: A Gameboy Demake based off the MSDOS Game 
  *  Raptor: Call of the Shadows
  *  Copyright (C) 1994 by
  *  Apogee Software, Scott Host, Rich Fleider, Tim Neveu,  
