@@ -1,7 +1,7 @@
 1.  Graphics
     a.  Enemy Sprites - IN PROGRESS
     b.  Weapon Sprites - IN PROGRESS
-    c.  Background Tiles - IN PROGRESS
+    c.  Background Tiles - IN PROGRESS (RetroGamer02)
     d.  HUD
         i. Shields and Health - DONE? (RetroGamer02)
         ii. Selected weapon - DONE (RetroGamer02)
@@ -14,13 +14,13 @@
 
 3.  Create Background Maps
     a.  Intro Backgrounds
-    b.  Title Background - IN PROGRESS
+    b.  Title Background - DONE (RetroGamer02)
     c.  Pre-Game Backgrounds - IN PROGRESS
     d.  Level Backgrounds - IN PROGRESS (RetroGamer02)
 
 4.  Create Music and Sound Effects
     a.  Create Sound Effects - IN PROGRESS (Scott)
-    b.  Create Music
+    b.  Create Music- IN PROGRESS (RetroGamer02)
 
 5.  Code controls
     a.  Basic Movement - DONE (RetroGamer02)
