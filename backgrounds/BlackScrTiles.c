@@ -1,3 +1,5 @@
+#pragma bank 3
+
 /*
 
  BLACKSCRTILES.C

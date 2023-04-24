@@ -54,20 +54,6 @@ void PerformantDelay(uint8_t numLoops)
     }
 }
 
-void PerformantDelayMusic(uint8_t numLoops)
-{
-    for (uint8_t i = numLoops; i--;)
-    {
-        #ifdef __TARGET_gb
-        hUGE_dosound();
-        #endif
-        #ifdef __TARGET_gg
-        //Todo
-        #endif
-        wait_vbl_done();
-    }
-}
-
 #ifdef __TARGET_gb
 uint8_t getGBType()
 {
@@ -143,7 +129,7 @@ void fadeout()
 
 #ifdef __TARGET_gb
 //Must be Banked to work
-void fadeoutDMG() BANKED
+void fadeoutDMG() NONBANKED
 {
     BGP_REG_OLD = BGP_REG;
     for (int i = 1; i != 4; ++i) 

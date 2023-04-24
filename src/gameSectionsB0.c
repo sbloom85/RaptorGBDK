@@ -43,11 +43,10 @@
 #include "gameHandler.h"
 #include "gameSectionsCommon.h"
 #include "gameSectionsB0.h"
-#include "gameSectionsB2.h"
+#include "gameSectionsB3.h"
 
 void Title() NONBANKED
 {
-    //SWITCH_ROM(1);
     #ifdef __TARGET_gb
     hUGE_init(&RapIntro);
     hUGE_dosound();
@@ -108,8 +107,6 @@ void Title() NONBANKED
             break;
         }
     }
-
-    //PerformantDelayMusic(130);
 
     hUGE_mute_channel(HT_CH1, HT_CH_MUTE);
     hUGE_mute_channel(HT_CH2, HT_CH_MUTE);
@@ -173,8 +170,6 @@ void Menu() NONBANKED
             hUGE_mute_channel(HT_CH4, HT_CH_MUTE);
             SWITCH_ROM(3);
             fadeout();
-            //SWITCH_ROM(1);
-            //break;
             Hanger();
         }
     }
@@ -227,8 +222,6 @@ void BravoOne() NONBANKED
     #ifdef __TARGET_gg
     currentMapPLN0 = (unsigned char*)BravoW1MapGG_map;
     #endif
-    
-    //memcpy(0xCA00, currentMapPLN2, sizeof(currentMapPLN2));
 
     SWITCH_ROM(6);
     #ifdef __TARGET_gb
@@ -258,6 +251,6 @@ void BravoOne() NONBANKED
     //map_pos_y = 0;
     old_map_pos_y = 255;
 
-    //Switch back to Bank 2 for Game Handler use.
+    //Switch back to Bank 3 for Game Handler use.
     SWITCH_ROM(3);
 }

@@ -40,7 +40,7 @@
 #include "gameHandler.h"
 #include "gameSectionsCommon.h"
 #include "gameSectionsB0.h"
-#include "gameSectionsB2.h"
+#include "gameSectionsB3.h"
 
 #include "sram/sramHandler.h"
 
@@ -71,7 +71,7 @@ void initPlayer()
     playData.cashAmount = 10000;
 }
 
-void WepShop() BANKED
+void WepShop()
 {
     set_bkg_palette(0, 4, &bkgShopPalette[0]);
     
@@ -107,7 +107,7 @@ void WepShop() BANKED
     }
 }
 
-void HangerSelection(enum selected selection) BANKED
+void HangerSelection(enum selected selection)
 {
     #ifdef __TARGET_gb
     if (selection == Fly)

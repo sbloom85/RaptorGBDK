@@ -36,7 +36,7 @@
 #include "commonFunc.h"
 #include "spriteHandler.h"
 #include "gameSectionsB0.h"
-#include "gameSectionsB2.h"
+#include "gameSectionsB3.h"
 #include "gameHandler.h"
 
 #include "sgb_border.h"
@@ -76,7 +76,7 @@ void main(void)
     SHOW_SPRITES;
 
     InitializeSound();
-    //SWITCH_ROM(1);
+    
     Title();
     Menu();
     SWITCH_ROM(3);

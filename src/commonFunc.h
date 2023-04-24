@@ -68,7 +68,6 @@ extern struct projectile newProjectile[20];
 extern struct Enemy eShip1;
 
 void PerformantDelay(uint8_t numLoops);
-void PerformantDelayMusic(uint8_t numLoops);
 uint8_t getGBType();
 void SGBTransferPalettes(const UWORD *SGBPallete);
 void fadein();

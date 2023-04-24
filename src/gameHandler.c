@@ -54,6 +54,22 @@ unsigned char *currentMapPLN0;
 unsigned char *currentMapPLN1;
 unsigned char *currentMapPLN2;
 
+static unsigned char RaptorWindowUpdatePLN0[] =
+{
+  0x74,0x74,0x74,0x74,0x66,0x74,0x74,0x74,0x74,0x74,
+  0x74,0x74,0x74,0x74,0x74,0x74,0x74,0x74,0x74,0x74,
+  0x74,0x71,0x74,0x74,0x74,0x74,0x72,0x74,0x74,0x74,
+  0x74,0x7E,0x7E,0x7E,0x7E,0x7E,0x74,0x73,0x74,0x74
+};
+
+static unsigned char RaptorWindowUpdateGGPLN0[] =
+{
+  0x6F,0x6F,0x6F,0x6F,0x70,0x6F,0x6F,0x6F,0x6F,0x6F,
+  0x6F,0x6F,0x6F,0x6F,0x6F,0x6F,0x6F,0x6F,0x6F,0x6F,
+  0x6F,0x7B,0x6F,0x6F,0x6F,0x6F,0x7C,0x6F,0x6F,0x6F,
+  0x6F,0x84,0x84,0x84,0x84,0x84,0x6F,0x7D,0x6F,0x6F
+};
+
 // current and old positions of the camera in pixels
 //int16_t  fake_camera_x;
 int16_t camera_y;
@@ -74,7 +90,7 @@ struct windowStruct {
     char Shield[3];
 } windowData;
 
-char* itoa8(int8_t i, char b[]) BANKED
+char* itoa8(int8_t i, char b[])
 {
     char const digit[] = "0123456789";
     char* p = b;
@@ -95,7 +111,7 @@ char* itoa8(int8_t i, char b[]) BANKED
     return b;
 }
 
-char* itoa32(int32_t i, char b[]) BANKED
+char* itoa32(int32_t i, char b[])
 {
     char const digit[] = "0123456789";
     char* p = b;
@@ -116,17 +132,16 @@ char* itoa32(int32_t i, char b[]) BANKED
     return b;
 }
 
-void GGDisplayHud() BANKED
+void GGDisplayHud()
 {
     #ifdef __TARGET_gg
     set_tile_map_compat(0, (uint8_t)(camera_y >> 3u) +17U, 20, 2, RaptorWindowUpdateGGPLN0);
     #endif
 }
 
+//Needs to be Banked?
 void updateHud() BANKED
 {
-    
-    
     if (IS_FRAME_2)
     {
         itoa32(playData.cashAmount, windowData.Cash);
@@ -267,7 +282,7 @@ void updateHud() BANKED
     }
 }
 
-void init_camera() BANKED
+void init_camera()
 {
     camera_y = -154;
     old_camera_y = camera_y;
@@ -281,7 +296,7 @@ void init_camera() BANKED
     #endif
 }
 
-void scroll_cam_up() BANKED
+void scroll_cam_up()
 {
     //Check frames for slight slow down.
     if (camera_y != -2048 && (IS_FRAME_ODD || IS_FRAME_4))
@@ -399,7 +414,7 @@ void set_camera() NONBANKED
     SWITCH_ROM(3);
 }
 
-void gameInit() BANKED
+void gameInit()
 {
     initProjectiles();
     init_camera();

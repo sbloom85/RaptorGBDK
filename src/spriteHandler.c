@@ -71,7 +71,7 @@ const UWORD sprPalette[] = {
     //RGB_GREEN, RGB_BROWN, RGB(15, 15, 15), RGB(5, 5, 5),
 };
 
-void InitCursor() BANKED
+void InitCursor()
 {
     set_sprite_palette(0, 1, sprPalette);
     #ifdef __TARGET_gb
@@ -89,7 +89,7 @@ void MoveCursor(uint8_t x, uint8_t y) NONBANKED
 }
 
 // Move the character
-void MovePlayer(uint8_t x, uint8_t y) BANKED
+void MovePlayer(uint8_t x, uint8_t y)
 {
     move_sprite(ship.spriteids[0], x + (spriteSize + 0), y + (spriteSize + 0));
     move_sprite(ship.spriteids[1], x + (spriteSize + 8), y + (spriteSize + 0));
@@ -115,7 +115,7 @@ void MoveEnemy()
     //move_sprite(25, eShip1.x + 16, eShip1.y + 16);
 }
 
-void initProjectiles() BANKED
+void initProjectiles()
 {
     //Everything below 8 is resurved for ship.
     uint8_t shotStartID = 8;
@@ -134,7 +134,7 @@ void moveProjectiles() NONBANKED
         if (newProjectile[i].enabled)
         {
             newProjectile[i].y -= 4;
-            if (newProjectile[i].y > 8)
+            if (newProjectile[i].y > 4)
             {
                 move_sprite(newProjectile[i].id, newProjectile[i].x, newProjectile[i].y);
             } else {
@@ -144,7 +144,7 @@ void moveProjectiles() NONBANKED
     }
 }
 
-void fireWeapon() BANKED
+void fireWeapon()
 {
     while (shots < 8 && IS_FRAME_4)
     {
@@ -211,7 +211,7 @@ void fireWeapon() BANKED
     shots = 0;
 }
 // Initialize ship struct
-void setupShip() BANKED
+void setupShip()
 {
     set_sprite_palette(0, 3, &sprPalette[0]);
 
@@ -334,7 +334,7 @@ void SetupEnemyShip() NONBANKED
     //move_sprite(23, eShip1.x + 8, eShip1.y + 24);*/
 }
 
-void SetColliders() BANKED
+void SetColliders()
 {
     // Reset colliders
     ship.colliderTop = ship.y;
@@ -343,7 +343,7 @@ void SetColliders() BANKED
     ship.colliderBottom = ship.y + ship.height;
 }
 
-void inputLoop() BANKED
+void inputLoop()
 {
     uint8_t joyInput = joypad();
 

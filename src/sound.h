@@ -55,7 +55,7 @@
 // 5-3  Unused
 // 2-0  3 most significant bits of frequency
 // 1100 0011    is 0xC3, initialize, not consecutive, frequency = MSB + LSB = 011 0000 0000 = 0x300
-    
+
 
 #ifndef SOUND_H_INCLUDE
 #define SOUND_H_INCLUDE
